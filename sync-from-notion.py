@@ -16,21 +16,14 @@ HEADERS = {
 
 SITE_PATH = Path('/Users/divijrakhra/.openclaw/workspace/projects/personal-site')
 
-def get_ready_posts():
-    """Fetch all posts with Status = 'Ready'"""
-    payload = {
-        'filter': {
-            'property': 'Status',
-            'select': {'equals': 'Ready'}
-        }
-    }
-    
+def get_all_posts():
+    """Fetch all posts from Notion"""
     response = requests.post(
         f'https://api.notion.com/v1/databases/{BLOG_DB}/query',
         headers=HEADERS,
-        json=payload
+        json={}
     )
-    
+
     if response.status_code == 200:
         return response.json()['results']
     else:
@@ -167,8 +160,8 @@ def update_index_html(posts):
     index_path.write_text(new_index)
 
 if __name__ == '__main__':
-    print("Fetching posts with Status = 'Ready'...")
-    posts = get_ready_posts()
+    print("Fetching all posts from Notion...")
+    posts = get_all_posts()
     
     if not posts:
         print("No posts to sync")
@@ -184,9 +177,6 @@ if __name__ == '__main__':
             
             (post_dir / 'index.html').write_text(html)
             print(f"✓ Generated: {slug}")
-            
-            # Mark as published in Notion
-            mark_as_published(post['id'])
         
         # Update index.html
         print("\nUpdating index.html...")
