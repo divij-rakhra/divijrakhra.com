@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Geist Sans', -apple-system, sans-serif;
   font-size: 17px;
   line-height: 1.8;
   color: #111;
@@ -47,7 +47,7 @@ p.tagline {
   text-transform: uppercase;
   color: #999;
   margin-bottom: 20px;
-  font-family: -apple-system, sans-serif;
+  font-family: 'Geist Sans', -apple-system, sans-serif;
 }
 
 hr.divider {
@@ -134,7 +134,7 @@ hr.divider {
   font-size: 13px;
   color: #999;
   margin-bottom: 32px;
-  font-family: -apple-system, sans-serif;
+  font-family: 'Geist Sans', -apple-system, sans-serif;
 }
 
 .post-body p {
