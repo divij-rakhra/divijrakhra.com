@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Zero-DR Citation: how two brand-new domains started steering ChatGPT's recommendations · Divij Rakhra</title>
+  <meta name="description" content="Two exact-match directory domains with zero domain rating became top-cited sources in ChatGPT. The data, the screenshots, and the playbook to copy it.">
+  <link rel="icon" type="image/jpeg" href="../../avatar.jpg">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2">
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+@font-face{font-family:'Geist Sans';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/GeistMono-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
+body{-webkit-font-smoothing:antialiased;color:#16191f}
+:root{--acc:#3b5bfd;--acc2:#8fa3ff;--tint:#eef1ff;--ink:#0d1015;--muted:#6b7280;--line:#e8e8e6;--neut:#c9ccd3;--surf:#f7f7f5}
+.container{max-width:760px}
+.post-body h2{font-size:22px;font-weight:500;letter-spacing:-.2px;margin:52px 0 16px}
+.post-body h2 .n{display:block;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;color:var(--acc);margin-bottom:8px;text-transform:uppercase}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--tint);border-radius:99px;padding:5px 12px;margin-bottom:18px}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.post-title{font-size:34px;letter-spacing:-.8px;line-height:1.18}
+.lede{font-size:19px;line-height:1.65;color:#2b2f36}
+figure{margin:36px 0 44px}
+figcaption{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:14px;padding-left:14px;border-left:2px solid var(--line)}
+figcaption b{color:var(--ink);font-weight:500}
+figure>img{width:100%;height:auto;display:block;border-radius:14px}
+figure>img+img{margin-top:18px}
+.tnum,.kpi-v,.vs b,.ba-n,.ub-v b,.chip{font-variant-numeric:tabular-nums}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 40px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;box-shadow:0 1px 2px rgba(13,16,21,.03)}
+.kpi-l{font:500 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.kpi-v{font-size:30px;font-weight:500;letter-spacing:-1px;line-height:1}
+.kpi-s{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:8px}
+.kpi.hi{background:var(--ink);border-color:var(--ink);color:#fff}
+.kpi.hi .kpi-l{color:var(--acc2)} .kpi.hi .kpi-s{color:rgba(255,255,255,.6)}
+/* viz card */
+.viz{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 24px 20px;box-shadow:0 1px 2px rgba(13,16,21,.03),0 10px 30px rgba(13,16,21,.04)}
+.viz.dark{background:radial-gradient(120% 90% at 85% 0%,#1b2340 0%,#0d1015 55%);border-color:#0d1015;color:#fff}
+.viz-h{margin-bottom:18px}
+.viz-e{font:500 10.5px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.viz.dark .viz-e{color:var(--acc2)}
+.viz-t{font-size:18px;font-weight:500;letter-spacing:-.2px;line-height:1.35}
+.viz-s{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.viz.dark .viz-s{color:rgba(255,255,255,.5)}
+.viz svg{width:100%;height:auto;display:block;overflow:visible}
+.viz svg text{font-family:'Geist Sans',-apple-system,sans-serif}
+.ax{font-size:10.5px;fill:rgba(255,255,255,.42);font-family:'Geist Mono',monospace!important}
+.pill{font-size:10.5px;fill:rgba(255,255,255,.85);font-weight:500}
+.peak{font:600 12px 'Geist Mono',monospace!important;fill:#fff}
+.lg{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--muted)}
+.viz.dark .lg{color:rgba(255,255,255,.6)}
+.lg span{display:inline-flex;align-items:center;gap:7px}
+.lg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.lg i.a{background:linear-gradient(var(--acc2),var(--acc))} .lg i.n{background:var(--neut)} .lg i.l{height:2px;width:16px;border-radius:2px;background:rgba(201,204,211,.7)}
+.cm{display:none}
+/* versus */
+.vs-head,.vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:18px;align-items:end}
+.vs-head{font-size:12.5px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:7px}
+.dot.a{background:var(--acc)} .dot.b{background:var(--neut)}
+.vs-row{padding:16px 0;border-bottom:1px solid #f1f1ef}
+.vs-row:last-child{border-bottom:0;padding-bottom:4px}
+.vs-l{font-size:13.5px;color:#374151;align-self:center}
+.vs b{display:block;font-size:26px;font-weight:500;letter-spacing:-.8px;line-height:1;margin-bottom:10px}
+.vs-c.a b{color:var(--acc)} .vs-c.b b{color:#9ca3af}
+.tr{display:block;height:6px;background:#f1f1ef;border-radius:99px;overflow:hidden}
+.tr span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.vs-c.b .tr span{background:var(--neut)}
+/* before/after */
+.ba-row{padding:16px 0;border-bottom:1px solid #f1f1ef}
+.ba-row:last-child{border-bottom:0;padding-bottom:4px}
+.ba-l{font-size:13.5px;color:#374151;margin-bottom:8px}
+.ba-n{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.ba-n .was{font-size:18px;color:#9ca3af}
+.ba-n .arr{color:#c4c7ce}
+.ba-n .now{font-size:30px;font-weight:500;letter-spacing:-1px;color:var(--ink)}
+.chip{margin-left:auto;font:600 11.5px 'Geist Mono',monospace;color:var(--acc);background:var(--tint);border-radius:99px;padding:4px 10px;white-space:nowrap}
+.chip.flat{color:#6b7280;background:#f1f1ef}
+.ba-t{height:6px;background:#f4f4f2;border-radius:99px;margin-top:5px;overflow:hidden}
+.ba-t span{display:block;height:100%;border-radius:99px}
+.ba-t .t0{background:var(--neut)} .ba-t .t1{background:linear-gradient(90deg,var(--acc),var(--acc2))}
+/* dumbbell */
+.db-ax{display:flex;justify-content:space-between;margin-left:calc(38% + 14px);margin-right:84px;font:500 10.5px 'Geist Mono',monospace;color:#9ca3af;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.db-row{display:grid;grid-template-columns:38% 1fr 70px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid #f4f4f2}
+.db-row:last-child{border-bottom:0}
+.db-l{font-size:13px;color:#374151;line-height:1.35}
+.db-tr{position:relative;height:14px;background:repeating-linear-gradient(90deg,#f1f1ef 0 1px,transparent 1px 25%);border-radius:99px}
+.db-tr::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:#f1f1ef;border-radius:2px}
+.db-tr .seg{position:absolute;top:5px;height:4px;border-radius:99px;background:linear-gradient(90deg,#d7ddff,var(--acc2))}
+.db-tr .p0,.db-tr .p1{position:absolute;top:1px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(13,16,21,.08)}
+.db-tr .p0{background:var(--neut)} .db-tr .p1{background:var(--acc)}
+.db .chip{margin:0;justify-self:end}
+/* urls */
+.ub-row{display:grid;grid-template-columns:28px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #f4f4f2}
+.ub-row:last-child{border-bottom:0}
+.ub-i{font:500 11px 'Geist Mono',monospace;color:#9ca3af}
+.ub-l{font:500 12.5px 'Geist Mono',monospace;color:#374151;margin-bottom:8px;overflow-wrap:anywhere}
+.ub-v{text-align:right}
+.ub-v b{display:block;font-size:20px;font-weight:500;letter-spacing:-.5px}
+.ub-v span{font-size:11.5px;color:var(--muted);white-space:nowrap}
+/* timeline */
+.tl{position:relative;margin:12px 0 40px;padding-left:4px}
+.tl::before{content:"";position:absolute;left:78px;top:10px;bottom:10px;width:1px;background:var(--line)}
+.tl-i{display:grid;grid-template-columns:62px 1fr;gap:32px;padding:10px 0;position:relative}
+.tl-i::before{content:"";position:absolute;left:70px;top:17px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--neut)}
+.tl-i.on::before{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 5px var(--tint)}
+.tl-d{font:500 12px 'Geist Mono',monospace;color:var(--muted);padding-top:3px;text-align:right}
+.tl-t{font-size:15px;font-weight:500}
+.tl-i.on .tl-t{color:var(--acc)}
+.tl-x{font-size:14px;color:var(--muted);line-height:1.55}
+/* frames */
+.fr{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 1px 2px rgba(13,16,21,.03),0 12px 32px rgba(13,16,21,.06)}
+.fr.dark{background:#161616;border-color:#222}
+.fr-bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-bottom:1px solid var(--line);background:#fafaf8}
+.fr.dark .fr-bar{background:#1e1e1e;border-color:#2a2a2a}
+.fr-bar i{width:9px;height:9px;border-radius:50%;background:#e2e2df}
+.fr.dark .fr-bar i{background:#3a3a3a}
+.fr-url{margin:0 auto;transform:translateX(-18px);font:500 11px 'Geist Mono',monospace;color:#8a8f98;background:#fff;border:1px solid var(--line);border-radius:7px;padding:3px 14px;min-width:40%;text-align:center}
+.fr.dark .fr-url{background:#262626;border-color:#333;color:#8a8a8a}
+.fr-url .rdx{min-width:0;width:90px;height:10px;vertical-align:-1px}
+.fr img{width:100%;height:auto;display:block}
+.rdx{display:inline-block;background:#0d1015;color:transparent;border-radius:3px;user-select:none}
+/* fanout */
+.fo{background:var(--ink);border-radius:16px;padding:6px 0 10px;margin:8px 0 28px;overflow:hidden}
+.fo-h{display:flex;justify-content:space-between;padding:10px 20px 12px;border-bottom:1px solid rgba(255,255,255,.08);font:500 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.fo-r{display:flex;gap:16px;padding:9px 20px;font:13px/1.55 'Geist Mono',monospace;color:rgba(255,255,255,.78)}
+.fo-n{color:rgba(255,255,255,.35);flex:none;width:22px}
+.fo mark{background:rgba(59,91,253,.28);color:#c9d3ff;border-radius:4px;padding:1px 4px}
+/* quote */
+.callout{margin:40px 0;padding:28px 30px;border-radius:18px;background:linear-gradient(135deg,var(--tint),#fff 70%);border:1px solid #dfe4ff;font-size:21px;line-height:1.5;letter-spacing:-.2px;color:var(--ink)}
+.callout span{display:block;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+/* steps */
+.steps{list-style:none;padding:0!important;display:grid;grid-template-columns:1fr 1fr;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;margin:0!important;font-size:14.5px;line-height:1.6;color:#4b5563}
+.steps li::before{content:counter(s,decimal-leading-zero);display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--tint);color:var(--acc);font:600 12px 'Geist Mono',monospace;margin-bottom:12px}
+.steps li b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:4px}
+.steps li.wide{grid-column:1/-1}
+.method{font-size:13px;color:var(--muted);line-height:1.7;background:var(--surf);border-radius:14px;padding:20px 22px;margin-top:52px}
+.method p{margin-bottom:10px!important} .method p:last-child{margin-bottom:0!important}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;line-height:1.4;padding:7px 10px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:260px;z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+@media (max-width:640px){
+  .container{padding:44px 16px 80px}
+  .post-title{font-size:27px}
+  .lede{font-size:17.5px}
+  .cd{display:none} .cm{display:block}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi-v{font-size:25px}
+  .viz{padding:18px 16px 16px;border-radius:16px}
+  .ax{font-size:11.5px} .pill{font-size:11px}
+  .vs-head,.vs-row{grid-template-columns:1fr 1fr;gap:12px}
+  .vs-head>div:first-child{display:none}
+  .vs-l{grid-column:1/-1;margin-bottom:-2px}
+  .vs b{font-size:22px}
+  .db-ax{display:none}
+  .db-row{grid-template-columns:1fr auto;gap:8px 12px}
+  .db-l{grid-column:1/-1}
+  .db-tr{grid-column:1}
+  .steps{grid-template-columns:1fr}
+  .tl::before{left:62px} .tl-i{grid-template-columns:48px 1fr;gap:28px} .tl-i::before{left:54px}
+  .callout{font-size:18.5px;padding:22px}
+  .fo-r{font-size:12px;gap:10px;padding:8px 14px} .fo-h{padding:10px 14px}
+  .fo-h span:last-child{display:none}
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back-link">← Back</a>
+
+    <div class="kicker"><i></i>Experiment log · AI search</div>
+    <h1 class="post-title">The Zero-DR Citation: how two brand-new domains started steering ChatGPT's recommendations</h1>
+    <div class="post-meta">September 30, 2026 · 12 min read</div>
+
+    <div class="post-body">
+
+<p class="lede">On September 22, a website that was 33 days old and had 3 backlinks started showing up inside ChatGPT answers.</p>
+<p>Ten times on day one. Fourteen the next day. By September 29 it had been pulled into ChatGPT answers <b>92 times</b> and cited <b>113 times</b>.</p>
+<p>Over those same eight days, across the same tracked prompts, clutch.co got 37 retrievals and 8 citations. Clutch has 48,372 referring domains. This site has 3.</p>
+<p>It's an exact-match domain (EMD): a domain that is literally the search query, with a ranked directory on it. It's the second one I've built. The first one did the same thing back in July, and I wasn't sure if that was a fluke. This post is both experiments, every number, and the exact playbook, so you can run it yourself.</p>
+
+<div class="kpis"><div class="kpi"><div class="kpi-l">Domain rank</div><div class="kpi-v">0</div><div class="kpi-s">on both sites, per DataForSEO</div></div><div class="kpi"><div class="kpi-l">Backlinks</div><div class="kpi-v">3</div><div class="kpi-s">referring domains on EMD #2</div></div><div class="kpi hi"><div class="kpi-l">Citations</div><div class="kpi-v">113</div><div class="kpi-s">in ChatGPT, first 8 days</div></div><div class="kpi hi"><div class="kpi-l">Recommended</div><div class="kpi-v">31→52%</div><div class="kpi-s">how often ChatGPT named our agency</div></div></div>
+
+<p>The short version: <b>all good SEO is good AEO, but not all good AEO is good SEO.</b> Google still wants authority before it shows you to anyone. ChatGPT's retrieval layer mostly wants the page that looks exactly like the answer. That gap is the whole opportunity.</p>
+
+<h2><span class="n">Experiment 01</span>A UX agency directory</h2>
+
+<p>On July 2 I bought an exact-match domain for the head term in the UX agency category. I built a ranked directory on it with Claude Code in an afternoon: a scoring rubric, a top list, a review for every agency, and a source link on every claim. I shipped it and did zero outreach.</p>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com</span></div><img src="emd1-home.jpg" alt="The first EMD&#x27;s homepage: a ranked 2026 list of UX design agencies with a methodology and last-updated date" loading="lazy"></div><figcaption><b>EMD #1.</b> One ranked list, a visible methodology, and a “last updated” date. That's most of what the site is.</figcaption></figure>
+
+<p>Google did what Google does with a brand-new domain. It indexed it in three days and then kept it on page six and beyond. In 67 days: 18,776 impressions, 16 clicks, average position 68.6.</p>
+<p>ChatGPT did something completely different.</p>
+
+<div class="kpis"><div class="kpi"><div class="kpi-l">Backlinks</div><div class="kpi-v">6</div><div class="kpi-s">referring domains, all time</div></div><div class="kpi hi"><div class="kpi-l">Source rank</div><div class="kpi-v">#73</div><div class="kpi-s">of 1,000 domains AI engines pulled from</div></div><div class="kpi hi"><div class="kpi-l">Head query</div><div class="kpi-v">38.6%</div><div class="kpi-s">of ChatGPT answers retrieved it</div></div><div class="kpi"><div class="kpi-l">Cite rate</div><div class="kpi-v">0.89</div><div class="kpi-s">citations per retrieval</div></div></div>
+
+<p>Out of the 1,000 domains that ChatGPT, Perplexity and Google AI Overviews retrieved when answering questions in the category, a 2-month-old domain with six backlinks ranked #73. Clutch, with 48,372 referring domains, was in the same table.</p>
+
+<figure><div class="fr dark"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url">chatgpt.com</span></div><img src="emd1-chatgpt-card.jpg" alt="ChatGPT answer for best ux agencies showing the EMD as a named source card, redacted" loading="lazy"></div><figcaption><b>ChatGPT, “best ux agencies.”</b> A 60-day-old domain rendered as a named source card inside the answer. On Google, the same page was on page six for the same query.</figcaption></figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url">app.peec.ai</span></div><img src="emd1-peec-answer.jpg" alt="Peec AI view of a ChatGPT answer with the EMD in the sources and our agency in the shortlist" loading="lazy"></div><figcaption><b>Peec AI, one ChatGPT answer.</b> The EMD in the sources panel on the right. Our agency in the shortlist on the left, and again in the final “if I were choosing 3.” The source and the recommendation, in one answer.</figcaption></figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url">app.peec.ai</span></div><img src="emd1-peec-headterm.jpg" alt="Peec AI view of a ChatGPT answer for best ux design agencies with our agency listed next to IDEO, Clay, Work and Co, Fjord and AKQA" loading="lazy"></div><figcaption><b>Peec AI, “best ux design agencies.”</b> Our agency in the same table as IDEO, Clay, Work &amp; Co and AKQA, and again in the picks by situation. We're a two-year-old boutique.</figcaption></figure>
+
+<p>That was one site. One site can be luck. So I built a second one, changed a few things based on what I'd learned, and measured it properly.</p>
+
+<h2><span class="n">Experiment 02</span>A narrower directory</h2>
+
+<p>This time I went narrower: one buyer segment instead of the whole category. The site launched on August 20. Everything that shipped, with dates:</p>
+
+<div class="tl"><div class="tl-i"><div class="tl-d">Aug 20</div><div class="tl-b"><div class="tl-t">Site live</div><div class="tl-x">Ranked list, a review per agency, schema, blog, llms.txt.</div></div></div><div class="tl-i"><div class="tl-d">Sep 1</div><div class="tl-b"><div class="tl-t">AEO pass</div><div class="tl-x">Top 7 only, rating and review schema on every entry, llms.txt rebuilt as a data dump, prompt-shaped segment pages.</div></div></div><div class="tl-i"><div class="tl-d">Sep 2</div><div class="tl-b"><div class="tl-t">Corpus and cadence</div><div class="tl-x">llms-full.txt with the whole corpus, month-stamped titles, a stated quarterly review.</div></div></div><div class="tl-i"><div class="tl-d">Sep 7</div><div class="tl-b"><div class="tl-t">Directory</div><div class="tl-x">120 agency pages, a gallery, hub pages, compare pages.</div></div></div><div class="tl-i"><div class="tl-d">Sep 8</div><div class="tl-b"><div class="tl-t">House pick</div><div class="tl-x">Our agency set as the top pick on every page.</div></div></div><div class="tl-i on"><div class="tl-d">Sep 22</div><div class="tl-b"><div class="tl-t">First ChatGPT retrieval</div><div class="tl-x">Then every single day after.</div></div></div></div>
+
+<figure>
+<div class="viz dark"><div class="viz-h"><div class="viz-e">Figure 1 · ChatGPT retrievals per day</div><div class="viz-t">From zero to cited every day, in one week</div><div class="viz-s">Peec AI · Aug 20 to Sep 29, 2026</div><div class="lg"><span><i class="a"></i>EMD #2</span><span><i class="l"></i>clutch.co</span></div></div><div class="cd"><svg viewBox="0 0 720 330" role="img" aria-label="Daily ChatGPT retrievals, EMD #2 vs clutch.co"><defs><linearGradient id="gb0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fa3ff"/><stop offset="1" stop-color="#3b5bfd"/></linearGradient></defs><rect x="581.9268292682926" y="56" width="134.07317073170736" height="240" rx="6" fill="rgba(143,163,255,.09)"/><line x1="34" x2="716" y1="296.0" y2="296.0" stroke="rgba(255,255,255,0.14)"/><text x="26" y="299.5" text-anchor="end" class="ax">0</text><line x1="34" x2="716" y1="249.6" y2="249.6" stroke="rgba(255,255,255,0.06)"/><text x="26" y="253.1" text-anchor="end" class="ax">5</text><line x1="34" x2="716" y1="203.2" y2="203.2" stroke="rgba(255,255,255,0.06)"/><text x="26" y="206.7" text-anchor="end" class="ax">10</text><line x1="34" x2="716" y1="156.8" y2="156.8" stroke="rgba(255,255,255,0.06)"/><text x="26" y="160.3" text-anchor="end" class="ax">15</text><line x1="34" x2="716" y1="110.4" y2="110.4" stroke="rgba(255,255,255,0.06)"/><text x="26" y="113.9" text-anchor="end" class="ax">20</text><line x1="34" x2="716" y1="64.0" y2="64.0" stroke="rgba(255,255,255,0.06)"/><text x="26" y="67.5" text-anchor="end" class="ax">25</text><line x1="42.3170731707317" x2="42.3170731707317" y1="24" y2="296" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="42.3170731707317" cy="296" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="36.3170731707317" y="5" width="55.599999999999994" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="44.3170731707317" y="19" class="pill">Launch</text><line x1="241.92682926829266" x2="241.92682926829266" y1="24" y2="296" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="241.92682926829266" cy="296" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="235.92682926829266" y="5" width="68.8" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="243.92682926829266" y="19" class="pill">AEO pass</text><line x1="341.73170731707313" x2="341.73170731707313" y1="24" y2="296" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="341.73170731707313" cy="296" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="335.73170731707313" y="5" width="75.4" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="343.73170731707313" y="19" class="pill">Directory</text><line x1="591.2439024390244" x2="591.2439024390244" y1="24" y2="296" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="591.2439024390244" cy="296" r="3.5" fill="#0d1015" stroke="#8fa3ff" stroke-width="1.5"/><rect x="482.2439024390244" y="5" width="115.0" height="20" rx="10" fill="rgba(59,91,253,.28)"/><text x="490.2439024390244" y="19" class="pill">First retrieval</text><text x="42.3170731707317" y="316" text-anchor="middle" class="ax">Aug 20</text><text x="241.92682926829266" y="316" text-anchor="middle" class="ax">Sep 1</text><text x="391.6341463414634" y="316" text-anchor="middle" class="ax">Sep 10</text><text x="557.9756097560976" y="316" text-anchor="middle" class="ax">Sep 20</text><rect x="583.9268292682926" y="203.2" width="14.634146341463413" height="92.80000000000001" rx="3" fill="url(#gb0)"/><rect x="600.560975609756" y="166.08" width="14.634146341463413" height="129.92" rx="3" fill="url(#gb0)"/><rect x="617.1951219512194" y="212.48000000000002" width="14.634146341463413" height="83.51999999999998" rx="3" fill="url(#gb0)"/><rect x="633.8292682926829" y="110.4" width="14.634146341463413" height="185.6" rx="3" fill="url(#gb0)"/><rect x="650.4634146341463" y="193.92000000000002" width="14.634146341463413" height="102.07999999999998" rx="3" fill="url(#gb0)"/><rect x="667.0975609756097" y="193.92000000000002" width="14.634146341463413" height="102.07999999999998" rx="3" fill="url(#gb0)"/><rect x="683.7317073170731" y="231.04000000000002" width="14.634146341463413" height="64.95999999999998" rx="3" fill="url(#gb0)"/><rect x="700.3658536585365" y="203.2" width="14.634146341463413" height="92.80000000000001" rx="3" fill="url(#gb0)"/><text x="707.6829268292682" y="316" text-anchor="middle" class="ax">Sep 29</text><text x="641.1463414634146" y="102.4" text-anchor="middle" class="peak">20</text><polyline points="42.3,296.0 59.0,296.0 75.6,296.0 92.2,296.0 108.9,296.0 125.5,286.7 142.1,286.7 158.8,296.0 175.4,296.0 192.0,296.0 208.7,296.0 225.3,296.0 241.9,296.0 258.6,286.7 275.2,221.8 291.8,286.7 308.5,296.0 325.1,258.9 341.7,249.6 358.4,156.8 375.0,221.8 391.6,296.0 408.3,296.0 424.9,268.2 441.5,268.2 458.2,268.2 474.8,277.4 491.4,296.0 508.1,296.0 524.7,268.2 541.3,277.4 558.0,268.2 574.6,286.7 591.2,296.0 607.9,277.4 624.5,268.2 641.1,296.0 657.8,277.4 674.4,175.4 691.0,258.9 707.7,175.4" fill="none" stroke="rgba(201,204,211,.55)" stroke-width="1.5" stroke-linejoin="round"/><rect x="34.0" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 20: EMD #2 0 · clutch.co 0"/><rect x="50.63414634146341" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 21: EMD #2 0 · clutch.co 0"/><rect x="67.26829268292683" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 22: EMD #2 0 · clutch.co 0"/><rect x="83.90243902439025" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 23: EMD #2 0 · clutch.co 0"/><rect x="100.53658536585365" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 24: EMD #2 0 · clutch.co 0"/><rect x="117.17073170731706" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 25: EMD #2 0 · clutch.co 1"/><rect x="133.8048780487805" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 26: EMD #2 0 · clutch.co 1"/><rect x="150.4390243902439" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 27: EMD #2 0 · clutch.co 0"/><rect x="167.0731707317073" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 28: EMD #2 0 · clutch.co 0"/><rect x="183.7073170731707" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 29: EMD #2 0 · clutch.co 0"/><rect x="200.34146341463412" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 30: EMD #2 0 · clutch.co 0"/><rect x="216.97560975609755" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Aug 31: EMD #2 0 · clutch.co 0"/><rect x="233.60975609756096" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 1: EMD #2 0 · clutch.co 0"/><rect x="250.24390243902437" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 2: EMD #2 0 · clutch.co 1"/><rect x="266.8780487804878" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 3: EMD #2 0 · clutch.co 8"/><rect x="283.5121951219512" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 4: EMD #2 0 · clutch.co 1"/><rect x="300.1463414634146" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 5: EMD #2 0 · clutch.co 0"/><rect x="316.780487804878" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 6: EMD #2 0 · clutch.co 4"/><rect x="333.4146341463414" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 7: EMD #2 0 · clutch.co 5"/><rect x="350.04878048780483" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 8: EMD #2 0 · clutch.co 15"/><rect x="366.68292682926824" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 9: EMD #2 0 · clutch.co 8"/><rect x="383.3170731707317" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 10: EMD #2 0 · clutch.co 0"/><rect x="399.9512195121951" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 11: EMD #2 0 · clutch.co 0"/><rect x="416.5853658536585" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 12: EMD #2 0 · clutch.co 3"/><rect x="433.2195121951219" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 13: EMD #2 0 · clutch.co 3"/><rect x="449.8536585365853" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 14: EMD #2 0 · clutch.co 3"/><rect x="466.48780487804873" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 15: EMD #2 0 · clutch.co 2"/><rect x="483.12195121951214" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 16: EMD #2 0 · clutch.co 0"/><rect x="499.7560975609756" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 17: EMD #2 0 · clutch.co 0"/><rect x="516.390243902439" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 18: EMD #2 0 · clutch.co 3"/><rect x="533.0243902439024" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 19: EMD #2 0 · clutch.co 2"/><rect x="549.6585365853658" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 20: EMD #2 0 · clutch.co 3"/><rect x="566.2926829268292" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 21: EMD #2 0 · clutch.co 1"/><rect x="582.9268292682926" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 22: EMD #2 10 · clutch.co 0"/><rect x="599.560975609756" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 23: EMD #2 14 · clutch.co 2"/><rect x="616.1951219512194" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 24: EMD #2 9 · clutch.co 3"/><rect x="632.8292682926829" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 25: EMD #2 20 · clutch.co 0"/><rect x="649.4634146341463" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 26: EMD #2 11 · clutch.co 2"/><rect x="666.0975609756097" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 27: EMD #2 11 · clutch.co 13"/><rect x="682.7317073170731" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 28: EMD #2 7 · clutch.co 4"/><rect x="699.3658536585365" y="64" width="16.634146341463413" height="232" fill="transparent" data-tip="Sep 29: EMD #2 10 · clutch.co 13"/></svg></div><div class="cm"><svg viewBox="0 0 360 300" role="img" aria-label="Daily ChatGPT retrievals, EMD #2 vs clutch.co"><defs><linearGradient id="gb1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fa3ff"/><stop offset="1" stop-color="#3b5bfd"/></linearGradient></defs><rect x="290.219512195122" y="50" width="65.78048780487802" height="220" rx="6" fill="rgba(143,163,255,.09)"/><line x1="24" x2="356" y1="270.0" y2="270.0" stroke="rgba(255,255,255,0.14)"/><text x="16" y="273.5" text-anchor="end" class="ax">0</text><line x1="24" x2="356" y1="227.6" y2="227.6" stroke="rgba(255,255,255,0.06)"/><text x="16" y="231.1" text-anchor="end" class="ax">5</text><line x1="24" x2="356" y1="185.2" y2="185.2" stroke="rgba(255,255,255,0.06)"/><text x="16" y="188.7" text-anchor="end" class="ax">10</text><line x1="24" x2="356" y1="142.8" y2="142.8" stroke="rgba(255,255,255,0.06)"/><text x="16" y="146.3" text-anchor="end" class="ax">15</text><line x1="24" x2="356" y1="100.4" y2="100.4" stroke="rgba(255,255,255,0.06)"/><text x="16" y="103.9" text-anchor="end" class="ax">20</text><line x1="24" x2="356" y1="58.0" y2="58.0" stroke="rgba(255,255,255,0.06)"/><text x="16" y="61.5" text-anchor="end" class="ax">25</text><line x1="28.048780487804876" x2="28.048780487804876" y1="24" y2="270" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="28.048780487804876" cy="270" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="22.048780487804876" y="5" width="54.400000000000006" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="30.048780487804876" y="19" class="pill">Launch</text><line x1="125.21951219512195" x2="125.21951219512195" y1="44" y2="270" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="125.21951219512195" cy="270" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="119.21951219512195" y="25" width="67.2" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="127.21951219512195" y="39" class="pill">AEO pass</text><line x1="173.8048780487805" x2="173.8048780487805" y1="24" y2="270" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="173.8048780487805" cy="270" r="3.5" fill="#0d1015" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><rect x="167.8048780487805" y="5" width="73.6" height="20" rx="10" fill="rgba(255,255,255,.07)"/><text x="175.8048780487805" y="19" class="pill">Directory</text><line x1="295.26829268292687" x2="295.26829268292687" y1="44" y2="270" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/><circle cx="295.26829268292687" cy="270" r="3.5" fill="#0d1015" stroke="#8fa3ff" stroke-width="1.5"/><rect x="189.26829268292687" y="25" width="112.0" height="20" rx="10" fill="rgba(59,91,253,.28)"/><text x="197.26829268292687" y="39" class="pill">First retrieval</text><text x="28.048780487804876" y="290" text-anchor="middle" class="ax">Aug 20</text><text x="198.09756097560978" y="290" text-anchor="middle" class="ax">Sep 10</text><text x="279.0731707317073" y="290" text-anchor="middle" class="ax">Sep 20</text><rect x="292.219512195122" y="185.2" width="6.097560975609756" height="84.80000000000001" rx="2" fill="url(#gb1)"/><rect x="300.3170731707317" y="151.28" width="6.097560975609756" height="118.72" rx="2" fill="url(#gb1)"/><rect x="308.4146341463415" y="193.68" width="6.097560975609756" height="76.32" rx="2" fill="url(#gb1)"/><rect x="316.5121951219512" y="100.4" width="6.097560975609756" height="169.6" rx="2" fill="url(#gb1)"/><rect x="324.609756097561" y="176.72" width="6.097560975609756" height="93.28" rx="2" fill="url(#gb1)"/><rect x="332.7073170731707" y="176.72" width="6.097560975609756" height="93.28" rx="2" fill="url(#gb1)"/><rect x="340.8048780487805" y="210.64" width="6.097560975609756" height="59.360000000000014" rx="2" fill="url(#gb1)"/><rect x="348.9024390243902" y="185.2" width="6.097560975609756" height="84.80000000000001" rx="2" fill="url(#gb1)"/><text x="351.9512195121951" y="290" text-anchor="middle" class="ax">Sep 29</text><text x="319.5609756097561" y="92.4" text-anchor="middle" class="peak">20</text><polyline points="28.0,270.0 36.1,270.0 44.2,270.0 52.3,270.0 60.4,270.0 68.5,261.5 76.6,261.5 84.7,270.0 92.8,270.0 100.9,270.0 109.0,270.0 117.1,270.0 125.2,270.0 133.3,261.5 141.4,202.2 149.5,261.5 157.6,270.0 165.7,236.1 173.8,227.6 181.9,142.8 190.0,202.2 198.1,270.0 206.2,270.0 214.3,244.6 222.4,244.6 230.5,244.6 238.6,253.0 246.7,270.0 254.8,270.0 262.9,244.6 271.0,253.0 279.1,244.6 287.2,261.5 295.3,270.0 303.4,253.0 311.5,244.6 319.6,270.0 327.7,253.0 335.8,159.8 343.9,236.1 352.0,159.8" fill="none" stroke="rgba(201,204,211,.55)" stroke-width="1.5" stroke-linejoin="round"/><rect x="24.0" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 20: EMD #2 0 · clutch.co 0"/><rect x="32.09756097560975" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 21: EMD #2 0 · clutch.co 0"/><rect x="40.19512195121951" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 22: EMD #2 0 · clutch.co 0"/><rect x="48.29268292682927" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 23: EMD #2 0 · clutch.co 0"/><rect x="56.390243902439025" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 24: EMD #2 0 · clutch.co 0"/><rect x="64.48780487804878" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 25: EMD #2 0 · clutch.co 1"/><rect x="72.58536585365854" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 26: EMD #2 0 · clutch.co 1"/><rect x="80.6829268292683" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 27: EMD #2 0 · clutch.co 0"/><rect x="88.78048780487805" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 28: EMD #2 0 · clutch.co 0"/><rect x="96.8780487804878" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 29: EMD #2 0 · clutch.co 0"/><rect x="104.97560975609755" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 30: EMD #2 0 · clutch.co 0"/><rect x="113.07317073170732" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Aug 31: EMD #2 0 · clutch.co 0"/><rect x="121.17073170731707" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 1: EMD #2 0 · clutch.co 0"/><rect x="129.2682926829268" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 2: EMD #2 0 · clutch.co 1"/><rect x="137.3658536585366" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 3: EMD #2 0 · clutch.co 8"/><rect x="145.46341463414635" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 4: EMD #2 0 · clutch.co 1"/><rect x="153.5609756097561" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 5: EMD #2 0 · clutch.co 0"/><rect x="161.65853658536585" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 6: EMD #2 0 · clutch.co 4"/><rect x="169.7560975609756" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 7: EMD #2 0 · clutch.co 5"/><rect x="177.85365853658536" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 8: EMD #2 0 · clutch.co 15"/><rect x="185.9512195121951" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 9: EMD #2 0 · clutch.co 8"/><rect x="194.0487804878049" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 10: EMD #2 0 · clutch.co 0"/><rect x="202.14634146341464" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 11: EMD #2 0 · clutch.co 0"/><rect x="210.2439024390244" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 12: EMD #2 0 · clutch.co 3"/><rect x="218.34146341463415" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 13: EMD #2 0 · clutch.co 3"/><rect x="226.4390243902439" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 14: EMD #2 0 · clutch.co 3"/><rect x="234.53658536585365" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 15: EMD #2 0 · clutch.co 2"/><rect x="242.6341463414634" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 16: EMD #2 0 · clutch.co 0"/><rect x="250.7317073170732" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 17: EMD #2 0 · clutch.co 0"/><rect x="258.82926829268297" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 18: EMD #2 0 · clutch.co 3"/><rect x="266.9268292682927" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 19: EMD #2 0 · clutch.co 2"/><rect x="275.0243902439024" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 20: EMD #2 0 · clutch.co 3"/><rect x="283.1219512195122" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 21: EMD #2 0 · clutch.co 1"/><rect x="291.219512195122" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 22: EMD #2 10 · clutch.co 0"/><rect x="299.3170731707317" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 23: EMD #2 14 · clutch.co 2"/><rect x="307.4146341463415" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 24: EMD #2 9 · clutch.co 3"/><rect x="315.5121951219512" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 25: EMD #2 20 · clutch.co 0"/><rect x="323.609756097561" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 26: EMD #2 11 · clutch.co 2"/><rect x="331.7073170731707" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 27: EMD #2 11 · clutch.co 13"/><rect x="339.8048780487805" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 28: EMD #2 7 · clutch.co 4"/><rect x="347.9024390243902" y="58" width="8.097560975609756" height="212" fill="transparent" data-tip="Sep 29: EMD #2 10 · clutch.co 13"/></svg></div></div>
+  <figcaption>Nothing for 33 days, then 92 retrievals in 8. clutch.co is on the chart for scale. It's the biggest agency directory on the internet, and over those 8 days a site younger than most invoices out-retrieved it 92 to 37.</figcaption>
+</figure>
+
+<p>The lag is the part I'd tell anyone copying this to hold their nerve through. The first site took about six weeks from its first retrieval to getting our agency named in answers. This one took 33 days to get retrieved at all, and then it went vertical. Two weeks after the directory went live, it flipped on.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 2 · September, head to head</div><div class="viz-t">A 3-backlink site vs the biggest directory on the internet</div><div class="viz-s">Peec AI · Sep 3 to 29, 2026 · referring domains per DataForSEO</div></div><div class="vs"><div class="vs-head"><div></div><div class="vs-a"><span class="dot a"></span>EMD #2</div><div class="vs-b"><span class="dot b"></span>clutch.co</div></div><div class="vs-row"><div class="vs-l">Citations in AI answers</div>
+<div class="vs-c a"><b>113</b><span class="tr"><span style="width:100.0%"></span></span></div>
+<div class="vs-c b"><b>47</b><span class="tr"><span style="width:41.6%"></span></span></div></div><div class="vs-row"><div class="vs-l">Citations per retrieval</div>
+<div class="vs-c a"><b>2.17</b><span class="tr"><span style="width:100.0%"></span></span></div>
+<div class="vs-c b"><b>1.09</b><span class="tr"><span style="width:50.3%"></span></span></div></div><div class="vs-row"><div class="vs-l">Referring domains</div>
+<div class="vs-c a"><b>3</b><span class="tr"><span style="width:2.0%"></span></span></div>
+<div class="vs-c b"><b>48,372</b><span class="tr"><span style="width:100.0%"></span></span></div></div></div></div>
+  <figcaption>EMD #2 was cited <b>113 times</b> in September to clutch.co's 47, and got <b>2.17 citations every time it was retrieved</b>. It ranked #52 of 1,000 source domains for the month by retrievals, in its first week of being retrieved at all.</figcaption>
+</figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com</span></div><img src="emd2-home.jpg" alt="EMD #2 homepage: The 7 Best agencies for the segment, 2026, with the answer in the first paragraph" loading="lazy"></div><figcaption><b>The homepage.</b> The first paragraph is the answer: who's #1, who's #2, who's #3, and on what criteria. Everything a model needs to quote is in the first 60 words.</figcaption></figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com</span></div><img src="emd2-table.jpg" alt="The scoring table: seven agencies with four weighted criteria and a total score" loading="lazy"></div><figcaption><b>The scoring table.</b> Four weighted criteria, a score out of 10 for each, a total, HQ and pricing model. Every row is also emitted as structured data.</figcaption></figure>
+
+<h2><span class="n">The result</span>What it did for our agency</h2>
+
+<p>Getting a directory cited is nice. Getting our agency recommended is the point. So I pulled every ChatGPT answer for the 11 prompts where EMD #2 was being retrieved: 7 days before it started getting cited, and 8 days after. 165 answers in total.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 3 · Same 11 prompts, one week apart</div><div class="viz-t">How often ChatGPT recommended our agency</div><div class="viz-s">Peec AI · before = Sep 15 to 21 (77 answers) · after = Sep 22 to 29 (88 answers)</div><div class="lg"><span><i class="n"></i>Before the EMD was cited</span><span><i class="a"></i>After</span></div></div><div class="ba"><div class="ba-row" data-tip="Named in the answer: 24 of 77 answers before, 46 of 88 after">
+<div class="ba-l">Named in the answer</div>
+<div class="ba-n"><span class="was">31%</span><span class="arr">→</span><span class="now">52%</span><span class="chip">+21 pts</span></div>
+<div class="ba-t"><span class="t0" style="width:31%"></span></div><div class="ba-t"><span class="t1" style="width:52%"></span></div></div><div class="ba-row" data-tip="Placed in the top 3: 15 of 77 answers before, 33 of 88 after">
+<div class="ba-l">Placed in the top 3</div>
+<div class="ba-n"><span class="was">19%</span><span class="arr">→</span><span class="now">38%</span><span class="chip">+19 pts</span></div>
+<div class="ba-t"><span class="t0" style="width:19%"></span></div><div class="ba-t"><span class="t1" style="width:38%"></span></div></div><div class="ba-row" data-tip="Listed #1: 10 of 77 answers before, 20 of 88 after">
+<div class="ba-l">Listed #1</div>
+<div class="ba-n"><span class="was">13%</span><span class="arr">→</span><span class="now">23%</span><span class="chip">+10 pts</span></div>
+<div class="ba-t"><span class="t0" style="width:13%"></span></div><div class="ba-t"><span class="t1" style="width:23%"></span></div></div></div></div>
+  <figcaption>Named in <b>31%</b> of answers before, <b>52%</b> after. Top-3 placements roughly doubled. And ChatGPT put us first 20 times in 8 days, up from 10 the week before.</figcaption>
+</figure>
+
+<p>When the EMD was one of the sources, ChatGPT named our agency in <b>38 of 52</b> answers. The EMD was the very first source cited in 13 of them.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 4 · Per prompt</div><div class="viz-t">Where the lift came from</div><div class="viz-s">Share of ChatGPT answers naming our agency · Sep 15 to 21 vs Sep 22 to 29</div><div class="lg"><span><i class="n"></i>Before</span><span><i class="a"></i>After</span></div></div><div class="db"><div class="db-ax"><span>0%</span><span>50%</span><span>100%</span></div><div class="db-row" data-tip="best saas design agencies: 1 of 7 before, 6 of 8 after"><div class="db-l">best saas design agencies</div>
+<div class="db-tr"><span class="seg" style="left:14.3%;width:60.7%"></span><span class="p0" style="left:14.3%"></span><span class="p1" style="left:75.0%"></span></div><span class="chip">+61 pts</span></div><div class="db-row" data-tip="product design agency for b2b saas: 1 of 7 before, 5 of 8 after"><div class="db-l">product design agency for b2b saas</div>
+<div class="db-tr"><span class="seg" style="left:14.3%;width:48.2%"></span><span class="p0" style="left:14.3%"></span><span class="p1" style="left:62.5%"></span></div><span class="chip">+48 pts</span></div><div class="db-row" data-tip="ux agencies for ai companies: 4 of 7 before, 8 of 8 after"><div class="db-l">ux agencies for ai companies</div>
+<div class="db-tr"><span class="seg" style="left:57.1%;width:42.9%"></span><span class="p0" style="left:57.1%"></span><span class="p1" style="left:100.0%"></span></div><span class="chip">+43 pts</span></div><div class="db-row" data-tip="ux agencies for b2b saas: 1 of 7 before, 4 of 8 after"><div class="db-l">ux agencies for b2b saas</div>
+<div class="db-tr"><span class="seg" style="left:14.3%;width:35.7%"></span><span class="p0" style="left:14.3%"></span><span class="p1" style="left:50.0%"></span></div><span class="chip">+36 pts</span></div><div class="db-row" data-tip="design system agency for b2b saas: 2 of 7 before, 5 of 8 after"><div class="db-l">design system agency for b2b saas</div>
+<div class="db-tr"><span class="seg" style="left:28.6%;width:33.9%"></span><span class="p0" style="left:28.6%"></span><span class="p1" style="left:62.5%"></span></div><span class="chip">+34 pts</span></div><div class="db-row" data-tip="best website redesign agency for b2b saas: 0 of 7 before, 2 of 8 after"><div class="db-l">best website redesign agency for b2b saas</div>
+<div class="db-tr"><span class="seg" style="left:0.0%;width:25.0%"></span><span class="p0" style="left:0.0%"></span><span class="p1" style="left:25.0%"></span></div><span class="chip">+25 pts</span></div><div class="db-row" data-tip="best design agency for series a and series b saas companies: 5 of 7 before, 6 of 8 after"><div class="db-l">best design agency for series a and series b saas companies</div>
+<div class="db-tr"><span class="seg" style="left:71.4%;width:3.6%"></span><span class="p0" style="left:71.4%"></span><span class="p1" style="left:75.0%"></span></div><span class="chip">+4 pts</span></div><div class="db-row" data-tip="website redesign agency for a series b saas with a $40k budget: 3 of 7 before, 3 of 8 after"><div class="db-l">website redesign agency for a series b saas with a $40k budget</div>
+<div class="db-tr"><span class="seg" style="left:37.5%;width:5.4%"></span><span class="p0" style="left:42.9%"></span><span class="p1" style="left:37.5%"></span></div><span class="chip flat">-5 pts</span></div><div class="db-row" data-tip="design agencies for yc companies: 7 of 7 before, 7 of 8 after"><div class="db-l">design agencies for yc companies</div>
+<div class="db-tr"><span class="seg" style="left:87.5%;width:12.5%"></span><span class="p0" style="left:100.0%"></span><span class="p1" style="left:87.5%"></span></div><span class="chip flat">-12 pts</span></div></div></div>
+  <figcaption>The biggest moves were on broad category prompts where we barely existed before. “best saas design agencies” went from 1 in 7 answers to 6 in 8. “ux agencies for ai companies” went to 8 out of 8.</figcaption>
+</figure>
+
+<p>“ux agencies for ai companies” is the one I'm proudest of. We built one page on EMD #2 for exactly that question. That page got retrieved 8 times and cited 29 times, <b>3.6 citations per retrieval</b>, the highest of any page on either site. We were named in all 8 answers that week, and listed first in 6 of them.</p>
+
+<figure>
+  <img src="emd2-answer-1.jpg" alt="ChatGPT answer for ux agencies for ai companies: our agency listed first, EMD #2 the top source" loading="lazy">
+  <img src="emd2-answer-2.jpg" alt="ChatGPT answer for best saas design agencies: our agency listed first, above Eleken, Cieden, Ramotion, Clay and MetaLab" loading="lazy">
+  <img src="emd2-answer-3.jpg" alt="ChatGPT answer for design agencies for yc companies: our agency listed first, EMD #2 the top source" loading="lazy">
+  <figcaption><b>Three real ChatGPT answers from the week after.</b> Agencies in the order ChatGPT named them, and the top five sources it cited. Pulled from Peec AI.</figcaption>
+</figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com/ux-agencies-for-ai-companies</span></div><img src="emd2-ai-page.jpg" alt="The UX Agencies for AI Companies page on EMD #2, with a boxed quick answer" loading="lazy"></div><figcaption><b>The AI page.</b> It opens with a boxed quick answer that names the agencies and the reason, in plain sentences a model can lift whole.</figcaption></figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com/design-agencies-for-yc-startups</span></div><img src="emd2-yc-page.jpg" alt="The Design Agencies for Y Combinator Startups page on EMD #2, with a boxed quick answer" loading="lazy"></div><figcaption><b>The YC page.</b> Same shape: the question as the headline, the answer in the first box.</figcaption></figure>
+
+<h2><span class="n">The pages</span>Which pages did the work</h2>
+
+<p>On the first site, 66 of 67 retrievals went to the homepage. The ranked list was the entire asset. On the second site I built pages shaped like the questions buyers actually type, and the citations spread out.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 5 · Citations by URL</div><div class="viz-t">Prompt-shaped pages out-cite the homepage</div><div class="viz-s">EMD #2 · Peec AI · through Sep 29, 2026</div></div><div class="ub"><div class="ub-row" data-tip="/ux-agencies-for-ai-companies: 29 citations from 8 retrievals"><div class="ub-i">01</div>
+<div class="ub-m"><div class="ub-l">/ux-agencies-for-ai-companies</div><div class="tr"><span style="width:100.0%"></span></div></div>
+<div class="ub-v"><b>29</b><span>3.6× per retrieval</span></div></div><div class="ub-row" data-tip="/ (homepage): 22 citations from 22 retrievals"><div class="ub-i">02</div>
+<div class="ub-m"><div class="ub-l">/ (homepage)</div><div class="tr"><span style="width:75.9%"></span></div></div>
+<div class="ub-v"><b>22</b><span>1.0× per retrieval</span></div></div><div class="ub-row" data-tip="/agencies: 19 citations from 15 retrievals"><div class="ub-i">03</div>
+<div class="ub-m"><div class="ub-l">/agencies</div><div class="tr"><span style="width:65.5%"></span></div></div>
+<div class="ub-v"><b>19</b><span>1.3× per retrieval</span></div></div><div class="ub-row" data-tip="/services/ux-ui-design: 13 citations from 11 retrievals"><div class="ub-i">04</div>
+<div class="ub-m"><div class="ub-l">/services/ux-ui-design</div><div class="tr"><span style="width:44.8%"></span></div></div>
+<div class="ub-v"><b>13</b><span>1.2× per retrieval</span></div></div><div class="ub-row" data-tip="/design-agencies-for-yc-startups: 12 citations from 7 retrievals"><div class="ub-i">05</div>
+<div class="ub-m"><div class="ub-l">/design-agencies-for-yc-startups</div><div class="tr"><span style="width:41.4%"></span></div></div>
+<div class="ub-v"><b>12</b><span>1.7× per retrieval</span></div></div><div class="ub-row" data-tip="/services/product-design: 12 citations from 7 retrievals"><div class="ub-i">06</div>
+<div class="ub-m"><div class="ub-l">/services/product-design</div><div class="tr"><span style="width:41.4%"></span></div></div>
+<div class="ub-v"><b>12</b><span>1.7× per retrieval</span></div></div><div class="ub-row" data-tip="/b2b-saas-product-design-specialists: 5 citations from 2 retrievals"><div class="ub-i">07</div>
+<div class="ub-m"><div class="ub-l">/b2b-saas-product-design-specialists</div><div class="tr"><span style="width:17.2%"></span></div></div>
+<div class="ub-v"><b>5</b><span>2.5× per retrieval</span></div></div></div></div>
+  <figcaption>The AI page and the full directory both beat the homepage on citations per retrieval. When a question has a specific shape, a page with that exact shape wins it.</figcaption>
+</figure>
+
+<figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com/agencies</span></div><img src="emd2-directory.jpg" alt="The 120-agency directory page on EMD #2 with search and filters" loading="lazy"></div><figcaption><b>/agencies, the 120-agency directory.</b> The third most-cited URL on the site, live 15 days before the first retrieval. My read: it made the site look like a real reference, not a one-page list.</figcaption></figure>
+
+<h2><span class="n">The mechanism</span>Why this works</h2>
+
+<p>When you ask ChatGPT for an agency recommendation, it doesn't just answer from memory. It rewrites your question into a few search queries, retrieves pages, and then writes the answer from them. Peec logs those rewritten queries. These are the most common ones from answers that cited EMD #2:</p>
+
+<div class="fo"><div class="fo-h"><span>fan-out queries</span><span>ChatGPT · answers citing EMD #2</span></div><div class="fo-r"><span class="fo-n">6×</span><span class="fo-q"><mark>B2B SaaS</mark> product <mark>design agency</mark> UX UI product <mark>design agencies</mark></span></div><div class="fo-r"><span class="fo-n">5×</span><span class="fo-q"><mark>B2B SaaS</mark> product <mark>design agency</mark> Clay Metalab Momentum Design Lab</span></div><div class="fo-r"><span class="fo-n">4×</span><span class="fo-q"><mark>B2B SaaS</mark> UX UI <mark>design agency</mark> SaaS product <mark>design agencies</mark></span></div><div class="fo-r"><span class="fo-n">3×</span><span class="fo-q"><mark>design agencies</mark> YC startups Y Combinator branding product <mark>design agency</mark> startups</span></div><div class="fo-r"><span class="fo-n">3×</span><span class="fo-q">&quot;Y Combinator&quot; &quot;<mark>design agency</mark>&quot; startup branding</span></div><div class="fo-r"><span class="fo-n">3×</span><span class="fo-q">&quot;YC companies&quot; &quot;<mark>design agency</mark>&quot; branding product design</span></div></div>
+
+<p>Look at the words. The rewritten query is almost literally the domain name. When the query is “B2B SaaS product design agency” and there's a site whose domain is those exact words, with a page title that repeats them, that's a near-perfect match on the host and the title.</p>
+<p>Google weighs that match against links and history, and a new domain loses. The retrieval step inside ChatGPT is much more willing to take the match at face value. Then a second thing kicks in: Peec classifies both sites as <b>Editorial</b>, not Corporate. A ranked comparison reads to a model as a reference, and references get quoted.</p>
+
+<div class="callout"><span>The whole idea</span>Google asks “do other sites trust you?” ChatGPT's retrieval step asks “do you look like the answer?” You can build the second one in a weekend.</div>
+
+<h2><span class="n">The playbook</span>If you want to copy it</h2>
+
+<p>This is what I'd do again, in order. None of it needs a link budget.</p>
+
+<ol class="steps">
+  <li><b>Buy the query, not a brand.</b> The domain should read like the question your buyer asks. Ours matches the rewritten query almost word for word.</li>
+  <li><b>Lead with the answer.</b> The first paragraph names #1, #2 and #3 and says why, in plain sentences. That's the part that gets lifted.</li>
+  <li><b>Publish the rubric.</b> Weighted criteria, a score per agency, a total, and a source URL on every factual claim. A model trusts a list it can check.</li>
+  <li><b>Keep it short and dated.</b> A top 7, a month in the title, a stated review cadence. Then actually re-score when you say you will.</li>
+  <li><b>Emit it as structured data.</b> Rating, review and per-criterion scores on every entry. An llms.txt data dump, plus llms-full.txt with the whole corpus.</li>
+  <li><b>One page per buyer prompt.</b> Track prompts in a tool like Peec, then build a page shaped exactly like each one. Our AI page became our most-cited URL.</li>
+  <li><b>Add depth once the list works.</b> A full directory with a page per agency made the site look like a reference. Retrieval started two weeks later.</li>
+  <li><b>Measure citations, not rankings.</b> Your rank tracker will say this failed. Watch ChatGPT, where both sites broke through, and give it 4 to 6 weeks.</li>
+</ol>
+
+<h2><span class="n">Next</span>What's next</h2>
+
+<p>Two sites, two niches, same result. That's enough for me to stop calling it a fluke.</p>
+<p>Next I'm building head-to-head comparison pages and running the same before-and-after read on them. I'll post the numbers here.</p>
+
+<div class="method">
+<p><b>AI search data.</b> Peec AI. Tracked prompts run daily across ChatGPT, Perplexity and Google AI Overviews. A retrieval is one answer that pulled at least one URL from a domain. A citation is an inline citation in the answer. Citation rate is citations divided by retrievals. EMD #1 figures are from the Sep 9, 2026 read (Jun 1 to Sep 8, 2,829 answers, 71 prompts). EMD #2 figures are from the Sep 30, 2026 read. The before/after comparison uses all 165 ChatGPT answers for the 11 prompts that retrieved EMD #2, Sep 15 to 29. Other things changed in that window too, so treat the lift as a strong correlation, not a lab result.</p>
+<p><b>Search and authority data.</b> Google Search Console API. DataForSEO Backlinks API, pulled Sep 9, 2026. DataForSEO domain rank is a 0 to 1000 scale, not Ahrefs DR. Domain names and author names in screenshots are redacted.</p>
+</div>
+
+    </div>
+  </div>
+  <div id="tip"></div>
+  <script>
+    (function(){var t=document.getElementById('tip');
+      document.addEventListener('mousemove',function(e){var el=e.target.closest&&e.target.closest('[data-tip]');
+        if(!el){t.style.opacity=0;return;} t.textContent=el.getAttribute('data-tip');
+        var x=Math.min(e.clientX+14, window.innerWidth-t.offsetWidth-8); t.style.left=x+'px'; t.style.top=(e.clientY+14)+'px'; t.style.opacity=1;});
+    })();
+  </script>
+</body>
+</html>
