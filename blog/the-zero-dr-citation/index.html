@@ -136,6 +136,8 @@ figure>img+img{margin-top:18px}
 .steps li::before{content:counter(s,decimal-leading-zero);display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--tint);color:var(--acc);font:600 12px 'Geist Mono',monospace;margin-bottom:12px}
 .steps li b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:4px}
 .steps li.wide{grid-column:1/-1}
+.limits{padding-left:20px!important;margin:8px 0 8px}
+.limits li{margin:0 0 12px!important;line-height:1.65}
 .method{font-size:13px;color:var(--muted);line-height:1.7;background:var(--surf);border-radius:14px;padding:20px 22px;margin-top:52px}
 .method p{margin-bottom:10px!important} .method p:last-child{margin-bottom:0!important}
 #tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;line-height:1.4;padding:7px 10px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:260px;z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.2)}
@@ -187,6 +189,7 @@ figure>img+img{margin-top:18px}
 <p>Ten times on day one. Fourteen the next day. By September 29 it had been pulled into ChatGPT answers <b>92 times</b> and cited <b>113 times</b>.</p>
 <p>Over those same eight days, across the same tracked prompts, clutch.co got 37 retrievals and 8 citations. Clutch has 48,372 referring domains. This site has 3.</p>
 <p>It's an exact-match domain (EMD): a domain that is literally the search query, with a ranked directory on it. It's the second one I've built. The first one did the same thing back in July, and I wasn't sure if that was a fluke. This post is both experiments, every number, and the exact playbook, so you can run it yourself.</p>
+<p>The idea wasn't mine. I asked Peec's AI agent one question: if I were the CMO of my own agency, what should I do next? It pointed at a brand-new agency directory that was suddenly getting named in a lot of AI answers. So I decided to build one and see if I could do the same.</p>
 
 <div class="kpis"><div class="kpi"><div class="kpi-l">Domain rank</div><div class="kpi-v">0</div><div class="kpi-s">on both sites, per DataForSEO</div></div><div class="kpi"><div class="kpi-l">Backlinks</div><div class="kpi-v">3</div><div class="kpi-s">referring domains on EMD #2</div></div><div class="kpi hi"><div class="kpi-l">Citations</div><div class="kpi-v">113</div><div class="kpi-s">in ChatGPT, first 8 days</div></div><div class="kpi hi"><div class="kpi-l">Recommended</div><div class="kpi-v">31→52%</div><div class="kpi-s">how often ChatGPT named our agency</div></div></div>
 
@@ -198,7 +201,8 @@ figure>img+img{margin-top:18px}
 
 <figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com</span></div><img src="emd1-home.jpg" alt="The first EMD&#x27;s homepage: a ranked 2026 list of UX design agencies with a methodology and last-updated date" loading="lazy"></div><figcaption><b>EMD #1.</b> One ranked list, a visible methodology, and a “last updated” date. That's most of what the site is.</figcaption></figure>
 
-<p>Google did what Google does with a brand-new domain. It indexed it in three days and then kept it on page six and beyond. In 67 days: 18,776 impressions, 16 clicks, average position 68.6.</p>
+<p>Google picked it up fast. It showed the site 21 times on July 3, its first day live. By July 6 that was 322 a day, and 449 by July 8. Almost all of it was long, commercial searches from people looking for an agency. Not one of them sent a click worth counting.</p>
+<p>Then Google did what Google does with a brand-new domain. It kept it on page six and beyond. In 67 days: 18,776 impressions, 16 clicks, average position 68.6.</p>
 <p>ChatGPT did something completely different.</p>
 
 <div class="kpis"><div class="kpi"><div class="kpi-l">Backlinks</div><div class="kpi-v">6</div><div class="kpi-s">referring domains, all time</div></div><div class="kpi hi"><div class="kpi-l">Source rank</div><div class="kpi-v">#73</div><div class="kpi-s">of 1,000 domains AI engines pulled from</div></div><div class="kpi hi"><div class="kpi-l">Head query</div><div class="kpi-v">38.6%</div><div class="kpi-s">of ChatGPT answers retrieved it</div></div><div class="kpi"><div class="kpi-l">Cite rate</div><div class="kpi-v">0.89</div><div class="kpi-s">citations per retrieval</div></div></div>
@@ -288,6 +292,8 @@ figure>img+img{margin-top:18px}
 
 <figure><div class="fr light"><div class="fr-bar"><i></i><i></i><i></i><span class="fr-url"><span class="rdx"></span>.com/design-agencies-for-yc-startups</span></div><img src="emd2-yc-page.jpg" alt="The Design Agencies for Y Combinator Startups page on EMD #2, with a boxed quick answer" loading="lazy"></div><figcaption><b>The YC page.</b> Same shape: the question as the headline, the answer in the first box.</figcaption></figure>
 
+<div class="callout"><span>Featured by Peec</span>Peec, the AI search tool I track all of this in, wrote about this experiment in <a href="https://peec.ai/blog/how-two-teams-run-their-own-geo-experiments">How two teams run their own GEO experiments</a> (Oct 16). Their strategist Tomek Rudzki has a theory for why it works: ChatGPT may use a retrieval method called BM25, where keywords in the web address lift the score. He also points to cross-source consensus. When several sources agree, the model trusts the answer more.</div>
+
 <h2><span class="n">The pages</span>Which pages did the work</h2>
 
 <p>On the first site, 66 of 67 retrievals went to the homepage. The ranked list was the entire asset. On the second site I built pages shaped like the questions buyers actually type, and the citations spread out.</p>
@@ -322,13 +328,23 @@ figure>img+img{margin-top:18px}
 <p>Look at the words. The rewritten query is almost literally the domain name. When the query is “B2B SaaS product design agency” and there's a site whose domain is those exact words, with a page title that repeats them, that's a near-perfect match on the host and the title.</p>
 <p>Google weighs that match against links and history, and a new domain loses. The retrieval step inside ChatGPT is much more willing to take the match at face value. Then a second thing kicks in: Peec classifies both sites as <b>Editorial</b>, not Corporate. A ranked comparison reads to a model as a reference, and references get quoted.</p>
 
+<p>Then there's positioning. I wrote our entry on each list for the questions buyers actually ask. They don't type “best UX agency”. They type “UX agency for a Series A SaaS startup” or “design agency for YC companies”. If your entry clearly says who you're for, the model picks you whenever a question carries that context, even when you're not at the top of the list.</p>
+
 <div class="callout"><span>The whole idea</span>Google asks “do other sites trust you?” ChatGPT's retrieval step asks “do you look like the answer?” You can build the second one in a weekend.</div>
+
+<h2><span class="n">The limits</span>What this does not do</h2>
+
+<ul class="limits">
+  <li><b>It's mostly a ChatGPT effect.</b> 91% of the first site's AI reads came from ChatGPT.</li>
+  <li><b>Head terms, not buyer questions.</b> It showed up in 38.6% of ChatGPT answers for “best UX design agencies”, and under 5% for questions closer to what a real buyer asks. Those questions pull case studies, portfolios and pricing, and only your own site can give the AI those.</li>
+</ul>
 
 <h2><span class="n">The playbook</span>If you want to copy it</h2>
 
 <p>This is what I'd do again, in order. None of it needs a link budget.</p>
 
 <ol class="steps">
+  <li><b>Study the source before you build.</b> Don't just track brand mentions. When a URL starts showing up in AI answers, go into its history and work out how it got there. Then build the same thing, only better.</li>
   <li><b>Buy the query, not a brand.</b> The domain should read like the question your buyer asks. Ours matches the rewritten query almost word for word.</li>
   <li><b>Lead with the answer.</b> The first paragraph names #1, #2 and #3 and says why, in plain sentences. That's the part that gets lifted.</li>
   <li><b>Publish the rubric.</b> Weighted criteria, a score per agency, a total, and a source URL on every factual claim. A model trusts a list it can check.</li>
