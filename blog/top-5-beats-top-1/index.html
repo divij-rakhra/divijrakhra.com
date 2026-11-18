@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 beats top 1: what your position on a list does to your AI mentions · Divij Rakhra</title>
+  <meta name="description" content="We measured how often AI answers name agencies at each position on a listicle. #1 and #5 came out the same. Then we tested it on three lists for two months.">
+  <link rel="icon" type="image/jpeg" href="/avatar.jpg">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2">
+  <link rel="stylesheet" href="/style.css?v=3">
+  <style>
+@font-face{font-family:'Geist Sans';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/GeistMono-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
+body{-webkit-font-smoothing:antialiased;color:#16191f}
+:root{--acc:#3b5bfd;--acc2:#8fa3ff;--tint:#eef1ff;--ink:#0d1015;--muted:#6b7280;--line:#e8e8e6;--neut:#c9ccd3;--surf:#f7f7f5}
+.container{max-width:760px}
+.post-body h2{font-size:22px;font-weight:500;letter-spacing:-.2px;margin:52px 0 16px}
+.post-body h2 .n{display:block;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;color:var(--acc);margin-bottom:8px;text-transform:uppercase}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:var(--tint);border-radius:99px;padding:5px 12px;margin-bottom:18px}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.post-title{font-size:34px;letter-spacing:-.8px;line-height:1.18}
+.lede{font-size:19px;line-height:1.65;color:#2b2f36}
+figure{margin:36px 0 44px}
+figcaption{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:14px;padding-left:14px;border-left:2px solid var(--line)}
+figcaption b{color:var(--ink);font-weight:500}
+figure>img{width:100%;height:auto;display:block;border-radius:14px}
+figure>img+img{margin-top:18px}
+.tnum,.kpi-v,.vs b,.ba-n,.ub-v b,.chip{font-variant-numeric:tabular-nums}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 40px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;box-shadow:0 1px 2px rgba(13,16,21,.03)}
+.kpi-l{font:500 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.kpi-v{font-size:30px;font-weight:500;letter-spacing:-1px;line-height:1}
+.kpi-s{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:8px}
+.kpi.hi{background:var(--ink);border-color:var(--ink);color:#fff}
+.kpi.hi .kpi-l{color:var(--acc2)} .kpi.hi .kpi-s{color:rgba(255,255,255,.6)}
+/* viz card */
+.viz{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 24px 20px;box-shadow:0 1px 2px rgba(13,16,21,.03),0 10px 30px rgba(13,16,21,.04)}
+.viz.dark{background:radial-gradient(120% 90% at 85% 0%,#1b2340 0%,#0d1015 55%);border-color:#0d1015;color:#fff}
+.viz-h{margin-bottom:18px}
+.viz-e{font:500 10.5px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.viz.dark .viz-e{color:var(--acc2)}
+.viz-t{font-size:18px;font-weight:500;letter-spacing:-.2px;line-height:1.35}
+.viz-s{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.viz.dark .viz-s{color:rgba(255,255,255,.5)}
+.viz svg{width:100%;height:auto;display:block;overflow:visible}
+.viz svg text{font-family:'Geist Sans',-apple-system,sans-serif}
+.ax{font-size:10.5px;fill:rgba(255,255,255,.42);font-family:'Geist Mono',monospace!important}
+.pill{font-size:10.5px;fill:rgba(255,255,255,.85);font-weight:500}
+.peak{font:600 12px 'Geist Mono',monospace!important;fill:#fff}
+.lg{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--muted)}
+.viz.dark .lg{color:rgba(255,255,255,.6)}
+.lg span{display:inline-flex;align-items:center;gap:7px}
+.lg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.lg i.a{background:linear-gradient(var(--acc2),var(--acc))} .lg i.n{background:var(--neut)} .lg i.l{height:2px;width:16px;border-radius:2px;background:rgba(201,204,211,.7)}
+.cm{display:none}
+/* versus */
+.vs-head,.vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:18px;align-items:end}
+.vs-head{font-size:12.5px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:7px}
+.dot.a{background:var(--acc)} .dot.b{background:var(--neut)}
+.vs-row{padding:16px 0;border-bottom:1px solid #f1f1ef}
+.vs-row:last-child{border-bottom:0;padding-bottom:4px}
+.vs-l{font-size:13.5px;color:#374151;align-self:center}
+.vs b{display:block;font-size:26px;font-weight:500;letter-spacing:-.8px;line-height:1;margin-bottom:10px}
+.vs-c.a b{color:var(--acc)} .vs-c.b b{color:#9ca3af}
+.tr{display:block;height:6px;background:#f1f1ef;border-radius:99px;overflow:hidden}
+.tr span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.vs-c.b .tr span{background:var(--neut)}
+/* before/after */
+.ba-row{padding:16px 0;border-bottom:1px solid #f1f1ef}
+.ba-row:last-child{border-bottom:0;padding-bottom:4px}
+.ba-l{font-size:13.5px;color:#374151;margin-bottom:8px}
+.ba-n{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.ba-n .was{font-size:18px;color:#9ca3af}
+.ba-n .arr{color:#c4c7ce}
+.ba-n .now{font-size:30px;font-weight:500;letter-spacing:-1px;color:var(--ink)}
+.chip{margin-left:auto;font:600 11.5px 'Geist Mono',monospace;color:var(--acc);background:var(--tint);border-radius:99px;padding:4px 10px;white-space:nowrap}
+.chip.flat{color:#6b7280;background:#f1f1ef}
+.ba-t{height:6px;background:#f4f4f2;border-radius:99px;margin-top:5px;overflow:hidden}
+.ba-t span{display:block;height:100%;border-radius:99px}
+.ba-t .t0{background:var(--neut)} .ba-t .t1{background:linear-gradient(90deg,var(--acc),var(--acc2))}
+/* dumbbell */
+.db-ax{display:flex;justify-content:space-between;margin-left:calc(38% + 14px);margin-right:84px;font:500 10.5px 'Geist Mono',monospace;color:#9ca3af;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.db-row{display:grid;grid-template-columns:38% 1fr 70px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid #f4f4f2}
+.db-row:last-child{border-bottom:0}
+.db-l{font-size:13px;color:#374151;line-height:1.35}
+.db-tr{position:relative;height:14px;background:repeating-linear-gradient(90deg,#f1f1ef 0 1px,transparent 1px 25%);border-radius:99px}
+.db-tr::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:#f1f1ef;border-radius:2px}
+.db-tr .seg{position:absolute;top:5px;height:4px;border-radius:99px;background:linear-gradient(90deg,#d7ddff,var(--acc2))}
+.db-tr .p0,.db-tr .p1{position:absolute;top:1px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(13,16,21,.08)}
+.db-tr .p0{background:var(--neut)} .db-tr .p1{background:var(--acc)}
+.db .chip{margin:0;justify-self:end}
+/* urls */
+.ub-row{display:grid;grid-template-columns:28px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #f4f4f2}
+.ub-row:last-child{border-bottom:0}
+.ub-i{font:500 11px 'Geist Mono',monospace;color:#9ca3af}
+.ub-l{font:500 12.5px 'Geist Mono',monospace;color:#374151;margin-bottom:8px;overflow-wrap:anywhere}
+.ub-v{text-align:right}
+.ub-v b{display:block;font-size:20px;font-weight:500;letter-spacing:-.5px}
+.ub-v span{font-size:11.5px;color:var(--muted);white-space:nowrap}
+/* timeline */
+.tl{position:relative;margin:12px 0 40px;padding-left:4px}
+.tl::before{content:"";position:absolute;left:78px;top:10px;bottom:10px;width:1px;background:var(--line)}
+.tl-i{display:grid;grid-template-columns:62px 1fr;gap:32px;padding:10px 0;position:relative}
+.tl-i::before{content:"";position:absolute;left:70px;top:17px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--neut)}
+.tl-i.on::before{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 5px var(--tint)}
+.tl-d{font:500 12px 'Geist Mono',monospace;color:var(--muted);padding-top:3px;text-align:right}
+.tl-t{font-size:15px;font-weight:500}
+.tl-i.on .tl-t{color:var(--acc)}
+.tl-x{font-size:14px;color:var(--muted);line-height:1.55}
+/* frames */
+.fr{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 1px 2px rgba(13,16,21,.03),0 12px 32px rgba(13,16,21,.06)}
+.fr.dark{background:#161616;border-color:#222}
+.fr-bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-bottom:1px solid var(--line);background:#fafaf8}
+.fr.dark .fr-bar{background:#1e1e1e;border-color:#2a2a2a}
+.fr-bar i{width:9px;height:9px;border-radius:50%;background:#e2e2df}
+.fr.dark .fr-bar i{background:#3a3a3a}
+.fr-url{margin:0 auto;transform:translateX(-18px);font:500 11px 'Geist Mono',monospace;color:#8a8f98;background:#fff;border:1px solid var(--line);border-radius:7px;padding:3px 14px;min-width:40%;text-align:center}
+.fr.dark .fr-url{background:#262626;border-color:#333;color:#8a8a8a}
+.fr-url .rdx{min-width:0;width:90px;height:10px;vertical-align:-1px}
+.fr img{width:100%;height:auto;display:block}
+.rdx{display:inline-block;background:#0d1015;color:transparent;border-radius:3px;user-select:none}
+/* fanout */
+.fo{background:var(--ink);border-radius:16px;padding:6px 0 10px;margin:8px 0 28px;overflow:hidden}
+.fo-h{display:flex;justify-content:space-between;padding:10px 20px 12px;border-bottom:1px solid rgba(255,255,255,.08);font:500 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.fo-r{display:flex;gap:16px;padding:9px 20px;font:13px/1.55 'Geist Mono',monospace;color:rgba(255,255,255,.78)}
+.fo-n{color:rgba(255,255,255,.35);flex:none;width:22px}
+.fo mark{background:rgba(59,91,253,.28);color:#c9d3ff;border-radius:4px;padding:1px 4px}
+/* quote */
+.callout{margin:40px 0;padding:28px 30px;border-radius:18px;background:linear-gradient(135deg,var(--tint),#fff 70%);border:1px solid #dfe4ff;font-size:21px;line-height:1.5;letter-spacing:-.2px;color:var(--ink)}
+.callout span{display:block;font:500 11px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+/* steps */
+.steps{list-style:none;padding:0!important;display:grid;grid-template-columns:1fr 1fr;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;margin:0!important;font-size:14.5px;line-height:1.6;color:#4b5563}
+.steps li::before{content:counter(s,decimal-leading-zero);display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--tint);color:var(--acc);font:600 12px 'Geist Mono',monospace;margin-bottom:12px}
+.steps li b{display:block;color:var(--ink);font-weight:600;font-size:15px;margin-bottom:4px}
+.steps li.wide{grid-column:1/-1}
+.method{font-size:13px;color:var(--muted);line-height:1.7;background:var(--surf);border-radius:14px;padding:20px 22px;margin-top:52px}
+.method p{margin-bottom:10px!important} .method p:last-child{margin-bottom:0!important}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;line-height:1.4;padding:7px 10px;border-radius:8px;opacity:0;transition:opacity .08s;max-width:260px;z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+@media (max-width:640px){
+  .container{padding:44px 16px 80px}
+  .post-title{font-size:27px}
+  .lede{font-size:17.5px}
+  .cd{display:none} .cm{display:block}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi-v{font-size:25px}
+  .viz{padding:18px 16px 16px;border-radius:16px}
+  .ax{font-size:11.5px} .pill{font-size:11px}
+  .vs-head,.vs-row{grid-template-columns:1fr 1fr;gap:12px}
+  .vs-head>div:first-child{display:none}
+  .vs-l{grid-column:1/-1;margin-bottom:-2px}
+  .vs b{font-size:22px}
+  .db-ax{display:none}
+  .db-row{grid-template-columns:1fr auto;gap:8px 12px}
+  .db-l{grid-column:1/-1}
+  .db-tr{grid-column:1}
+  .steps{grid-template-columns:1fr}
+  .tl::before{left:62px} .tl-i{grid-template-columns:48px 1fr;gap:28px} .tl-i::before{left:54px}
+  .callout{font-size:18.5px;padding:22px}
+  .fo-r{font-size:12px;gap:10px;padding:8px 14px} .fo-h{padding:10px 14px}
+  .fo-h span:last-child{display:none}
+}
+
+/* source mix */
+.mx-bar{display:flex;height:46px;border-radius:12px;overflow:hidden;gap:3px;margin:4px 0 18px}
+.mx-bar button{border:0;padding:0;cursor:pointer;position:relative;transition:filter .15s,transform .15s}
+.mx-bar button:hover,.mx-bar button.on{filter:brightness(1.08)}
+.mx-bar button.on{outline:2px solid var(--ink);outline-offset:-2px}
+.mx-k{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mx-k button{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;transition:border-color .15s,background .15s}
+.mx-k button.on{border-color:var(--ink);background:var(--surf)}
+.mx-k .v{font-size:22px;font-weight:500;letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.mx-k .l{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.mx-k i,.mx-d i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.mx-d{margin-top:16px;background:var(--surf);border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:#374151;min-height:96px}
+.mx-d b{color:var(--ink)} .mx-d .dl{font:12px 'Geist Mono',monospace;color:var(--muted);margin-top:8px;line-height:1.8}
+.c-comp{background:#3b5bfd} .c-dir{background:#8fa3ff} .c-ugc{background:#c9ccd3} .c-own{background:#0d1015} .c-other{background:#ecece9}
+/* directory pages */
+.dp{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:end}
+.dp-col{display:flex;flex-direction:column;justify-content:flex-end;height:240px}
+.dp-stack{display:flex;flex-direction:column;justify-content:flex-end;border-radius:12px;overflow:hidden;gap:3px}
+.dp-seg{display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#fff;font-size:12.5px;font-weight:500}
+.dp-seg span:last-child{font-family:'Geist Mono',monospace}
+.dp-hp{background:var(--neut);color:#0d1015}
+.dp-cap{margin-top:10px;font-size:12.5px;color:var(--muted)} .dp-cap b{display:block;font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-.5px}
+/* position bars */
+.pb{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:end;height:250px;padding:8px 0 0;border-bottom:1px solid var(--line);position:relative}
+.pb-c{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.pb-v{font:600 13px 'Geist Mono',monospace;margin-bottom:8px;color:var(--ink)}
+.pb-b{width:100%;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--acc2),var(--acc))}
+.pb-c.out .pb-b{background:var(--neut)} .pb-c.out .pb-v{color:#9ca3af}
+.pb-x{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:10px;font:500 11px 'Geist Mono',monospace;color:var(--muted);text-align:center}
+.pb-cut{position:absolute;top:0;bottom:0;left:calc(66.66% + 2px);border-left:1.5px dashed #f0a7a7}
+.pb-cut span{position:absolute;top:0;left:8px;font:600 10.5px 'Geist Mono',monospace;color:#d24b4b;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+/* slider + calculator */
+.sl input[type=range]{width:100%;accent-color:var(--acc);margin:6px 0 4px}
+.sl-ticks{display:flex;justify-content:space-between;font:500 11px 'Geist Mono',monospace;color:var(--muted)}
+.sl-out{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.sl-out div{background:var(--surf);border-radius:12px;padding:12px 14px}
+.sl-out b{display:block;font-size:26px;font-weight:500;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+.sl-out span{font-size:12px;color:var(--muted)}
+.sl-out .bad b{color:#d24b4b}
+.cc-p{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.cc-p button{all:unset;cursor:pointer;font-size:12.5px;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
+.cc-p button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cc-in{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cc-in label{font:500 10.5px 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cc-in input{display:block;width:100%;margin-top:6px;font:500 18px 'Geist Sans',sans-serif;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink);box-sizing:border-box}
+/* prompt context */
+.pq{display:grid;gap:10px}
+.pq div{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
+.pq em{font-style:normal;background:var(--tint);color:#2a45d8;border-radius:5px;padding:1px 5px}
+.pq span{font:500 11px 'Geist Mono',monospace;color:var(--muted);white-space:nowrap}
+@media (max-width:640px){.pb{gap:6px;height:210px}.pb-x{gap:6px;font-size:10px}.pb-v{font-size:11px}
+ .mx-k{grid-template-columns:1fr 1fr}.dp{grid-template-columns:1fr 1fr;gap:12px}.dp-col{height:200px}
+ .sl-out,.cc-in{grid-template-columns:1fr}.pq div{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="nav-me"><img src="/avatar.jpg" alt="Divij Rakhra">Divij Rakhra</a>
+  </header>
+  <div class="container">
+    <a href="/" class="back-link">← All posts</a>
+    <div class="kicker"><i></i>Experiment log · AI search</div>
+    <h1 class="post-title">Top 5 beats top 1: what your position on a list does to your AI mentions</h1>
+    <div class="post-meta">November 2026 · AI search · 10 min read</div>
+    <div class="post-body">
+
+<p class="lede">Most of what an AI engine reads before it recommends an agency isn't written by the agency. It's other people's lists, and the people who own those lists sell the spots on them by position.</p>
+<p>Before paying for one of those spots, we ran an experiment: does your position on a list actually change how often AI names you? Then we tested the answer with our own money, on three lists, for two months.</p>
+
+<div class="kpis"><div class="kpi"><div class="kpi-l">#1 vs #4 to 5</div><div class="kpi-v">1.00x</div><div class="kpi-s">how much more often #1 got named</div></div><div class="kpi"><div class="kpi-l">AI reads</div><div class="kpi-v">362 vs 169</div><div class="kpi-s">three niche lists vs the homepage list</div></div><div class="kpi hi"><div class="kpi-l">Named</div><div class="kpi-v">16→48%</div><div class="kpi-s">in answers that read the test lists</div></div><div class="kpi hi"><div class="kpi-l">Google AI</div><div class="kpi-v">0→31%</div><div class="kpi-s">Overviews naming us</div></div></div>
+
+<p>The short version: <b>on a list that AI reads, #1 and #5 get named about equally often, and the drop comes after #5.</b> So don't pay for the top spot. Pay to be inside the cut, on the pages AI actually reads, with an entry that matches what buyers ask.</p>
+
+<h2><span class="n">01 · The landscape</span>Four kinds of sources shape every AI answer</h2>
+
+<p>When a buyer asks ChatGPT or Google's AI who the best SaaS design agencies are, the engine reads a set of pages first and answers from them. For our category, those pages fall into four groups. Tap through them.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 1 · What AI engines read for our prompts</div><div class="viz-t">You control 2% of it</div><div class="viz-s">Peec AI · 50,933 page reads across 25 buyer prompts on ChatGPT, Perplexity and Google AI Overviews · Sep 2 to Nov 17, 2026</div></div><div class="mx"><div class="mx-bar"><button class="c-comp" style="flex:81.03" data-mx="comp" aria-label="Competitors" data-tip="Competitors: 81.0% of page reads"></button><button class="c-dir" style="flex:7.08" data-mx="dir" aria-label="Directories and publishers" data-tip="Directories and publishers: 7.1% of page reads"></button><button class="c-ugc" style="flex:5.76" data-mx="ugc" aria-label="UGC" data-tip="UGC: 5.8% of page reads"></button><button class="c-own" style="flex:2.38" data-mx="own" aria-label="Your own assets" data-tip="Your own assets: 2.4% of page reads"></button><button class="c-other" style="flex:3.75" data-tip="Other: 3.7%"></button></div><div class="mx-k"><button data-mx="comp" class=on><div class="v">81%</div><div class="l"><i class="c-comp"></i>Competitors</div></button><button data-mx="dir"><div class="v">7%</div><div class="l"><i class="c-dir"></i>Directories and publishers</div></button><button data-mx="ugc"><div class="v">6%</div><div class="l"><i class="c-ugc"></i>UGC</div></button><button data-mx="own"><div class="v">2%</div><div class="l"><i class="c-own"></i>Your own assets</div></button></div><div class="mx-d"><div class="mx-x" data-mxd="comp"><b>Competitors, 41,273 reads.</b> Other agencies' own sites. Most of these reads land on their blog listicles: “best SaaS design agencies”, written by an agency that ranks itself first.<div class="dl">top: parallelhq.com (1198), 925studios.co (1072), everything.design (904), stan.vision (779)</div></div><div class="mx-x" data-mxd="dir" hidden><b>Directories and publishers, 3,607 reads.</b> Marketplaces, review sites and design publications that rank agencies. Most of them sell positions.<div class="dl">top: saas-hackers.com (380), saasdesignagencies.com (272), uxmeridian.com (250), globaluxagencies.com (162)</div></div><div class="mx-x" data-mxd="ugc" hidden><b>UGC, 2,933 reads.</b> Reddit threads, YouTube videos, LinkedIn posts and portfolio sites. Nobody owns them, and they're slow to move.<div class="dl">top: reddit.com (585), youtube.com (564), dribbble.com (461), linkedin.com (455)</div></div><div class="mx-x" data-mxd="own" hidden><b>Your own assets, 1,211 reads.</b> Your website, your case studies, your blog. The one source you fully control, and the smallest one.</div></div></div></div>
+  <figcaption>Competitors' sites and directories make up <b>88%</b> of what the engines read. Your own website is <b>2%</b>. So the answer about you is mostly written by other people, and most of them will sell you a spot.</figcaption>
+</figure>
+
+<p>That's also why where you sit on those lists matters so much. A page an engine reads can only help you if it names you. In 450 answers we checked, when no page the engine read named us, we were named <b>2%</b> of the time. When three or more did, <b>60%</b>.</p>
+
+<h2><span class="n">02 · Experiment</span>Which pages of a directory does AI actually read?</h2>
+
+<p>The directory we were looking at sells spots on its main list, and that's the one everyone bids on. Peec logs every URL an engine reads, so we checked all of them.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 2 · One directory, four lists</div><div class="viz-t">The niche lists out-read the homepage 2 to 1</div><div class="viz-s">Peec AI · AI reads per URL · Jun 1 to Sep 8, 2026</div></div><div class="dp"><div class="dp-col"><div class="dp-stack"><div class="dp-seg dp-hp" style="height:103px"><span>Homepage list</span><span>169</span></div></div><div class="dp-cap"><b>169</b>AI reads · the page everyone bids on</div></div>
+<div class="dp-col"><div class="dp-stack"><div class="dp-seg" style="height:88px;background:#3b5bfd"><span>B2B list</span><span>144</span></div><div class="dp-seg" style="height:71px;background:#5a76fd"><span>SaaS list</span><span>117</span></div><div class="dp-seg" style="height:61px;background:#8fa3ff"><span>AI list</span><span>101</span></div></div><div class="dp-cap"><b>362</b>AI reads · three niche lists combined</div></div></div></div>
+  <figcaption>The homepage list was the single strongest page with <b>169</b> reads. Its three niche lists, for B2B, SaaS and AI, were read <b>362</b> times together. They're also the lists that match what our buyers ask, so they were the better place to be before we even looked at price.</figcaption>
+</figure>
+
+<h2><span class="n">03 · Experiment</span>Does your position on the list matter?</h2>
+
+<p>Every seller prices the top of the list at a premium. On one marketplace in our category, #1 costs 3x what #4 costs. That only makes sense if a higher spot gets you named more often. So we measured it.</p>
+<p>We took the 14 agency listicles AI engines read most for our prompts, recorded where every agency sat on each one, and for each agency counted how often the answers that read that list went on to name it. That's 118 agency positions, each measured answer by answer.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 3 · Position on the list vs mention rate</div><div class="viz-t">Positions 1 to 5 are the same. The drop is after 5.</div><div class="viz-s">Peec AI · 118 agency positions on 14 AI-read listicles · Jan 1 to Sep 7, 2026</div><div class="lg"><span><i class="a"></i>Inside the cut</span><span><i class="n"></i>Below it</span></div></div><div class="pb"><div class="pb-c" data-tip="Position 1: named in 38.4% of answers that read the list"><div class="pb-v">38%</div><div class="pb-b" style="height:76.7%"></div></div><div class="pb-c" data-tip="Position 2: named in 44.1% of answers that read the list"><div class="pb-v">44%</div><div class="pb-b" style="height:88.1%"></div></div><div class="pb-c" data-tip="Position 3: named in 41.3% of answers that read the list"><div class="pb-v">41%</div><div class="pb-b" style="height:82.7%"></div></div><div class="pb-c" data-tip="Position 4 to 5: named in 38.2% of answers that read the list"><div class="pb-v">38%</div><div class="pb-b" style="height:76.5%"></div></div><div class="pb-c out" data-tip="Position 6 to 8: named in 26.4% of answers that read the list"><div class="pb-v">26%</div><div class="pb-b" style="height:52.8%"></div></div><div class="pb-c out" data-tip="Position 9+: named in 16.9% of answers that read the list"><div class="pb-v">17%</div><div class="pb-b" style="height:33.8%"></div></div><div class="pb-cut"><span>the cut</span></div></div><div class="pb-x"><span>#1</span><span>#2</span><span>#3</span><span>#4 to 5</span><span>#6 to 8</span><span>#9+</span></div></div>
+  <figcaption>#1 was named in <b>38.4%</b> of answers that read the list, and #4 to #5 in <b>38.2%</b>. That's a 1.00x lift for the most expensive spot on the page. Positions 6 to 8 fell to 26%, and 9 and below to 17%.</figcaption>
+</figure>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Pick a position</div><div class="viz-t">What a spot on an AI-read list is worth</div><div class="viz-s">Drag the slider. Same data as Figure 3, one position at a time.</div></div><div class="sl"><input type="range" min="1" max="9" step="1" value="5" id="slp" aria-label="Position on the list">
+<div class="sl-ticks"><span>#1</span><span>#2</span><span>#3</span><span>#4</span><span>#5</span><span>#6</span><span>#7</span><span>#8</span><span>#9+</span></div>
+<div class="sl-out"><div><b id="slr">34.4%</b><span>named when the list is read</span></div><div id="slvw"><b id="slv">0.90x</b><span>vs the #1 spot</span></div><div><b id="sln">14</b><span>agencies measured at this spot</span></div></div></div></div>
+  <figcaption>#2 to #4 actually came out slightly above #1, which is noise, not a reason to aim for #2. The real pattern is flat through the top five and falling after it. Top 3 against everything below tests as significant (t = 2.52), and all of that comes from the tail.</figcaption>
+</figure>
+
+<div class="callout"><span>The whole idea</span>On a list AI reads, you're not buying a rank. You're buying a seat inside the cut. #1 and #5 are the same seat.</div>
+
+<h2><span class="n">04 · Why</span>Prompts carry context, and positioning catches it</h2>
+
+<p>Buyers don't type “best UX agencies” anymore. They type the whole situation, and the engine adds what it already knows about them. It's the same thing Google does when it assumes your city for a local search. AI assumes your stage, your industry and what you said you wanted last time.</p>
+<p>So when an engine reads a list with 7 or 28 agencies on it, it isn't copying the order. It's picking the entries that match that context. If your entry says exactly who you're for, you get pulled in from #5 or #20. If it's generic, you need a high position to get carried along.</p>
+
+<div class="pq">
+  <div>boutique product design agency for b2b saas <em>where the founders are involved</em><span>founder-led</span></div>
+  <div>ux agencies <em>for ai companies</em><span>industry</span></div>
+  <div>design agency for a <em>series a</em> saas company <em>in the us</em><span>stage + market</span></div>
+</div>
+
+<p>That's why clear lines like “we only work with funded teams”, “we only do SaaS” or “we only do websites” earn their place in a list entry. They're the words that match the prompt.</p>
+
+<figure>
+  <img src="answer-2.jpg" alt="Google AI Overview for boutique product design agency for b2b saas where the founders are involved, our agency named first, the test list the first source" loading="lazy">
+  <figcaption><b>A real Google AI Overview.</b> A prompt full of context, and the list we sat at #5 on as the #1 source. The engine named us first. Pulled from Peec AI.</figcaption>
+</figure>
+
+<h2><span class="n">05 · The test</span>We took #5 on all three niche lists</h2>
+
+<p>We were quoted $1,500 a month for top-3 spots on the three niche lists. Based on the data above, we asked for #5 on all three at $500 a month instead, and wrote our own entries around our positioning. Then we watched what the engines did.</p>
+<p>Peec stores what each page said when it was read, so we know the exact day our entry first showed up in an AI read: September 12. That gives a clean before and after, on the same 25 prompts.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Figure 4 · Same prompts, before and during</div><div class="viz-t">How often AI answers named us</div><div class="viz-s">Peec AI · before = Sep 2 to 11 · during = Sep 12 to Nov 13, 2026</div><div class="lg"><span><i class="n"></i>Before</span><span><i class="a"></i>While listed at #5</span></div></div><div class="ba"><div class="ba-row" data-tip="11 of 67 before, 101 of 211 during"><div class="ba-l">Answers that read one of the three test lists</div>
+<div class="ba-n"><span class="was">16%</span><span class="arr">→</span><span class="now">48%</span><span class="chip">+32 pts</span></div>
+<div class="ba-t"><span class="t0" style="width:16%"></span></div><div class="ba-t"><span class="t1" style="width:48%"></span></div></div><div class="ba-row" data-tip="116 of 892 before, 706 of 4574 during"><div class="ba-l">All tracked answers, for comparison</div>
+<div class="ba-n"><span class="was">13%</span><span class="arr">→</span><span class="now">15%</span><span class="chip">+2 pts</span></div>
+<div class="ba-t"><span class="t0" style="width:13%"></span></div><div class="ba-t"><span class="t1" style="width:15%"></span></div></div></div></div>
+  <figcaption>When an engine read one of the test lists, it named us in <b>16%</b> of answers before and <b>48%</b> while we were on them. Across every tracked answer, the same period only moved from 13% to 15%. It held for both months: 49% in the first, 46% in the second.</figcaption>
+</figure>
+
+<div class="kpis"><div class="kpi hi"><div class="kpi-l">Google AI Overviews</div><div class="kpi-v">0→31%</div><div class="kpi-s">58 reads before, 55 during</div></div><div class="kpi"><div class="kpi-l">ChatGPT</div><div class="kpi-v">15→60%</div><div class="kpi-s">122 reads before, 117 during</div></div><div class="kpi"><div class="kpi-l">Perplexity</div><div class="kpi-v">17→35%</div><div class="kpi-s">105 reads before, 34 during</div></div><div class="kpi"><div class="kpi-l">Extra mentions</div><div class="kpi-v">~66</div><div class="kpi-s">on tracked prompts alone</div></div></div>
+
+<figure>
+  <img src="answer-1.jpg" alt="Google AI Overview for ux agencies for ai companies, our agency named second, the test list the first source" loading="lazy">
+  <img src="answer-3.jpg" alt="ChatGPT answer for product design agency for b2b saas, our agency named first, the test list the second source" loading="lazy">
+  <figcaption><b>Two more real answers from while we were listed at #5.</b> Agencies in the order the engine named them, and the top five sources it cited. Pulled from Peec AI.</figcaption>
+</figure>
+
+<p>The flip side showed up too. Two other lists already named us lower down, for free. On one we sat at #8: Google's AI read it 26 times and named us 2 times. On the other we sat at #7: read 12 times, named 0 times. Being on a list isn't the win. Being inside the cut is.</p>
+
+<h2><span class="n">06 · Do the maths</span>Price a spot per AI read, not per click</h2>
+
+<p>Directories get very little direct traffic, so pricing a spot per click makes every one of them look terrible. Price it per AI read of the page instead, and per answer that names you. Try the three options we had, or plug in your own.</p>
+
+<figure>
+<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Cost per AI answer</div><div class="viz-t">What you're really paying for</div><div class="viz-s">Reads per month estimated from Peec, Jun 1 to Sep 8, 2026. Mention rates from Figure 3.</div></div><div class="cc"><div class="cc-p"><button data-cc='{"p": 1500, "r": 77, "m": 41.3}'>Homepage list, #3</button><button data-cc='{"p": 1500, "r": 165, "m": 41.3}'>3 niche lists, top 3</button><button data-cc='{"p": 500, "r": 165, "m": 38.2}' class=on>3 niche lists, top 5</button></div>
+<div class="cc-in"><label>Price per month ($)<input id="ccp" type="number" value="500"></label><label>AI reads per month<input id="ccr" type="number" value="165"></label><label>Mention rate at your spot (%)<input id="ccm" type="number" value="38.2"></label></div>
+<div class="sl-out"><div><b id="cc1">$</b><span>per AI read of the page</span></div><div><b id="cc2">$</b><span>per AI answer that names you</span></div><div><b id="cc3"></b><span>answers naming you a month</span></div></div></div></div>
+  <figcaption>Same lists, same reads. Dropping from top 3 to #5 costs you almost nothing in mention rate and cuts the price by two thirds.</figcaption>
+</figure>
+
+<h2><span class="n">The playbook</span>If you're buying list spots for AI search</h2>
+
+<ol class="steps">
+  <li><b>Map your sources first.</b> Pull every page AI engines read for your buyer prompts and sort them into your own, UGC, competitors and directories. That's where the work is.</li>
+  <li><b>Find the pages AI actually reads.</b> A directory's niche lists can out-read its homepage. Buy the pages, not the brand.</li>
+  <li><b>Check position against mention rate.</b> Before paying a premium, measure whether higher spots on that kind of list get named more. On ours, they didn't.</li>
+  <li><b>Pay to be inside the cut, never for #1.</b> Top five on our lists. Nothing below it at any price.</li>
+  <li><b>Write an entry that matches the prompt.</b> Who you're for, who you're not for, in plain words. That's what gets you pulled in when a prompt carries context.</li>
+  <li><b>Measure against your overall number.</b> Find the day you go live in the data and compare against everything else, so you know the list did the work.</li>
+</ol>
+
+<div class="method">
+<p><b>Source mix.</b> Peec AI, every page read across 25 tracked prompts on ChatGPT, Perplexity and Google AI Overviews, Sep 2 to Nov 17, 2026, grouped by Peec's own domain classification: Competitor and Corporate as competitors, Reference and Editorial as directories and publishers, UGC as UGC, and our own domain as own assets. Other and Institutional are left out of the four groups.</p>
+<p><b>Position study.</b> The 14 agency listicles AI engines retrieved most for our prompts, Jan 1 to Sep 7, 2026. For every agency on each list, the share of answers that retrieved that list and named the agency, up to 120 answers per list (118 agency positions). Fourteen lists is a modest sample, and one answer reads several pages at once. The drop after #5 is clear enough to act on. The claim that #1 is worth no more than #4 to #5 is solid, not certain.</p>
+<p><b>The test.</b> Every answer from Aug 3 to Nov 18, 2026 that retrieved one of the three test lists (524 answers). Peec's prompt set was reset on Sep 2, so the headline before and after uses Sep 2 to 11 against Sep 12 to Nov 13 on the same prompts. The per-engine figures use Aug 3 to Sep 11 as the before period, because the shorter window has too few answers per engine. Other lists added us in the same period, so treat the lift as a strong correlation, not a lab result. Peec stopped collecting from Jun 30 to Aug 2, so monthly reads are estimated from the 66 days it did collect. Names of the sellers and other agencies' private prices are left out.</p>
+</div>
+
+    </div>
+  </div>
+  <footer class="footer"><span>© 2026 Divij Rakhra</span><span>Written from Gurugram</span></footer>
+  <div id="tip"></div>
+  <script>
+(function(){
+var t=document.getElementById('tip');
+document.addEventListener('mousemove',function(e){var el=e.target.closest&&e.target.closest('[data-tip]');
+ if(!el){t.style.opacity=0;return;} t.textContent=el.getAttribute('data-tip');
+ var x=Math.min(e.clientX+14, window.innerWidth-t.offsetWidth-8); t.style.left=x+'px'; t.style.top=(e.clientY+14)+'px'; t.style.opacity=1;});
+// source mix
+document.querySelectorAll('[data-mx]').forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-mx');
+ document.querySelectorAll('[data-mx]').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-mx')===k);});
+ document.querySelectorAll('[data-mxd]').forEach(function(x){x.hidden=x.getAttribute('data-mxd')!==k;});});});
+// position slider
+var P={"1": 38.4, "2": 44.1, "3": 41.3, "4": 42.1, "5": 34.4, "6": 26.5, "7": 29.3, "8": 22.7, "9": 16.9}, N={"1": 14, "2": 14, "3": 14, "4": 14, "5": 14, "6": 14, "7": 14, "8": 11, "9": 9}, s=document.getElementById('slp');
+function sl(){var p=+s.value, r=P[p]; document.getElementById('slr').textContent=r+'%';
+ var v=r/P[1]; document.getElementById('slv').textContent=v.toFixed(2)+'x'; document.getElementById('slvw').className=v<0.8?'bad':'';
+ document.getElementById('sln').textContent=N[p];}
+if(s){s.addEventListener('input',sl); sl();}
+// calculator
+var cp=document.getElementById('ccp'), cr=document.getElementById('ccr'), cm=document.getElementById('ccm');
+function cc(){var p=+cp.value||0, r=+cr.value||0, m=(+cm.value||0)/100;
+ document.getElementById('cc1').textContent=r?('$'+(p/r).toFixed(2)):'-';
+ document.getElementById('cc2').textContent=(r*m)?('$'+(p/(r*m)).toFixed(2)):'-';
+ document.getElementById('cc3').textContent=Math.round(r*m);}
+[cp,cr,cm].forEach(function(i){i&&i.addEventListener('input',function(){document.querySelectorAll('[data-cc]').forEach(function(b){b.classList.remove('on')});cc();});});
+document.querySelectorAll('[data-cc]').forEach(function(b){b.addEventListener('click',function(){var d=JSON.parse(b.getAttribute('data-cc'));
+ cp.value=d.p; cr.value=d.r; cm.value=d.m; document.querySelectorAll('[data-cc]').forEach(function(x){x.classList.toggle('on',x===b)}); cc();});});
+if(cp) cc();
+})();
+</script>
+</body>
+</html>
