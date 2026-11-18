@@ -1,0 +1,139 @@
+/*
+  Lab skin for post creatives. Loaded AFTER each post's inline <style>,
+  so it re-dresses the shared chart components (kpis, viz cards, callouts,
+  steps, frames, interactive blocks) in the site identity without touching
+  their layout or JS. Yellow = a result. Blue = data. Navy = ink.
+*/
+:root {
+  --ink: #13204A;
+  --muted: #5D6785;
+  --line: #DCE2EA;
+  --neut: #C3CCDA;
+  --surf: #F2F4F6;
+  --tint: #E8EDFF;
+  --hi: #FFE14D;
+  --sheet-rule: #C9D1DD;
+  --grid: rgba(19, 32, 74, .045);
+  --lab-sans: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---------- sheets: every figure is a sheet of graph paper ---------- */
+.viz {
+  background-color: #fff;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 20px 20px; background-position: -1px -1px;
+  border: 1px solid var(--sheet-rule); border-radius: 6px; box-shadow: none;
+}
+.viz.dark {
+  background-color: var(--ink);
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  border-color: var(--ink);
+}
+.viz-e { font: 600 13.5px var(--lab-sans); letter-spacing: 0; text-transform: none; color: #3b5bfd; }
+.viz.dark .viz-e { color: var(--hi); }
+.viz-t { font-family: var(--lab-sans); font-size: 22px; font-weight: 750; font-stretch: 84%; letter-spacing: -0.005em; line-height: 1.2; color: var(--ink); }
+.viz.dark .viz-t { color: #fff; }
+.viz-s { color: var(--muted); }
+.viz svg text { font-family: var(--lab-sans); }
+.ax, .peak { font-family: var(--lab-sans) !important; font-variant-numeric: tabular-nums; }
+.lg i { border-radius: 1px; }
+.lg i.a { background: #3b5bfd; }
+
+figcaption { font-family: var(--lab-sans); font-size: 14px; color: var(--muted); border-left: 2px solid var(--ink); padding-left: 14px; }
+figcaption b { color: var(--ink); font-weight: 700; }
+figure > img { border-radius: 6px; border: 1px solid var(--sheet-rule); }
+
+/* ---------- readouts ---------- */
+.kpi { border: 1px solid var(--sheet-rule); border-radius: 6px; box-shadow: none; background: #fff; }
+.kpi-l { font: 600 13px var(--lab-sans); letter-spacing: 0; text-transform: none; color: var(--muted); }
+.kpi-v { font-family: var(--lab-sans); font-size: 36px; font-weight: 800; font-stretch: 66%; letter-spacing: 0; line-height: .95; color: var(--ink); }
+.kpi-s { color: var(--muted); }
+/* the headline results get the highlighter */
+.kpi.hi { background: var(--hi); border-color: var(--hi); color: var(--ink); }
+.kpi.hi .kpi-l { color: var(--ink); }
+.kpi.hi .kpi-s { color: rgba(19, 32, 74, .72); }
+
+.chip { font: 700 12.5px var(--lab-sans); color: var(--ink); background: var(--hi); border-radius: 2px 6px 3px 5px; }
+.chip.flat { color: var(--muted); background: var(--surf); }
+
+/* ---------- comparison rows ---------- */
+.vs b, .ba-n .now, .ub-v b, .dp-cap b, .sl-out b, .mx-k .v {
+  font-family: var(--lab-sans); font-weight: 800; font-stretch: 70%; letter-spacing: 0; color: var(--ink);
+}
+.vs-c.a b { color: #3b5bfd; }
+.vs-row, .ba-row, .ub-row, .db-row { border-color: var(--line); }
+.tr, .ba-t { border-radius: 1px; background: var(--surf); }
+.tr span, .ba-t span { border-radius: 1px; }
+.tr span, .ba-t .t1 { background: #3b5bfd; }
+.db-tr .seg { background: #8fa3ff; }
+.db-tr .p1 { background: #3b5bfd; }
+.db-ax, .ub-i, .tl-d, .pb-v, .pb-x, .sl-ticks, .cc-in label {
+  font-family: var(--lab-sans); font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none;
+}
+
+/* ---------- position bars: flat ink, the cut is a ruled line ---------- */
+.pb { border-bottom: 1.5px solid var(--ink); }
+.pb-b { border-radius: 2px 2px 0 0; background: #3b5bfd; }
+.pb-v { font-weight: 800; font-size: 15px; }
+.pb-cut { border-left: 1.5px dashed var(--ink); }
+.pb-cut span { font: 700 12px var(--lab-sans); letter-spacing: 0; text-transform: none; color: var(--ink); background: var(--hi); padding: 2px 6px; border-radius: 2px; }
+.sl-out .bad b { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
+.sl input[type=range] { accent-color: #3b5bfd; }
+
+/* ---------- interactive blocks ---------- */
+.mx-bar { border-radius: 4px; }
+.mx-k button { border-color: var(--sheet-rule); border-radius: 6px; background: #fff; }
+.mx-k button.on { border-color: var(--ink); background: #fff; box-shadow: inset 0 -4px 0 var(--hi); }
+.mx-d { background: var(--surf); border-radius: 6px; border-left: 3px solid var(--ink); }
+.c-own { background: var(--ink); }
+.sl-out div { background: var(--surf); border-radius: 6px; }
+.cc-p button { border-color: var(--sheet-rule); border-radius: 4px; }
+.cc-p button.on { background: var(--ink); border-color: var(--ink); }
+.cc-in input { font-family: var(--lab-sans); border-color: var(--sheet-rule); border-radius: 4px; }
+.pq div { background: #fff; border-color: var(--sheet-rule); border-radius: 6px; }
+.pq em { background: var(--hi); color: var(--ink); border-radius: 2px; }
+.dp-stack { border-radius: 4px; }
+
+/* ---------- lab notes ---------- */
+.callout {
+  background: #fff; border: 1px solid var(--sheet-rule); border-left: 6px solid var(--hi); border-radius: 0 6px 6px 0;
+  font-family: 'Newsreader', Georgia, serif; font-size: 24px; line-height: 1.4; letter-spacing: 0; color: var(--ink);
+}
+.callout span { font: 700 14px var(--lab-sans); letter-spacing: 0; text-transform: none; color: #3b5bfd; }
+
+.steps li { border: 1px solid var(--sheet-rule); border-radius: 6px; color: var(--muted); }
+.steps li::before {
+  width: auto; height: auto; padding: 0 6px; border-radius: 2px 5px 2px 4px; background: var(--hi); color: var(--ink);
+  font: 800 20px/1.2 var(--lab-sans); font-stretch: 70%;
+}
+.steps li b { font-family: var(--lab-sans); font-weight: 700; color: var(--ink); }
+
+.method {
+  background-color: #fff;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 20px 20px; border: 1px solid var(--sheet-rule); border-radius: 6px; color: var(--muted);
+}
+
+.tl::before { background: var(--sheet-rule); }
+.tl-i.on::before { background: var(--hi); border-color: var(--ink); box-shadow: none; }
+.tl-i.on .tl-t { color: var(--ink); }
+.tl-t { font-weight: 700; }
+
+/* ---------- specimens: screenshots and terminal ---------- */
+.fr { border-radius: 6px; border-color: var(--sheet-rule); box-shadow: none; }
+.fr-bar { background: var(--surf); border-color: var(--sheet-rule); }
+.fr-bar i { background: var(--neut); }
+.fr-url { border-radius: 3px; border-color: var(--sheet-rule); }
+.fr.dark { border-color: #222; }
+.fo { background: var(--ink); border-radius: 6px; }
+.fo-h { font: 600 13px var(--lab-sans); letter-spacing: 0; text-transform: none; color: rgba(255,255,255,.6); }
+.fo mark { background: rgba(255, 225, 77, .18); color: var(--hi); border-radius: 2px; }
+
+#tip { background: var(--ink); border-radius: 4px; font-family: var(--lab-sans); }
+
+@media (max-width: 640px) {
+  .kpi-v { font-size: 30px; }
+  .viz { border-radius: 6px; }
+  .viz-t { font-size: 19px; }
+  .callout { font-size: 20px; }
+}
