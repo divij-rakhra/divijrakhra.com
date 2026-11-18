@@ -1,90 +1,590 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Divij Rakhra · Growth experiments, with the numbers</title>
-  <meta name="description" content="Divij Rakhra writes about the growth work he actually ships: AI search, demand gen and launches, with every number attached.">
-  <link rel="icon" type="image/jpeg" href="avatar.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/style.css?v=4">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divij Rakhra · Growth experiments, with the numbers</title>
+<meta name="description" content="Divij Rakhra's practical file: growth experiments in AI search, demand gen and launches, run in public with every number published.">
+<link rel="canonical" href="https://divijrakhra.com/">
+<link rel="icon" type="image/jpeg" href="/avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:opsz,wght@6..72,400..600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#E3E8EF; --ink:#13204A; --body:#2A3352; --muted:#5D6785; --blue:#3B5BFD; --hi:#FFE14D;
+  --paper:#FCFDFE; --rule:rgba(19,32,74,.11); --cover:#13204A;
+  --sans:'Archivo',system-ui,sans-serif; --serif:'Newsreader',Georgia,serif; --hand:'Kalam',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--desk);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:radial-gradient(120% 80% at 50% 0%,#EEF1F5 0%,var(--desk) 60%)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+
+/* ---------- chrome ---------- */
+.top{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;max-width:1280px;margin:0 auto}
+.me{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-stretch:90%;font-size:15px}
+.me img{width:30px;height:30px;border-radius:50%;filter:grayscale(1)}
+.soc{display:flex;gap:2px}
+.soc a{width:36px;height:36px;display:grid;place-items:center;color:var(--muted);border-radius:6px}
+.soc a:hover{color:var(--ink);background:rgba(19,32,74,.07)}
+.soc svg{width:16px;height:16px}
+.ctrl{height:64px;display:flex;align-items:center;justify-content:center;gap:18px;font-size:14px;color:var(--muted)}
+.ctrl button{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);padding:8px 14px;border-radius:6px;border:1px solid rgba(19,32,74,.18);background:rgba(255,255,255,.55)}
+.ctrl button:hover:not(:disabled){background:#fff}
+.ctrl button:disabled{opacity:.35;cursor:default}
+.ctrl .where{min-width:120px;text-align:center;font-variant-numeric:tabular-nums}
+.ctrl .keys{font-size:12.5px}
+@media (max-width:979px){.ctrl .keys{display:none}.top{padding:0 12px}.ctrl{gap:10px}}
+
+/* ---------- the book ---------- */
+.stage{height:calc(100svh - 124px);display:grid;place-items:center;overflow:hidden}
+.book{position:relative;width:var(--bw);height:var(--h);perspective:2600px;transition:transform .7s cubic-bezier(.3,.1,.2,1);font-size:var(--fs)}
+.leaf{position:absolute;top:0;left:var(--lx);width:var(--w);height:100%;transform-origin:left center;transform-style:preserve-3d;
+  transition:transform .85s cubic-bezier(.32,.08,.2,1)}
+.leaf.flipped{transform:rotateY(-180deg)}
+.single .leaf.flipped.gone{visibility:hidden}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper);overflow:hidden;
+  box-shadow:0 1px 0 rgba(19,32,74,.08),0 18px 40px -18px rgba(19,32,74,.35)}
+.face.back{transform:rotateY(180deg)}
+/* spine shading: right pages darken at their left edge, left pages at their right */
+.face::after{content:"";position:absolute;inset:0;pointer-events:none}
+.front::after{background:linear-gradient(90deg,rgba(19,32,74,.10),rgba(19,32,74,0) 7%)}
+.back::after{background:linear-gradient(270deg,rgba(19,32,74,.10),rgba(19,32,74,0) 7%)}
+.single .face::after{background:linear-gradient(90deg,rgba(19,32,74,.08),rgba(19,32,74,0) 4%)}
+.inner{position:relative;height:100%;overflow-y:auto;scrollbar-width:none;padding:calc(var(--lh) * 2) 2.4em 2em 4.6em}
+.inner::-webkit-scrollbar{display:none}
+.back .inner{padding:calc(var(--lh) * 2) 2.4em 2em 2.6em}
+.single .inner{padding:calc(var(--lh) * 2) 1.3em 2.4em 3.6em}
+
+/* dog-ear: lifts on hover, turns the page on click */
+.ear{position:absolute;right:0;bottom:0;width:3.2em;height:3.2em;z-index:3;cursor:pointer;
+  background:linear-gradient(135deg,transparent 50%,#E9EDF3 50%,#fff 72%);clip-path:polygon(100% 0,100% 100%,0 100%);
+  transition:width .2s,height .2s;filter:drop-shadow(-2px -2px 3px rgba(19,32,74,.12))}
+.ear:hover{width:4.6em;height:4.6em}
+.cover .ear,.single .ear{display:none}
+
+/* ---------- paper types ---------- */
+.ruled .inner{background-attachment:local;background-color:var(--paper);
+  background-image:linear-gradient(90deg,transparent 3.6em,rgba(59,91,253,.45) 3.6em,rgba(59,91,253,.45) calc(3.6em + 1px),transparent calc(3.6em + 1px),transparent calc(3.6em + 4px),rgba(59,91,253,.45) calc(3.6em + 4px),rgba(59,91,253,.45) calc(3.6em + 5px),transparent calc(3.6em + 5px)),
+    repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh));
+  background-position:0 0,0 0}
+.back.ruled .inner{background-image:repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh))}
+.single .ruled .inner{background-image:linear-gradient(90deg,transparent 2.6em,rgba(59,91,253,.45) 2.6em,rgba(59,91,253,.45) calc(2.6em + 1px),transparent calc(2.6em + 1px),transparent calc(2.6em + 4px),rgba(59,91,253,.45) calc(2.6em + 4px),rgba(59,91,253,.45) calc(2.6em + 5px),transparent calc(2.6em + 5px)),
+    repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh))}
+.graph{background-color:#FBFCFE;
+  background-image:linear-gradient(rgba(59,91,253,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(59,91,253,.16) 1px,transparent 1px),
+    linear-gradient(rgba(59,91,253,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(59,91,253,.07) 1px,transparent 1px);
+  background-size:2.5em 2.5em,2.5em 2.5em,.5em .5em,.5em .5em}
+.graph .inner,.single .graph .inner{padding:2.2em 2.2em 2em}
+
+.book{--lh:var(--lhpx,26px)}
+
+/* printed fields with handwritten fill-ins: the lab-file signature */
+.fields{display:flex;flex-wrap:wrap;column-gap:1.4em;font-size:.82em;color:var(--muted);margin-bottom:var(--lh);line-height:var(--lh)}
+.fields span{white-space:nowrap}
+.fields b{font:400 1.32em/1 var(--hand);color:var(--blue);border-bottom:1px solid rgba(19,32,74,.35);padding:0 .4em;margin-left:.3em}
+.hand{font-family:var(--hand);color:var(--blue)}
+
+.ttl{font-weight:800;font-stretch:80%;font-size:1.55em;line-height:var(--lh);letter-spacing:-.01em;margin-bottom:var(--lh);text-wrap:balance}
+.ruled .txt{font-family:var(--serif);font-size:1.02em;line-height:var(--lh);color:var(--body)}
+.txt ol li,.links li{line-height:var(--lh)}
+.txt p{margin:0}
+.txt .h{font:700 .86em var(--sans);color:var(--ink);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.25em;margin-right:.35em}
+.txt ol{margin:0;padding-left:1.2em}
+.res{display:inline;background:linear-gradient(transparent 12%,var(--hi) 12%,var(--hi) 92%,transparent 92%);color:var(--ink);font-weight:600;padding:0 .2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.go{display:inline-flex;line-height:var(--lh);margin-top:var(--lh);font:700 .9em var(--sans);color:var(--blue);text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1.5px}
+.go:hover{color:var(--ink)}
+.pno{position:absolute;bottom:1.1em;font:400 1em var(--hand);color:var(--muted)}
+.front .pno,.single .pno{right:1.6em}.back .pno{left:1.6em}
+.single .front .pno{right:1.3em}
+
+/* ---------- cover ---------- */
+.cover{background:var(--cover);color:#fff;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.018) 0 2px,transparent 2px 6px),linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0) 6%)}
+.cover .inner{display:flex;flex-direction:column;justify-content:space-between;padding:2.4em 2.4em 2.2em 3em}
+.label{background:#FCFDFE;color:var(--ink);border-radius:.6em;padding:1.6em 1.7em 1.4em;box-shadow:0 2px 0 rgba(0,0,0,.2);position:relative;margin-top:2.5em}
+.label::before{content:"";position:absolute;inset:.45em;border:1.5px solid var(--ink);border-radius:.35em;pointer-events:none}
+.label h1{font-weight:850;font-stretch:72%;font-size:2.6em;line-height:.95;letter-spacing:-.01em}
+.label .sub{font-family:var(--serif);font-size:1.02em;color:var(--body);margin:.5em 0 1em;line-height:1.4}
+.label .fields{font-size:.9em;flex-direction:column;gap:.55em;margin:0}
+.label .fields span{display:flex;align-items:baseline;white-space:normal}
+.label .fields b{flex:1;font-size:1.3em}
+.open{align-self:flex-start;display:inline-flex;align-items:center;gap:.6em;font:700 .95em var(--sans);color:var(--ink);background:var(--hi);padding:.65em 1.1em;border-radius:.3em}
+.open:hover{filter:brightness(1.04)}
+.cover .foot{font-size:.82em;color:rgba(255,255,255,.6)}
+.backcover{background:var(--cover);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.018) 0 2px,transparent 2px 6px)}
+.backcover .inner{display:flex;align-items:flex-end;justify-content:flex-end;color:rgba(255,255,255,.5);font-size:.8em}
+
+/* ---------- certificate ---------- */
+.cert{text-align:center}
+.cert h2{font-weight:850;font-stretch:72%;font-size:2em;line-height:calc(var(--lh) * 2);margin:0}
+.cert .rule{width:5em;height:3px;background:var(--hi);margin:0 auto calc(var(--lh) - 3px)}
+.cert p{font-family:var(--serif);font-size:1.05em;line-height:var(--lh);color:var(--body);text-align:left}
+.cert p a{color:var(--ink);text-decoration-color:var(--blue);text-underline-offset:.2em}
+.sigs{display:flex;justify-content:space-between;gap:1em;margin-top:2.2em;font-size:.82em;color:var(--muted);text-align:center}
+.sigs div{flex:1}
+.sigs .hand{display:block;font-size:1.7em;line-height:1.2;border-bottom:1px solid rgba(19,32,74,.35);margin-bottom:.35em;min-height:1.3em}
+
+/* ---------- index ---------- */
+.idx h2{font-weight:850;font-stretch:72%;font-size:2em;margin-bottom:.15em}
+.idx .lede{font-family:var(--serif);color:var(--muted);font-size:.95em;margin-bottom:1em}
+.idx table{width:100%;border-collapse:collapse;font-size:.88em}
+.idx th{white-space:nowrap;font-weight:700;text-align:left;padding:.5em .4em;border:1px solid rgba(19,32,74,.35);background:rgba(19,32,74,.04)}
+.idx td{padding:.65em .4em;white-space:normal;border:1px solid rgba(19,32,74,.35);vertical-align:top;line-height:1.3}
+.idx td.n,.idx td.p{text-align:center;font-family:var(--hand);font-size:1.25em;color:var(--blue)}
+.idx tr.row{cursor:pointer}
+.idx tr.row:hover td{background:rgba(255,225,77,.25)}
+.idx tr.row button{text-align:left;font-weight:600;line-height:1.3}
+.idx .r{font-family:var(--hand);font-size:1.15em;color:var(--ink);white-space:nowrap}
+.idx tr.todo td{color:var(--muted)}
+
+/* ---------- graph pages ---------- */
+.gh{font-size:.82em;color:var(--muted);margin-bottom:.4em}
+.gt{font-weight:800;font-stretch:80%;font-size:1.3em;line-height:1.15;margin-bottom:1.2em;text-wrap:balance}
+.chart{position:relative}
+.vbars{display:grid;grid-template-columns:repeat(6,1fr);gap:.7em;align-items:stretch;height:13em;border-bottom:2px solid var(--ink);border-left:2px solid var(--ink);padding:0 .6em;position:relative}
+.vb{position:relative;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.vb i{display:block;flex:none;width:100%;height:0;background:var(--blue);transition:height .9s cubic-bezier(.2,.7,.2,1)}
+.vb.out i{background:#B8C3D6}
+.vb b{font:700 .85em var(--sans);margin-bottom:.3em;font-variant-numeric:tabular-nums;opacity:0;transition:opacity .3s .6s}
+.seen .vb b{opacity:1}
+.xl{display:grid;grid-template-columns:repeat(6,1fr);gap:.7em;padding:0 .6em;margin-top:.45em;font-size:.78em;color:var(--muted);text-align:center}
+.cut{position:absolute;top:-.5em;bottom:0;border-left:2px dashed var(--ink)}
+.cut span{position:absolute;top:-.2em;left:.5em;white-space:nowrap;font:700 1.1em var(--hand);color:var(--ink);background:var(--hi);padding:0 .35em;transform:rotate(-3deg)}
+.note{font-family:var(--hand);color:var(--blue);font-size:1.12em;line-height:1.35;margin-top:1.2em;transform:rotate(-1.2deg)}
+.note .res{font-family:var(--hand);font-weight:700}
+.hb{display:grid;gap:1.1em}
+.hb .row{display:grid;grid-template-columns:7.5em 1fr;gap:.8em;align-items:center}
+.hb .lab{font-size:.85em;line-height:1.3;color:var(--body)}
+.hb .pair{display:grid;gap:.35em}
+.hb .bar{display:flex;align-items:center;gap:.5em;font:700 .85em var(--sans);font-variant-numeric:tabular-nums}
+.hb .bar i{display:block;height:.95em;width:0;background:var(--blue);transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.hb .bar.b i{background:#B8C3D6}
+.hb .bar.b{color:var(--muted)}
+.key{display:flex;gap:1.2em;font-size:.8em;color:var(--muted);margin-bottom:1em}
+.key span{display:inline-flex;align-items:center;gap:.4em}
+.key i{width:.8em;height:.8em;background:var(--blue);display:inline-block}
+.key i.b{background:#B8C3D6}
+.obs{width:100%;border-collapse:collapse;font-size:.92em;background:rgba(252,253,254,.75)}
+.obs th{text-align:left;font-weight:700;padding:.5em .6em;border:1px solid rgba(19,32,74,.35);background:rgba(19,32,74,.05)}
+.obs td{padding:.55em .6em;border:1px solid rgba(19,32,74,.35);line-height:1.35;vertical-align:top}
+.obs td:last-child{font-family:var(--hand);font-size:1.15em;color:var(--blue)}
+.obs tr.big td:last-child{color:var(--ink);font-weight:700}
+.obs tr.big td:last-child span{background:var(--hi);padding:0 .3em}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font:500 12.5px var(--sans);padding:6px 9px;border-radius:4px;opacity:0;transition:opacity .1s;z-index:50;max-width:220px}
+
+/* pending experiment */
+.pend .big{font:700 2.2em/1 var(--hand);color:var(--muted);height:calc(var(--lh) * 2);display:flex;align-items:flex-end;margin-bottom:var(--lh);transform:rotate(-2deg)}
+.pend p{font-family:var(--serif);line-height:var(--lh);color:var(--body)}
+.links{list-style:none;font-family:var(--serif);line-height:var(--lh)}
+.links a{color:var(--blue);text-underline-offset:.2em}
+
+@media (prefers-reduced-motion:reduce){
+  .leaf,.book{transition:none!important}
+  .vb i,.hb .bar i{transition:none}
+}
+/* without JS the file reads as a plain stack of pages */
+.no-js body{overflow:auto}
+.no-js .stage,.no-js .ctrl{display:none}
+.src{max-width:640px;margin:0 auto;padding:0 16px 48px;display:grid;gap:12px;font-size:16px;--lh:28px}
+.src>section{background:var(--paper);box-shadow:0 10px 30px -18px rgba(19,32,74,.4)}
+.src>section .inner{height:auto;padding:28px 20px}
+.src .cover .inner,.src .backcover .inner{color:#fff}
+.src[hidden]{display:none}
+</style>
 </head>
 <body>
-  <header class="nav">
-    <a href="/" class="nav-me"><img src="avatar.jpg" alt="Divij Rakhra">Divij Rakhra</a>
-    <nav class="socials" aria-label="Social">
-      <a href="https://linkedin.com/in/divijrakhra" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
-      <a href="https://x.com/RakhraDivij" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41z"/></svg></a>
-      <a href="https://www.youtube.com/@divij_rakhra" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14c.5-1.88.5-5.8.5-5.8s0-3.92-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
-    </nav>
-  </header>
+<header class="top">
+  <a class="me" href="/"><img src="/avatar.jpg" alt="">Divij Rakhra</a>
+  <nav class="soc" aria-label="Social">
+    <a href="https://linkedin.com/in/divijrakhra" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.850 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.230.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    <a href="https://x.com/RakhraDivij" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.630 7.58H.49l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41z"/></svg></a>
+    <a href="https://www.youtube.com/@divij_rakhra" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14c.5-1.88.5-5.8.5-5.8s0-3.92-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+  </nav>
+</header>
 
-  <main class="home">
-    <section class="hero">
-      <h1>I run marketing experiments in public and publish the numbers</h1>
-      <p>Co-founder and CMO at <a href="https://bricxlabs.com">Bricx Labs</a>. I write about the growth work we actually ship: AI search, demand gen and launches, with every number attached.</p>
-      <div class="tally"><span><b>3</b> experiments logged</span><span>Latest <b>Nov 2026</b></span></div>
-    </section>
+<main class="stage" id="stage" aria-live="polite">
+  <div class="book" id="book"></div>
+</main>
 
-    <section aria-labelledby="log">
-      <div class="log-h"><h2 id="log">Experiment log</h2><span>Newest first</span></div>
-      <ol class="entries">
-      <li class="entry">
-        <a href="blog/top-5-beats-top-1/">
-          <div class="result" aria-hidden="true">
-            <div class="lab">AI mention rate by list position</div>
-            <div class="big">#1 = #5</div>
-            <div class="cap">On lists AI reads, the drop comes after spot 5</div>
-            <div class="bars"><i class="on" style="height:77%"></i><i class="on" style="height:77%"></i><i class="on" style="height:88%"></i><i class="on" style="height:88%"></i><i class="on" style="height:83%"></i><i class="on" style="height:83%"></i><i class="on" style="height:76%"></i><i class="on" style="height:76%"></i><i class="on" style="height:76%"></i><i class="on" style="height:76%"></i><i style="height:53%"></i><i style="height:53%"></i><i style="height:53%"></i><i style="height:53%"></i><i style="height:34%"></i><i style="height:34%"></i><i style="height:34%"></i><i style="height:34%"></i><i style="height:34%"></i><i style="height:34%"></i></div>
-          </div>
-          <div class="txt">
-            <div class="meta"><span>Nov 2026</span><span>AI search</span><span>10 min read</span></div>
-            <h3>Top 5 beats top 1: what your position on a list does to your AI mentions</h3>
-            <p>We measured how often AI names agencies at each spot on 14 listicles, then tested it on three lists for two months. #1 and #5 came out the same.</p>
-            <span class="more">Read the post</span>
-          </div>
-        </a>
-      </li>
-      <li class="entry">
-        <a href="blog/the-zero-dr-citation/">
-          <div class="result" aria-hidden="true">
-            <div class="lab">ChatGPT citations</div>
-            <div class="big">113</div>
-            <div class="cap">In 8 days, from a site with 3 backlinks</div>
-            <div class="bars"><i style="height:4%"></i><i style="height:4%"></i><i style="height:6%"></i><i style="height:4%"></i><i style="height:5%"></i><i style="height:4%"></i><i style="height:4%"></i><i style="height:6%"></i><i style="height:4%"></i><i style="height:4%"></i><i style="height:5%"></i><i style="height:4%"></i><i class="on" style="height:50%"></i><i class="on" style="height:70%"></i><i class="on" style="height:45%"></i><i class="on" style="height:100%"></i><i class="on" style="height:55%"></i><i class="on" style="height:55%"></i><i class="on" style="height:35%"></i><i class="on" style="height:50%"></i></div>
-          </div>
-          <div class="txt">
-            <div class="meta"><span>Sep 2026</span><span>AI search</span><span>12 min read</span></div>
-            <h3>The Zero-DR Citation: how two brand-new domains started steering ChatGPT's recommendations</h3>
-            <p>Two exact-match directories with zero domain rating became top-cited sources in ChatGPT. Every number, the screenshots, and the playbook.</p>
-            <span class="more">Read the post</span>
-          </div>
-        </a>
-      </li>
-      <li class="entry">
-        <a href="blog/how-we-got-3000-signups-for-our-ai-saas-in-24-hours/">
-          <div class="result" aria-hidden="true">
-            <div class="lab">Signups</div>
-            <div class="big">3,000+</div>
-            <div class="cap">In 24 hours, with zero paid ads</div>
-            <div class="bars"><i style="height:6%"></i><i style="height:8%"></i><i style="height:10%"></i><i style="height:14%"></i><i style="height:18%"></i><i style="height:24%"></i><i style="height:30%"></i><i style="height:36%"></i><i style="height:42%"></i><i style="height:48%"></i><i class="on" style="height:55%"></i><i class="on" style="height:62%"></i><i class="on" style="height:68%"></i><i class="on" style="height:74%"></i><i class="on" style="height:80%"></i><i class="on" style="height:85%"></i><i class="on" style="height:90%"></i><i class="on" style="height:94%"></i><i class="on" style="height:97%"></i><i class="on" style="height:100%"></i></div>
-          </div>
-          <div class="txt">
-            <div class="meta"><span>Apr 2026</span><span>Launches</span><span>14 min read</span></div>
-            <h3>How we got 3,000+ signups for our AI SaaS in 24 hours</h3>
-            <p>No ads, no audience, no influencers. The positioning, the post structure and the DM automation behind the Fray launch.</p>
-            <span class="more">Read the post</span>
-          </div>
-        </a>
-      </li>
-      </ol>
-    </section>
-  </main>
+<nav class="ctrl" aria-label="Pages">
+  <button id="prev" aria-label="Previous page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>Previous</button>
+  <span class="where" id="where">Cover</span>
+  <button id="next" aria-label="Next page">Next<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  <span class="keys">or use the arrow keys</span>
+</nav>
+<div class="tip" id="tip"></div>
 
-  <footer class="footer">
-    <span>© 2026 Divij Rakhra</span>
-    <span>Written from Dubai</span>
-  </footer>
+<!-- ======== page content: every face of the file ======== -->
+<div id="pages" class="src">
+
+<section class="cover" data-id="cover" data-kind="cover">
+  <div class="inner">
+    <div class="label">
+      <h1>Practical file</h1>
+      <p class="sub">I run marketing experiments in public and publish the numbers</p>
+      <div class="fields">
+        <span>Name<b>Divij Rakhra</b></span>
+        <span>Subject<b>Experiments that make money</b></span>
+        <span>Session<b>2026</b></span>
+        <span>Experiments<b>3 done, 1 running</b></span>
+      </div>
+    </div>
+    <div>
+      <button class="open" data-go="index">Open the file</button>
+      <p class="foot" style="margin-top:1.2em">Co-founder and CMO at Bricx Labs</p>
+    </div>
+  </div>
+</section>
+
+<section class="ruled" data-id="cert" data-kind="ruled" data-p="1">
+  <div class="inner cert">
+    <h2>Certificate</h2>
+    <div class="rule"></div>
+    <div class="txt">
+      <p>This is to certify that <b>Divij Rakhra</b>, co-founder and CMO at <a href="https://bricxlabs.com">Bricx Labs</a>, has carried out the experiments recorded in this file with real products and real money, and has published every number.</p>
+      <p style="margin-top:var(--lh)">Each experiment has an aim, the setup, what happened and the result. The full write-up is one tap away.</p>
+    </div>
+    <div class="sigs">
+      <div><span class="hand">Divij R.</span>Signature</div>
+      <div><span class="hand">Dubai</span>Place</div>
+    </div>
+  </div>
+</section>
+
+<section class="ruled" data-id="index" data-kind="ruled" data-p="2">
+  <div class="inner idx">
+    <h2>Index</h2>
+    <p class="lede">Tap an experiment to turn to it</p>
+    <table>
+      <thead><tr><th>No.</th><th>Experiment</th><th>Date</th><th>Page</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr class="row" data-go="e1g"><td class="n">1</td><td><button data-go="e1g">3,000+ signups for an AI SaaS in 24 hours</button></td><td style="white-space:nowrap">Apr 2026</td><td class="p">3</td><td><span class="r">3,000+</span></td></tr>
+        <tr class="row" data-go="e2g"><td class="n">2</td><td><button data-go="e2g">The Zero-DR Citation</button></td><td style="white-space:nowrap">Sep 2026</td><td class="p">5</td><td><span class="r">113 cites</span></td></tr>
+        <tr class="row" data-go="e3g"><td class="n">3</td><td><button data-go="e3g">Top 5 beats top 1</button></td><td style="white-space:nowrap">Nov 2026</td><td class="p">7</td><td><span class="r">#1 = #5</span></td></tr>
+        <tr class="row todo" data-go="e4"><td class="n">4</td><td><button data-go="e4">Running now</button></td><td></td><td class="p">9</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Experiment 1 -->
+<section class="graph" data-id="e1g" data-kind="graph" data-p="3">
+  <div class="inner">
+    <div class="gh">Observation table</div>
+    <div class="gt">What 24 hours of one launch post looked like</div>
+    <table class="obs">
+      <thead><tr><th>Reading</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr class="big"><td>Signups in 24 hours</td><td><span>3,000+</span></td></tr>
+        <tr><td>Spent on ads</td><td>$0</td></tr>
+        <tr><td>Existing audience</td><td>none</td></tr>
+        <tr><td>Influencer deals</td><td>none</td></tr>
+        <tr><td>Designers on the waitlist from</td><td>Google, HubSpot, Netflix, Spotify, Meta, Amazon</td></tr>
+        <tr><td>Biggest single ask</td><td>a purchase order for 150 designers</td></tr>
+      </tbody>
+    </table>
+    <p class="note">"Cursor for designers" was understood the second people read it</p>
+  </div>
+</section>
+<section class="ruled" data-id="e1t" data-kind="ruled" data-p="4">
+  <div class="inner">
+    <div class="fields"><span>Expt. No.<b>1</b></span><span>Date<b>Apr 2026</b></span><span>Topic<b>Launches</b></span></div>
+    <div class="ttl">How we got 3,000+ signups for our AI SaaS in 24 hours</div>
+    <div class="txt">
+      <p><span class="h">Aim</span>Put a new AI product in front of designers with no ads, no audience and no influencers.</p>
+      <p><span class="h">Apparatus</span>Fray, our Figma plugin. One LinkedIn launch post, a launch video and a comment to DM automation.</p>
+      <p><span class="h">Procedure</span></p>
+      <ol><li>Position it in one line people already get</li><li>Write the post so people want to comment</li><li>DM the link to everyone who comments</li></ol>
+      <p><span class="h">Result</span><span class="res">3,000+ signups in 24 hours, $0 on ads</span></p>
+      <p><span class="h">Conclusion</span>Content that rewards engagement spreads itself. The tactic gets weaker every year. The principle doesn't.</p>
+      <a class="go" href="/blog/how-we-got-3000-signups-for-our-ai-saas-in-24-hours/">Read the full write-up</a>
+    </div>
+  </div>
+</section>
+
+<!-- Experiment 2 -->
+<section class="graph" data-id="e2g" data-kind="graph" data-p="5">
+  <div class="inner">
+    <div class="gh">Graph 2 · September, head to head</div>
+    <div class="gt">A 3-backlink site vs the biggest agency directory online</div>
+    <div class="key"><span><i></i>New site (EMD #2)</span><span><i class="b"></i>clutch.co</span></div>
+    <div class="hb chart">
+      <div class="row"><div class="lab">Citations in AI answers</div><div class="pair">
+        <div class="bar" data-tip="EMD #2: 113 citations in September"><i data-w="100"></i>113</div>
+        <div class="bar b" data-tip="clutch.co: 47 citations in September"><i data-w="41.6"></i>47</div></div></div>
+      <div class="row"><div class="lab">Citations per retrieval</div><div class="pair">
+        <div class="bar" data-tip="EMD #2: 2.17 citations every time it was retrieved"><i data-w="100"></i>2.17</div>
+        <div class="bar b" data-tip="clutch.co: 1.09 per retrieval"><i data-w="50.2"></i>1.09</div></div></div>
+      <div class="row"><div class="lab">Referring domains</div><div class="pair">
+        <div class="bar" data-tip="EMD #2: 3 referring domains"><i data-w="1"></i>3</div>
+        <div class="bar b" data-tip="clutch.co: 48,372 referring domains"><i data-w="100"></i>48,372</div></div></div>
+    </div>
+    <p class="note">33 days old. 3 backlinks. ChatGPT recommending us went <span class="res">31% to 52%</span></p>
+  </div>
+</section>
+<section class="ruled" data-id="e2t" data-kind="ruled" data-p="6">
+  <div class="inner">
+    <div class="fields"><span>Expt. No.<b>2</b></span><span>Date<b>Sep 2026</b></span><span>Topic<b>AI search</b></span></div>
+    <div class="ttl">The Zero-DR Citation: how two brand-new domains started steering ChatGPT's recommendations</div>
+    <div class="txt">
+      <p><span class="h">Aim</span>Find out if a brand-new domain with zero authority can get cited inside ChatGPT answers.</p>
+      <p><span class="h">Apparatus</span>Two exact-match domains, a ranked directory built with Claude Code in an afternoon, Peec AI.</p>
+      <p><span class="h">Procedure</span></p>
+      <ol><li>Buy the domain that is the search query</li><li>Publish one ranked list with its method</li><li>Do zero outreach and watch the answers</li></ol>
+      <p><span class="h">Result</span><span class="res">113 ChatGPT citations in 8 days, from 3 backlinks</span></p>
+      <p><span class="h">Conclusion</span>All good SEO is good AEO, but not all good AEO is good SEO.</p>
+      <a class="go" href="/blog/the-zero-dr-citation/">Read the full write-up</a>
+    </div>
+  </div>
+</section>
+
+<!-- Experiment 3 -->
+<section class="graph" data-id="e3g" data-kind="graph" data-p="7">
+  <div class="inner">
+    <div class="gh">Graph 3 · 118 agency positions on 14 AI-read lists</div>
+    <div class="gt">How often AI names you at each spot on a list</div>
+    <div class="chart">
+      <div class="vbars">
+        <div class="vb" data-tip="#1: named in 38% of answers that read the list"><b>38%</b><i data-h="86"></i></div>
+        <div class="vb" data-tip="#2: 44%"><b>44%</b><i data-h="100"></i></div>
+        <div class="vb" data-tip="#3: 41%"><b>41%</b><i data-h="93"></i></div>
+        <div class="vb" data-tip="#4 to 5: 38%, same as #1"><b>38%</b><i data-h="86"></i></div>
+        <div class="vb out" data-tip="#6 to 8: drops to 26%"><b>26%</b><i data-h="59"></i></div>
+        <div class="vb out" data-tip="#9 and below: 17%"><b>17%</b><i data-h="39"></i></div>
+        <div class="cut" style="left:calc(66.6% + .2em)"><span>the cut</span></div>
+      </div>
+      <div class="xl"><span>#1</span><span>#2</span><span>#3</span><span>#4 to 5</span><span>#6 to 8</span><span>#9+</span></div>
+    </div>
+    <p class="note">#1 and #5 are the same seat. Bought #5 on three lists: named <span class="res">16% to 48%</span></p>
+  </div>
+</section>
+<section class="ruled" data-id="e3t" data-kind="ruled" data-p="8">
+  <div class="inner">
+    <div class="fields"><span>Expt. No.<b>3</b></span><span>Date<b>Nov 2026</b></span><span>Topic<b>AI search</b></span></div>
+    <div class="ttl">Top 5 beats top 1: what your position on a list does to your AI mentions</div>
+    <div class="txt">
+      <p><span class="h">Aim</span>Check if a higher spot on a paid list gets you named more often by AI.</p>
+      <p><span class="h">Apparatus</span>14 lists AI engines read, 25 buyer prompts, Peec AI, three $500 a month spots.</p>
+      <p><span class="h">Procedure</span></p>
+      <ol><li>Measure the mention rate at every position</li><li>Buy #5 on three lists, not top 3 at $1,500</li><li>Compare the same prompts before and during</li></ol>
+      <p><span class="h">Result</span><span class="res">#1 and #5 get named equally often</span></p>
+      <p><span class="h">Conclusion</span>Pay to be inside the cut, never for #1.</p>
+      <a class="go" href="/blog/top-5-beats-top-1/">Read the full write-up</a>
+    </div>
+  </div>
+</section>
+
+<section class="ruled" data-id="e4" data-kind="ruled" data-p="9">
+  <div class="inner pend">
+    <div class="fields"><span>Expt. No.<b>4</b></span><span>Date<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span></div>
+    <div class="big">Running now</div>
+    <p>The numbers aren't in yet. When they are, the write-up goes on this page.</p>
+    <p style="margin-top:var(--lh)"><a class="go" href="https://linkedin.com/in/divijrakhra" style="margin:0">See it first on LinkedIn</a></p>
+  </div>
+</section>
+
+<section class="ruled" data-id="contact" data-kind="ruled" data-p="10">
+  <div class="inner">
+    <div class="ttl" style="margin-top:.4em">Lab hours</div>
+    <div class="txt">
+      <p>I post what I'm testing while it runs. Results land here.</p>
+      <ul class="links" style="margin-top:var(--lh)">
+        <li><a href="https://linkedin.com/in/divijrakhra">LinkedIn</a></li>
+        <li><a href="https://x.com/RakhraDivij">X</a></li>
+        <li><a href="https://www.youtube.com/@divij_rakhra">YouTube</a></li>
+        <li><a href="https://bricxlabs.com">Bricx Labs</a></li>
+      </ul>
+      <p style="margin-top:var(--lh)"><button class="go" data-go="index" style="margin:0">Back to the index</button></p>
+    </div>
+    <p class="hand" style="position:absolute;bottom:3.4em;left:4.6em;font-size:1.1em;color:var(--muted)">Written from Dubai. © 2026</p>
+  </div>
+</section>
+
+<section class="backcover" data-id="backcover" data-kind="backcover"><div class="inner"><span>divijrakhra.com</span></div></section>
+</div>
+
+<script>
+(() => {
+  const SEQ = ['cover','cert','index','e1g','e1t','e2g','e2t','e3g','e3t','e4','contact','backcover'];
+  const tpl = document.getElementById('pages');
+  document.documentElement.classList.remove('no-js'); tpl.hidden = true;
+  const src = id => tpl.querySelector(`[data-id="${id}"]`);
+  const book = document.getElementById('book');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let mode = null, leaves = [], cur = 0, map = {};
+
+  function face(id, side){
+    const s = src(id), f = document.createElement('div');
+    const kind = s.dataset.kind;
+    f.className = `face ${side} ${kind}`; f.dataset.id = id;
+    f.innerHTML = s.innerHTML;
+    if (s.dataset.p) { const n = document.createElement('span'); n.className = 'pno'; n.textContent = s.dataset.p; f.appendChild(n); }
+    if (side === 'front' && kind !== 'cover') { const e = document.createElement('button'); e.className = 'ear'; e.setAttribute('aria-label','Turn the page'); e.dataset.turn = '1'; f.appendChild(e); }
+    return f;
+  }
+
+  function build(){
+    const keep = visibleIds()[0] || 'cover';
+    book.innerHTML = ''; leaves = []; map = {};
+    book.classList.toggle('single', mode === 'single');
+    let pairs;
+    if (mode === 'spread') {
+      // leaf i: front = right page of spread i, back = left page of spread i+1
+      pairs = []; pairs.push(['cover','cert']);
+      for (let i = 2; i < SEQ.length; i += 2) pairs.push([SEQ[i], SEQ[i+1]]);
+      pairs.forEach(([f,b], i) => { map[f] = i; if (b) map[b] = i + 1; });
+    } else {
+      pairs = SEQ.map(id => [id, null]);
+      pairs.forEach(([f], i) => map[f] = i);
+    }
+    pairs.forEach(([f,b], i) => {
+      const l = document.createElement('div'); l.className = 'leaf';
+      l.appendChild(face(f,'front'));
+      const bk = b ? face(b,'back') : Object.assign(document.createElement('div'), {className:'face back plain'});
+      l.appendChild(bk);
+      book.appendChild(l); leaves.push(l);
+    });
+    cur = Math.min(map[keep] ?? 0, leaves.length - (mode === 'spread' ? 0 : 1));
+    layout(true);
+  }
+
+  function size(){
+    const st = document.getElementById('stage').getBoundingClientRect();
+    const m = innerWidth >= 980 ? 'spread' : 'single';
+    let w, h, fs;
+    if (m === 'spread') {
+      h = Math.min(st.height - 24, 860); w = Math.min(h * .74, (innerWidth - 96) / 2); h = Math.min(h, w / .7);
+      fs = Math.max(12.5, Math.min(17, w / 31));
+      book.style.setProperty('--bw', (2*w)+'px'); book.style.setProperty('--lx', w+'px');
+    } else {
+      w = Math.min(innerWidth - 24, 520); h = st.height - 16; fs = 15;
+      book.style.setProperty('--bw', w+'px'); book.style.setProperty('--lx', '0px');
+    }
+    book.style.setProperty('--lhpx', Math.round(fs * 1.75)+'px'); book.style.setProperty('--w', w+'px'); book.style.setProperty('--h', h+'px'); book.style.setProperty('--fs', fs+'px');
+    book._w = w;
+    if (m !== mode) { mode = m; build(); } else layout(true);
+  }
+
+  function layout(instant){
+    const n = leaves.length;
+    leaves.forEach((l, i) => {
+      const f = i < cur;
+      if (instant) l.style.transition = 'none';
+      l.classList.toggle('flipped', f);
+      l.classList.toggle('gone', f && mode === 'single');
+      l.style.zIndex = f ? i + 1 : n - i;
+      if (instant) { l.offsetWidth; l.style.transition = ''; }
+    });
+    if (mode === 'spread') {
+      const w = book._w;
+      book.style.transform = cur === 0 ? `translateX(${-w/2}px)` : cur === n ? `translateX(${w/2}px)` : 'none';
+    } else book.style.transform = 'none';
+    status();
+    reveal();
+  }
+
+  function turn(to){
+    const n = leaves.length, max = mode === 'spread' ? n : n - 1;
+    to = Math.max(0, Math.min(max, to));
+    if (to === cur) return;
+    const fwd = to > cur;
+    // the leaves that move, in order; each goes on top while it travels
+    const moving = fwd ? range(cur, to) : range(to, cur).reverse();
+    moving.forEach((i, k) => {
+      const l = leaves[i];
+      l.classList.remove('gone');
+      setTimeout(() => { l.style.zIndex = 100 + k; l.classList.toggle('flipped', fwd); }, reduce ? 0 : k * 90);
+    });
+    cur = to;
+    const settle = () => layout(false);
+    setTimeout(settle, reduce ? 0 : 900 + moving.length * 90);
+    if (mode === 'spread') {
+      const w = book._w;
+      book.style.transform = cur === 0 ? `translateX(${-w/2}px)` : cur === n ? `translateX(${w/2}px)` : 'none';
+    }
+    status(); setTimeout(reveal, reduce ? 0 : 450);
+    history.replaceState(null, '', '#' + (visibleIds()[0] || 'cover'));
+  }
+  const range = (a, b) => Array.from({length: b - a}, (_, i) => a + i);
+
+  function visibleIds(){
+    if (!leaves.length) return [];
+    if (mode === 'spread') {
+      const ids = [];
+      if (cur > 0) ids.push(leaves[cur-1].querySelector('.back')?.dataset.id);
+      if (cur < leaves.length) ids.push(leaves[cur].querySelector('.front').dataset.id);
+      return ids.filter(Boolean);
+    }
+    return [leaves[cur].querySelector('.front').dataset.id];
+  }
+
+  function status(){
+    const ids = visibleIds(), n = leaves.length;
+    const ps = ids.map(id => src(id).dataset.p).filter(Boolean);
+    document.getElementById('where').textContent =
+      ids.includes('cover') ? 'Cover' : ids.includes('backcover') && !ps.length ? 'Back cover' : 'Page ' + ps.join(' and ') + ' of 10';
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === (mode === 'spread' ? n : n - 1);
+  }
+
+  // charts draw themselves the first time their page is open
+  function reveal(){
+    visibleIds().forEach(id => {
+      book.querySelectorAll(`.face[data-id="${id}"]`).forEach(f => {
+        if (f.classList.contains('seen')) return;
+        f.classList.add('seen');
+        f.querySelectorAll('[data-h]').forEach(i => i.style.height = i.dataset.h + '%');
+        f.querySelectorAll('[data-w]').forEach(i => i.style.width = `max(3px, calc(${i.dataset.w}% - 3.5em))`);
+      });
+    });
+  }
+
+  function goId(id){ if (id in map) turn(map[id]); }
+
+  // ---- input ----
+  document.getElementById('prev').onclick = () => turn(cur - 1);
+  document.getElementById('next').onclick = () => turn(cur + 1);
+  addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); turn(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); turn(cur - 1); }
+    if (e.key === 'Home') turn(0);
+  });
+  book.addEventListener('click', e => {
+    const g = e.target.closest('[data-go]'); if (g) { e.preventDefault(); goId(g.dataset.go); return; }
+    if (e.target.closest('[data-turn]')) { turn(cur + 1); return; }
+    if (e.target.closest('a,button,input,table')) return;
+    if (mode !== 'spread') return;
+    // click a page to turn it: right page forward, left page back
+    const f = e.target.closest('.face'); if (!f) return;
+    f.classList.contains('front') ? turn(cur + 1) : turn(cur - 1);
+  });
+  let sx = 0, sy = 0;
+  book.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  book.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) turn(cur + (dx < 0 ? 1 : -1));
+  });
+  // tooltips on chart marks
+  const tip = document.getElementById('tip');
+  book.addEventListener('pointermove', e => {
+    const t = e.target.closest('[data-tip]');
+    if (!t) { tip.style.opacity = 0; return; }
+    tip.textContent = t.dataset.tip; tip.style.opacity = 1;
+    tip.style.left = Math.min(innerWidth - 230, e.clientX + 12) + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+  });
+  book.addEventListener('pointerleave', () => tip.style.opacity = 0);
+
+  addEventListener('resize', size);
+  size();
+  const start = location.hash.slice(1);
+  if (start && start in map) { cur = map[start]; layout(true); }
+  addEventListener('hashchange', () => { const id = location.hash.slice(1); if (id in map && !visibleIds().includes(id)) turn(map[id]); });
+})();
+</script>
 </body>
 </html>
