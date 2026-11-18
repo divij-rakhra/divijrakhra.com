@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The agent office: how 42 agents run my marketing · Divij Rakhra</title>
+  <meta name="description" content="The Bricx marketing office, agent by agent: the org chart, what each agent reads, what one run does, what it hands back and what it&#x27;s never allowed to do. Humans own outcomes, agents execute.">
+
+  <link rel="icon" type="image/jpeg" href="/avatar.jpg">
+  <link rel="stylesheet" href="/style.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>/* Agent office post: lab-notebook components. Sits on top of /style.css (nb- variables). */
+:root{--mono:'Geist Mono',ui-monospace,monospace}
+.post-body .lab{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-blue)}
+.hi{background:linear-gradient(transparent 55%,var(--nb-hi) 55%,var(--nb-hi) 92%,transparent 92%);padding:0 3px;margin:0 -3px}
+.hib{background:var(--nb-hi);padding:0 6px;border-radius:4px}
+.sheet{position:relative;background:var(--nb-paper);background-image:linear-gradient(var(--nb-grid) 1px,transparent 1px),linear-gradient(90deg,var(--nb-grid) 1px,transparent 1px);background-size:24px 24px;border:2px solid var(--nb-ink);border-radius:14px;padding:22px 22px 20px 30px;margin:34px 0 40px;overflow:hidden}
+.sheet::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--nb-blue)}
+.sheet h4{font:800 26px var(--nb-sans);font-stretch:80%;line-height:1.05;color:var(--nb-ink);margin:8px 0 6px;letter-spacing:-.01em}
+.sheet .s{font:italic 17px/1.45 var(--nb-serif);color:var(--nb-body)}
+.post-body figure{margin:34px 0 40px}
+.post-body figcaption{font:500 12.5px/1.55 var(--mono);color:var(--nb-muted);margin-top:12px;padding-left:12px;border-left:3px solid var(--nb-hi)}
+.post-body figcaption b{color:var(--nb-ink);font-weight:700}
+.shot{border:2px solid var(--nb-ink);border-radius:12px;overflow:hidden;background:#fff;box-shadow:8px 8px 0 var(--nb-ink)}
+.shot .bar{height:30px;background:var(--nb-ink);display:flex;align-items:center;gap:6px;padding:0 12px;font:500 11px var(--mono);color:#8FA3FF}
+.shot .bar i{width:9px;height:9px;border-radius:50%;background:#3A4A80}
+.shot .bar span{margin-left:8px}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+/* stat strip */
+.tally{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--nb-ink);border-radius:12px;background:#fff;overflow:hidden;margin:30px 0 40px}
+.tally div{padding:14px 16px;border-right:1px dashed var(--nb-rule)}
+.tally div:last-child{border-right:0}
+.tally .l{font:600 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--nb-muted)}
+.tally .v{font:900 40px var(--nb-sans);font-stretch:70%;line-height:1;color:var(--nb-ink);margin:8px 0 4px;letter-spacing:-.02em}
+.tally .d{font-size:12.5px;color:var(--nb-muted);line-height:1.35}
+.tally div.k{background:var(--nb-ink)} .tally div.k .v{color:var(--nb-hi)} .tally div.k .l,.tally div.k .d{color:#8FA3FF}
+/* thesis */
+.thesis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0 14px}
+.thesis div{border:2px solid var(--nb-ink);border-radius:12px;padding:18px 20px;background:#fff}
+.thesis div.a{background:var(--nb-ink);color:#fff;box-shadow:8px 8px 0 var(--nb-blue)}
+.thesis b{display:block;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-blue);margin-bottom:8px}
+.thesis div.a b{color:var(--nb-hi)}
+.thesis p{font:700 21px/1.2 var(--nb-sans);font-stretch:86%;margin:0}
+.verdict{background:var(--nb-hi);border:2px solid var(--nb-ink);border-radius:12px;padding:16px 20px;font:800 22px/1.25 var(--nb-sans);font-stretch:84%;color:var(--nb-ink);margin:0 0 40px}
+/* directory of agents */
+.dir{margin:26px 0 44px}
+.dir .dg{margin-bottom:16px}
+.dir .dh{display:flex;justify-content:space-between;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-muted);border-bottom:2px solid var(--nb-ink);padding-bottom:6px;margin-bottom:8px}
+.dir .dh span:first-child{color:var(--nb-ink)}
+.dir .chips{display:flex;flex-wrap:wrap;gap:6px}
+.post-body .dir a{font:600 13.5px var(--nb-sans);font-stretch:92%;text-decoration:none;color:var(--nb-ink);background:#fff;border:1.5px solid var(--nb-rule);border-radius:8px;padding:5px 9px;display:inline-flex;gap:6px;align-items:baseline}
+.post-body .dir a i{font:600 10.5px var(--mono);font-style:normal;color:var(--nb-blue)}
+.post-body .dir a:hover{border-color:var(--nb-ink);background:var(--nb-hi)}
+.post-body .dir a.p{opacity:.5}
+/* department divider */
+.dept{margin:84px 0 10px;padding:22px 0 0;border-top:3px solid var(--nb-ink)}
+.dept .lab{display:flex;justify-content:space-between}
+.dept .lab span:last-child{color:var(--nb-muted)}
+.container .post-body .dept h2{margin:10px 0 12px;font-size:40px;font-stretch:76%}
+/* agent file */
+.agent{scroll-margin-top:20px;margin:56px 0 18px}
+.af{background:#fff;border:2px solid var(--nb-ink);border-radius:14px;box-shadow:8px 8px 0 var(--nb-ink);overflow:hidden;margin:0 0 30px}
+.af .top{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--nb-ink);color:#8FA3FF;padding:9px 16px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.af .top b{color:var(--nb-hi);font-weight:600}
+.af .top .st{color:#fff}
+.af .top .st.p{color:var(--nb-hi)}
+.af .hd{padding:18px 18px 4px 18px;background:var(--nb-paper);background-image:linear-gradient(var(--nb-grid) 1px,transparent 1px),linear-gradient(90deg,var(--nb-grid) 1px,transparent 1px);background-size:20px 20px;border-bottom:2px solid var(--nb-ink)}
+.af h3{font:800 34px var(--nb-sans);font-stretch:74%;line-height:1;letter-spacing:-.01em;color:var(--nb-ink);margin:0 0 8px}
+.af .job{font:italic 18px/1.45 var(--nb-serif);color:var(--nb-body);margin:0 0 14px;max-width:38em}
+.af .g{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px dashed var(--nb-rule)}
+.af .g>div{padding:14px 18px}
+.af .g>div+div{border-left:1px dashed var(--nb-rule)}
+.af .k{font:600 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-blue);margin-bottom:8px}
+.af ul,.af ol{margin:0;padding-left:18px;font:500 14.5px/1.5 var(--nb-sans);color:var(--nb-body)}
+.af li{margin-bottom:5px}
+.af li::marker{color:var(--nb-blue);font-family:var(--mono);font-size:12px}
+.af .steps{padding:14px 18px;border-bottom:1px dashed var(--nb-rule)}
+.af .steps ol{counter-reset:s;list-style:none;padding:0}
+.af .steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:6px}
+.af .steps li::before{content:counter(s,decimal-leading-zero);font:700 12px var(--mono);color:var(--nb-blue);padding-top:2px}
+.af .never{background:#FFFBE0}
+.af .never .k{color:var(--nb-ink)}
+.af .nums{display:flex;flex-wrap:wrap;border-top:2px solid var(--nb-ink)}
+.af .nums div{flex:1;min-width:110px;padding:10px 16px;border-right:1px dashed var(--nb-rule)}
+.af .nums div:last-child{border-right:0}
+.af .nums .l{font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--nb-muted)}
+.af .nums .v{font:900 26px var(--nb-sans);font-stretch:72%;color:var(--nb-ink);line-height:1.1;margin-top:3px}
+.af .ex{padding:14px 18px;border-top:2px solid var(--nb-ink);background:var(--nb-paper)}
+.af .ex p{font:500 15px/1.5 var(--mono);color:var(--nb-ink);margin:0;font-size:13.5px}
+.af .ex p+p{margin-top:6px}
+/* lanes */
+.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 40px}
+.lane{border:2px solid var(--nb-ink);border-radius:12px;padding:16px;background:#fff}
+.lane .k{font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-blue)}
+.lane .t{font:800 24px var(--nb-sans);font-stretch:78%;margin:6px 0 8px;color:var(--nb-ink)}
+.lane p{font-size:14px;line-height:1.5;color:var(--nb-body);margin:0}
+.lane.a{background:var(--nb-ink);box-shadow:8px 8px 0 var(--nb-blue)} .lane.a .t{color:#fff} .lane.a p{color:#C9D1FF} .lane.a .k{color:var(--nb-hi)}
+/* run stepper */
+.run{border:2px solid var(--nb-ink);border-radius:14px;background:#fff;box-shadow:8px 8px 0 var(--nb-ink);overflow:hidden;margin:30px 0 44px}
+.run .top{background:var(--nb-ink);color:#8FA3FF;padding:9px 16px;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.run-steps{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:2px solid var(--nb-ink)}
+.run-steps button{background:#fff;border:0;border-right:1px dashed var(--nb-rule);padding:10px 4px;font:700 13px var(--nb-sans);font-stretch:88%;color:var(--nb-ink);cursor:pointer}
+.run-steps button:last-child{border-right:0}
+.run-steps button i{display:block;font:600 10px var(--mono);font-style:normal;color:var(--nb-blue)}
+.run-steps button.on{background:var(--nb-hi)}
+.run-p{padding:18px 20px;min-height:170px}
+.run-p h4{font:800 24px var(--nb-sans);font-stretch:80%;margin:0 0 10px;color:var(--nb-ink)}
+.run-p p{font:17px/1.55 var(--nb-serif);color:var(--nb-body);margin:0 0 10px}
+.run-p code{font:600 13px var(--mono);background:var(--nb-hi);padding:1px 5px;border-radius:3px}
+.run-nav{display:flex;justify-content:space-between;padding:0 20px 16px}
+.run-nav button{border:2px solid var(--nb-ink);background:#fff;border-radius:8px;padding:6px 14px;font:700 13px var(--nb-sans);cursor:pointer;color:var(--nb-ink)}
+/* slack */
+.slk{border:2px solid var(--nb-ink);border-radius:12px;background:#fff;padding:16px 18px;margin:26px 0 12px;font:15px/1.5 var(--nb-sans);color:var(--nb-body)}
+.slk .ch{font:600 12px var(--mono);color:var(--nb-muted);margin-bottom:12px}
+.slk .m{display:flex;gap:12px;margin-bottom:14px}
+.slk .av{width:36px;height:36px;border-radius:8px;background:var(--nb-blue);color:#fff;display:flex;align-items:center;justify-content:center;font:700 11px var(--mono);flex:none}
+.slk .who{font-weight:800;color:var(--nb-ink)} .slk .who small{font:500 11px var(--mono);color:var(--nb-muted);margin-left:8px}
+.slk .btn{display:inline-block;border:1.5px solid var(--nb-ink);border-radius:6px;padding:2px 10px;font-size:13px;font-weight:700;margin:8px 6px 0 0}
+.note{font:500 12.5px var(--mono);color:var(--nb-muted);margin:0 0 40px}
+.method{border-top:2px solid var(--nb-ink);margin-top:64px;padding-top:18px}
+.method p{font:500 13px/1.6 var(--mono);color:var(--nb-muted);margin-bottom:10px}
+.method b{color:var(--nb-ink)}
+.post-body ol.howto{list-style:none;padding:0;counter-reset:h;margin:20px 0 40px}
+.post-body ol.howto li{counter-increment:h;display:grid;grid-template-columns:54px 1fr;gap:10px;padding:14px 0;border-bottom:1px dashed var(--nb-rule);font:18px/1.55 var(--nb-serif);color:var(--nb-body)}
+.post-body ol.howto li::before{content:counter(h,decimal-leading-zero);font:900 34px var(--nb-sans);font-stretch:70%;color:var(--nb-blue);line-height:1}
+.post-body ol.howto b{font-family:var(--nb-sans);font-weight:800}
+@media(max-width:640px){.duo,.thesis,.lanes,.af .g{grid-template-columns:1fr}.af .g>div+div{border-left:0;border-top:1px dashed var(--nb-rule)}.tally{grid-template-columns:1fr 1fr}.tally div:nth-child(2){border-right:0}.tally div:nth-child(-n+2){border-bottom:1px dashed var(--nb-rule)}.run-steps{grid-template-columns:repeat(4,1fr)}.af h3{font-size:28px}}
+.post-body .agent > p{font-family:var(--nb-serif);font-size:19.5px;line-height:1.65;color:var(--nb-body);max-width:34em;margin-bottom:22px}
+@media(max-width:640px){.post-body .agent > p{font-size:18px}}
+.container .post-body h2 .n{display:block}
+
+.org{border:2px solid var(--nb-ink);border-radius:14px;background:var(--nb-paper);background-image:linear-gradient(var(--nb-grid) 1px,transparent 1px),linear-gradient(90deg,var(--nb-grid) 1px,transparent 1px);background-size:20px 20px;padding:18px;margin:30px 0 44px;box-shadow:8px 8px 0 var(--nb-ink)}
+.org-top{display:flex;flex-direction:column;align-items:center;gap:8px}
+.org .me{background:var(--nb-ink);color:#fff;border-radius:12px;padding:12px 26px;text-align:center;box-shadow:6px 6px 0 var(--nb-blue)}
+.org .me span{display:block;font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--nb-hi)}
+.post-body .org .me b{display:block;font:800 26px var(--nb-sans);font-stretch:78%;color:#fff}
+.org .me i{font:italic 14px var(--nb-serif);color:#C9D1FF}
+.org .arrows{display:flex;gap:18px;font:600 11px var(--mono);color:var(--nb-blue)}
+.org-cols{display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr;gap:10px;margin-top:12px;align-items:start}
+.oc{background:#fff;border:2px solid var(--nb-ink);border-radius:10px;overflow:hidden}
+.oc-h{background:var(--nb-ink);color:#fff;font:800 17px var(--nb-sans);font-stretch:80%;padding:7px 10px}
+.oc-s{background:var(--nb-hi);border-bottom:2px solid var(--nb-ink);padding:6px 10px;font:700 13px var(--nb-sans)}
+.oc-s span,.oc-x span{display:block;font:600 9.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-ink);opacity:.7}
+.post-body .oc ul{list-style:none;margin:0;padding:6px 10px;font:600 12.5px/1.35 var(--nb-sans);color:var(--nb-body)}
+.post-body .oc li{margin:0;padding:3px 0;border-bottom:1px dashed var(--nb-rule)}
+.post-body .oc li:last-child{border-bottom:0}
+.oc-x{border-top:2px solid var(--nb-ink);padding:6px 10px;font:700 13px var(--nb-sans);background:#E8EDFF}
+.org-rev{margin-top:10px;border:2px dashed var(--nb-blue);border-radius:10px;background:#fff;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.org-rev .rh{font:700 14px var(--nb-sans)} .org-rev .rh span{display:block;font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nb-blue)}
+.org-rev .rl{display:flex;gap:6px;flex-wrap:wrap} .org-rev .rl b{font:700 12.5px var(--nb-sans);border:1.5px solid var(--nb-ink);border-radius:6px;padding:3px 8px;background:var(--nb-paper)}
+.org-data{margin-top:10px;font:500 12px/1.5 var(--mono);color:var(--nb-muted);text-align:center}
+.org-data span{display:block;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:var(--nb-ink)}
+.org-data b{color:var(--nb-ink);background:var(--nb-hi);padding:0 4px}
+@media(max-width:640px){.org-cols{grid-template-columns:1fr 1fr}.org .arrows{flex-direction:column;gap:2px;align-items:center}}
+/* slack replica */
+.sk{border-radius:10px;overflow:hidden;border:1px solid #d1d1d1;box-shadow:0 10px 30px rgba(19,32,74,.18);display:grid;grid-template-columns:200px 1fr;font-family:'Lato',-apple-system,sans-serif;margin:28px 0 12px;background:#fff}
+.sk-side{background:#3F0E40;color:#CFC3CF;padding:12px 0;font-size:14.5px}
+.sk-ws{color:#fff;font-weight:900;font-size:17px;padding:2px 16px 12px;border-bottom:1px solid #522653;margin-bottom:10px}
+.sk-sec{font-size:13px;padding:6px 16px 4px;color:#CFC3CF}
+.sk-ch{padding:3px 16px;white-space:nowrap}
+.sk-ch.on{background:#1164A3;color:#fff}
+.sk-ch.b{color:#fff;font-weight:900}
+.sk-main{min-width:0}
+.sk-hd{height:46px;border-bottom:1px solid #e0e0e0;display:flex;align-items:center;padding:0 16px;font-weight:900;font-size:17px;color:#1d1c1d}
+.sk-msg{display:grid;grid-template-columns:36px 1fr;gap:8px;padding:12px 16px 14px;color:#1d1c1d;font-size:15px;line-height:1.46}
+.sk-av{width:36px;height:36px;border-radius:6px;background:#13204A;color:#FFE14D;display:flex;align-items:center;justify-content:center;font:900 13px 'Lato'}
+.sk-nm{font-weight:900}.sk-app{display:inline-block;background:#e8e8e8;color:#616061;font-size:10px;font-weight:700;border-radius:3px;padding:1px 4px;margin:0 6px;vertical-align:2px}
+.sk-ts{color:#616061;font-size:12px}
+.sk-msg p{margin:2px 0 6px}
+.sk-msg ul{margin:2px 0 8px;padding-left:22px}
+.sk-msg li{margin-bottom:6px}
+.sk-a{color:#1264A3}
+.sk-why{font-style:italic;color:#454245}
+.sk-th{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:13px}
+.sk-th b{color:#1264A3;font-weight:700}.sk-th span{color:#616061}
+.sk-th i{width:20px;height:20px;border-radius:4px;background:#13204A;display:inline-block}
+.sk-in{margin:4px 16px 14px;border:1px solid #bbbabb;border-radius:8px;padding:10px 12px;color:#868686;font-size:14.5px}
+@media(max-width:640px){.sk{grid-template-columns:1fr}.sk-side{display:none}}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="nav-me"><img src="/avatar.jpg" alt="Divij Rakhra">Divij Rakhra</a>
+    <nav class="socials" aria-label="Social">
+      <a href="https://linkedin.com/in/divijrakhra" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a href="https://x.com/RakhraDivij" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41z"/></svg></a>
+      <a href="https://www.youtube.com/@divij_rakhra" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14c.5-1.88.5-5.8.5-5.8s0-3.92-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+    </nav>
+  </header>
+  <div class="container">
+    <a href="/" class="back-link">← All posts</a>
+    <div class="kicker"><i></i>Build log · Agents</div>
+    <h1 class="post-title">The agent office: how 42 agents run my marketing</h1>
+    <div class="post-meta">November 2026 · 32 agents · 40 min read</div>
+    <div class="post-body">
+
+<p class="lede">I run the marketing at Bricx from an office that doesn't exist.</p>
+<p>It's a pixel-art floor plan. Sales sits top left. SEO takes the big room in the middle. Outbound is in the corner, Social is downstairs, and the servers hum in the room next to the founders.</p>
+<p>Almost every desk has a robot at it. When an agent is running, its robot is working. When it needs me, a badge pops up over its head.</p>
+<figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Bricx HQ · the office</span></div><img src="office.png" alt="The Bricx office. 44 robots, 74 runs that day, $21 of AI in 30 days. Lead counts and one name are blurred." loading="lazy" width="800" height="520"></div><figcaption><b>The Bricx office.</b> 44 robots, 74 runs that day, $21 of AI in 30 days. Lead counts and one name are blurred.</figcaption></figure>
+<p>I built the office as a joke. It turned out to be the best way to see what my team is doing.</p>
+<p>Because my team is mostly agents.</p>
+<div class="tally"><div class="k"><div class="l">Agents</div><div class="v">42</div><div class="d">each with one job and one schedule</div></div><div class=""><div class="l">Failing</div><div class="v">0</div><div class="d">on the day I wrote this</div></div><div class=""><div class="l">AI cost</div><div class="v">$21</div><div class="d">for the last 30 days, all of them</div></div><div class=""><div class="l">Runs</div><div class="v">74</div><div class="d">in a single day</div></div></div>
+<p>This post is the whole office. First the org chart, then every agent that does a distinct job: what it reads, what one run actually does, what it hands back, and what it is never allowed to do.</p>
+<p>I've left out the copies. Each department has the same daily inbox ping and the same kind of strategist, so you'll see each of those once. A few paused agents are left out too. That leaves 32 files.</p>
+
+<h2><span class="n">01 · Why</span>I don't like managing people through repetitive work</h2>
+<p>Checking that the review count on 266 pages is still right. Pulling the same Search Console report every Monday. Reading every funding announcement for a company we could help. Writing the third follow-up email.</p>
+<p>A person doing that work gets bored, then sloppy, then leaves. And I spend my week reminding, checking and re-explaining.</p>
+<p>An agent doesn't get bored. You train it once, give it direction, and it does the job at 9 am on a Saturday exactly the way it did on Monday.</p>
+<p>It's faster than me. On a lot of these jobs it's smarter than me too, because it actually reads every row.</p>
+<p>What it doesn't have is judgement. Taste. The gut feeling that a deal is about to go cold, or that a page is technically right and still sounds wrong.</p>
+<div class="thesis"><div class="a"><b>Humans bring</b><p>Judgement and craft. Gut feel. Narrowing a fuzzy goal into something clear enough to execute.</p></div><div><b>Agents bring</b><p>Execution and scale. The same job, done the same way, every time, across every page and every account.</p></div></div>
+<div class="verdict">Humans own the outcome. Agents execute and scale the strategy we agree on together.</div>
+
+<h2><span class="n">02 · The org chart</span>Who reports to whom</h2>
+<p>The office is set up like a company. I sit at the top. Each department has a strategist that proposes at most three bets a week, and workers that each own one job. Two agents do the shipping: the website release for SEO and the sequencer for outbound.</p>
+<p>Across all of it sit the reviewers. They don't do marketing. They check the agents that do.</p>
+<div class="org">
+<div class="org-top"><div class="me"><span>Human</span><b>Me</b><i>Judgement, taste, the outcome</i></div>
+<div class="arrows"><span>approves bets ↓</span><span>↑ cards that need judgement</span></div></div>
+<div class="org-cols"><div class="oc"><div class="oc-h">Sales</div><div class="oc-s"><span>Strategist</span>3 bets a week</div><ul><li>Pre-call research</li><li>Proposals</li><li>Follow-ups</li><li>CRM</li><li>Daily digest</li><li>Scorecard</li></ul></div><div class="oc"><div class="oc-h">SEO</div><div class="oc-s"><span>Strategist</span>3 bets a week</div><ul><li>Watch</li><li>Technical health</li><li>Keyword map</li><li>Refresh</li><li>Internal links</li><li>Conversion</li><li>Pruning</li><li>Brand truth</li><li>Claude tracker</li><li>Competitor watch</li><li>List placements</li><li>Link building</li><li>Directory content</li><li>SEO weekly</li></ul><div class="oc-x"><span>Ships</span>Website release</div></div><div class="oc"><div class="oc-h">Outbound</div><div class="oc-s"><span>Strategist</span>3 bets a week</div><ul><li>Funding</li><li>Design jobs</li><li>Website visitors</li></ul><div class="oc-x"><span>Ships</span>Sequencer</div></div><div class="oc"><div class="oc-h">Social</div><div class="oc-s"><span>Strategist</span>3 bets a week</div><ul><li>Social ideas</li><li>Social performance</li></ul></div></div>
+<div class="org-rev"><div class="rh"><span>Reviewers</span>check every agent, every week</div><div class="rl"><b>Agent review</b><b>QA</b><b>Cost</b><b>Work log</b></div></div>
+<div class="org-data"><span>Everyone reads from</span>Search Console · Bing · GA4 · Peec · call transcripts · email · funding news · job boards · <b>the verified facts file</b></div>
+</div>
+<p>Bets flow up to me. Approved bets flow down as tasks. Anything that needs judgement comes back up as a card. Everything else ships on its own.</p>
+
+<h2><span class="n">03 · How it's built</span>One app, one clock, one rulebook</h2>
+<p>Every agent lives in one codebase. Each one is a single file with a name, a schedule and one job. An hourly clock wakes up, checks who is due, and runs them.</p>
+<ul>
+<li><b>One source of truth per fact.</b> Search Console and Bing for search. GA4 for what visitors do. Peec for how ChatGPT, Perplexity and Google's AI talk about us. Call transcripts for what buyers said.</li>
+<li><b>One facts file.</b> Our rating, review count, location, the clients we can name. If a claim isn't in that file, no agent may write it.</li>
+<li><b>Two models, chosen by job.</b> A cheap model for routine judgement, a stronger one for anything a human will read. Claude runs the Claude tracker.</li>
+<li><b>A hard budget.</b> When the month's AI spend hits the cap, every agent drops to the cheap model until the month ends.</li>
+<li><b>Cards, not messages.</b> When an agent wants something, it raises a card: what it found, what it wants to do, what happens if I approve, and why. Every card expires in 7 days.</li>
+<li><b>Lessons.</b> Every week, each agent gets rules written from its own results, and reads them on every run.</li>
+</ul>
+<p>8 agents in the office don't use AI at all. If a job is arithmetic, it stays arithmetic.</p>
+
+<h2><span class="n">04 · The rule</span>Data is god</h2>
+<p>The first rule every agent gets: the data decides, not the agent.</p>
+<p>An agent is never allowed to recommend something because it sounds smart. It has to point at the number that made it say so.</p>
+<figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>SEO app · inbox</span></div><img src="inbox-card.png" alt="A real card. Stale review details on a service page, replaced with the confirmed facts. It says what happens if I approve, and why. Private details blurred." loading="lazy" width="800" height="520"></div><figcaption><b>A real card.</b> Stale review details on a service page, replaced with the confirmed facts. It says what happens if I approve, and why. Private details blurred.</figcaption></figure>
+
+<h2><span class="n">05 · One run</span>What an agent actually does</h2>
+<p>Before the files, one real run, step by step.</p>
+<div class="run" id="run"><div class="top">Interactive · the refresh agent · a service page fix</div><div class="run-steps"></div><div class="run-p"></div><div class="run-nav"><button data-d="-1">← Back</button><button data-d="1">Next →</button></div></div>
+
+<h2><span class="n">06 · The office</span>Every agent, one by one</h2>
+<p>Each file has the same shape. <b>Reads</b> is its data. <b>One run</b> is what it does, in order. <b>Hands back</b> is its output. <b>Never</b> is what it is not allowed to do, which matters more than everything else on the card.</p>
+<p>Jump to any agent:</p>
+<div class="dir"><div class="dg"><div class="dh"><span>Sales</span><span>6 agents</span></div><div class="chips"><a href="#precall"><i>01</i>Pre-call research</a><a href="#proposal"><i>02</i>Proposals</a><a href="#followup"><i>03</i>Follow-ups</a><a href="#crm"><i>04</i>CRM</a><a href="#digest"><i>05</i>Daily digest</a><a href="#scorecard"><i>06</i>Scorecard</a></div></div><div class="dg"><div class="dh"><span>SEO</span><span>16 agents</span></div><div class="chips"><a href="#seo-planner"><i>07</i>SEO strategist</a><a href="#seo-watch"><i>08</i>Watch</a><a href="#seo-technical"><i>09</i>Technical health</a><a href="#seo-keymap"><i>10</i>Keyword map</a><a href="#seo-refresh"><i>11</i>Refresh</a><a href="#seo-links"><i>12</i>Internal links</a><a href="#seo-conversion"><i>13</i>Conversion</a><a href="#seo-pruning"><i>14</i>Pruning</a><a href="#seo-brand"><i>15</i>Brand truth</a><a href="#seo-claude"><i>16</i>Claude tracker</a><a href="#seo-competitors"><i>17</i>Competitor watch</a><a href="#seo-placements"><i>18</i>List placements</a><a href="#seo-distribution"><i>19</i>Link building</a><a href="#emd-content"><i>20</i>Directory content</a><a href="#seo-weekly"><i>21</i>SEO weekly</a><a href="#seo-release"><i>22</i>Website release</a></div></div><div class="dg"><div class="dh"><span>Outbound</span><span>4 agents</span></div><div class="chips"><a href="#funding"><i>23</i>Funding</a><a href="#designjobs"><i>24</i>Design jobs</a><a href="#visitors"><i>25</i>Website visitors</a><a href="#outbound"><i>26</i>Sequencer</a></div></div><div class="dg"><div class="dh"><span>Social</span><span>2 agents</span></div><div class="chips"><a href="#social-ideas"><i>27</i>Social ideas</a><a href="#social-performance"><i>28</i>Social performance</a></div></div><div class="dg"><div class="dh"><span>Reviewers</span><span>4 agents</span></div><div class="chips"><a href="#agent-review"><i>29</i>Agent review</a><a href="#qa"><i>30</i>QA</a><a href="#costs"><i>31</i>Costs</a><a href="#worklog"><i>32</i>Work log</a></div></div></div><div class="dept"><div class="lab"><span>Department</span><span>6 agents</span></div><h2>Sales</h2></div><p>From the booked call to the closed deal.</p><p>Only I touch sales. These agents don't sell. They make sure I walk into every call prepared, nothing I promised slips, and the CRM is true without me typing into it.</p><section class="agent" id="precall">
+<div class="af"><div class="top"><span>Agent <b>01</b> · Sales</span><span class="st">When a call is booked</span></div>
+<div class="hd"><h3>Pre-call research</h3><p class="job">Researches every new lead before the call and posts a one-page brief right under the lead in Slack.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>The booking answers and the website form</li><li>Our CRM history with that company</li><li>Past recorded calls with their domain</li><li>The last 60 days of email with them</li><li>The live web</li></ul></div><div><div class="k">Hands back</div><ul><li>A one-page brief: who they are, who decides, fit, questions to ask, what not to say</li><li>Posted in the thread under the original lead</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Skips test bookings and anything the marketing app tagged as junk, vendor or spam.</li><li>Waits up to a minute for the calendar booking to land, so the brief has the call time and their answers.</li><li>Pulls the form fill, the CRM history, past calls and the last 8 emails with the company.</li><li>Researches the company on the web and writes the brief to a fixed template, matched against one reference brief I approved.</li><li>Strips any sentence that puts a dollar figure next to our pricing, then posts the brief in the lead's Slack thread.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Briefs the same person twice in 14 days</li><li>Puts our prices in a brief, because the channel includes the team</li><li>Contacts the prospect. Nothing leaves the company</li></ul></div></div>
+
+</div>
+<p>It searches the last 200 Slack messages for the lead's email, so the brief lands as a reply under the original lead instead of as a new post.</p><p>A sentence-level filter removes any line that puts a dollar figure next to our pricing words, as a backstop if the model ignores the rule.</p>
+</section><section class="agent" id="proposal">
+<div class="af"><div class="top"><span>Agent <b>02</b> · Sales</span><span class="st">After every sales call</span></div>
+<div class="hd"><h3>Proposal agent</h3><p class="job">Reads the recorded sales call, decides if it earns a proposal, a recap or nothing, and drafts that email.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>The call transcript</li><li>The matching deal in the CRM</li><li>Our locked proposal template</li><li>The lessons it has learned so far</li></ul></div><div><div class="k">Hands back</div><ul><li>An approval card in the sales channel</li><li>Approving puts the email in my drafts. I still press send</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Skips calls that were already handled or had only our team on them.</li><li>Pulls the transcript. If it's under 150 words, it waits for a retry instead of guessing.</li><li>Matches the call to the deal by attendee email or company domain.</li><li>Decides the move: is this a real sales call, and does it need a proposal, a recap or nothing?</li><li>Drafts the email on the template, runs it through the QA rulebook and fixes its own breaks once.</li><li>Posts an approval card with the email, buyer intent, who decides and a check-before-sending list.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Sends anything. Approval only creates a draft</li><li>Emails anyone who wasn't on the call</li><li>Flags a price I said on the call as off-offer</li><li>Writes a proposal over 350 words, with placeholders, or with a link to the call recording</li></ul></div></div>
+
+</div>
+<p>It decides first, writes second. One step judges whether the call was a real sales call and what it earned. Only then does it draft.</p><p>A nightly sweep backs up the live trigger. The agent remembers which recordings actually arrived, so if the recording tool stops sending, it raises an alarm instead of staying quiet.</p><p>The approval card pulls every price out of the draft and shows it on top, so the number can be checked without reading the whole email.</p>
+</section><section class="agent" id="followup">
+<div class="af"><div class="top"><span>Agent <b>03</b> · Sales</span><span class="st">Every morning</span></div>
+<div class="hd"><h3>Follow-up agent</h3><p class="job">Works out which follow-up sequence each deal is in and drafts only the one email that is due today.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every deal that has had its first call</li><li>The full email thread, from both founders' inboxes</li><li>The first call transcript</li><li>Our follow-up playbook</li></ul></div><div><div class="k">Hands back</div><ul><li>One email draft, threaded where it should be</li><li>Or a reminder task when I'm the one who owes something</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Retires any pending draft I made obsolete by emailing the prospect myself.</li><li>If I haven't sent anything since a call more than 2 days ago, it raises a 'recap or proposal owed' task instead of a draft.</li><li>Picks the sequence: call but no proposal, proposal but no reply, or a decision date with an approver.</li><li>Stops the sequence if anyone at the company replied or booked a call.</li><li>Checks what happened to its earlier drafts, keeps a 2-day gap and drafts only the latest step that's due.</li><li>Writes that one email from the playbook and the call, lints it and posts it for approval.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Replies to a prospect. I answer replies myself</li><li>Stacks two touches inside 2 days</li><li>Follows up after anyone at the company replied</li><li>Writes over 130 words</li></ul></div></div>
+
+</div>
+<p>It runs three sequences: call but no proposal, proposal but no reply, and a decision date with an approver. It only ever drafts the one step that is due today.</p><p>A reply from anyone at the same company domain stops the sequence. A draft made obsolete because I wrote to them myself expires with the reason "superseded: you emailed them yourself".</p><p>Long transcripts keep the first 5,000 and the last 11,000 characters: the opening is why now and who decides, the end is the next steps.</p>
+</section><section class="agent" id="crm">
+<div class="af"><div class="top"><span>Agent <b>04</b> · Sales</span><span class="st">Every morning</span></div>
+<div class="hd"><h3>CRM agent</h3><p class="job">Keeps every open deal true to the evidence: stage, next step, one-line note, price quoted and budget stated.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every open deal</li><li>The whole email thread, read-only</li><li>The last two call transcripts</li><li>Calendar bookings</li><li>My own notes on a deal</li></ul></div><div><div class="k">Hands back</div><ul><li>Updated deal records</li><li>Approval cards for anything that closes or reopens a deal</li><li>One summary note of every change</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Loads open deals, plus nurture deals that moved recently or have a next step due.</li><li>If the lead was tagged junk, vendor or spam, it proposes closing the deal as Lost.</li><li>Builds a fingerprint of new evidence. If nothing changed, it skips the deal.</li><li>Asks the model for the right stage, next step and date, a one-line note and any lost reason.</li><li>Writes open-stage changes directly and sends Won, Lost, Nurture or a reopen to me as a card.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Marks a deal Won, Lost or Nurture without me</li><li>Reopens a closed deal without new activity after it closed</li><li>Sets a next step in the past</li><li>Overwrites a proposal value that's already there</li></ul></div></div>
+
+</div>
+<p>Silence counts as evidence. Every extra full week with no activity changes the deal's fingerprint, so a quiet deal gets re-judged weekly without re-reading every deal every day.</p><p>It works out whose move it is, "they wrote last: the ball is in our court", and passes that to the model so next steps land on the right side.</p>
+</section><section class="agent" id="digest">
+<div class="af"><div class="top"><span>Agent <b>05</b> · Sales</span><span class="st">Weekdays, 8:30</span></div>
+<div class="hd"><h3>Daily sales digest</h3><p class="job">A calm morning note: good news, at most three things worth my time, today's calls and one line on the pipeline.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Calls, briefs, deals and pending cards</li><li>Who is waiting on a reply from us, from email</li><li>Yesterday's outbound sends and replies</li></ul></div><div><div class="k">Hands back</div><ul><li>One Slack card in a founders-only channel</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Lists the calls in the next 24 hours and checks each has a brief. If one is missing, it runs the pre-call agent.</li><li>Ranks what's worth my time: prospects waiting on a reply first, then my own due next steps, then drafts from the other agents.</li><li>Keeps the top three. Everything else collapses into one line.</li><li>Collects good news from the last day: deals that moved forward and real new leads.</li><li>Posts one card called Good morning, with every empty section left out.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Shows more than three action items</li><li>Counts a deal moving to Lost as good news</li><li>Uses AI. It's pure data, so it costs nothing</li></ul></div></div>
+
+</div>
+<p>It builds one ranked list: prospects waiting on a reply first, then my due next steps, then drafts from the other agents. It shows three and collapses the rest.</p><p>It is also the safety net for briefs. If a call in the next 24 hours has no brief, the digest writes one.</p>
+</section><section class="agent" id="scorecard">
+<div class="af"><div class="top"><span>Agent <b>06</b> · Sales</span><span class="st">Mondays, 9:00</span></div>
+<div class="hd"><h3>Weekly scorecard</h3><p class="job">Six funnel numbers for last week, against the week before and the 4-week average.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Calendar bookings back to mid-2025</li><li>GA4 for homepage to strategy-call share</li><li>Search Console for US buyer searches</li><li>Peec for AI visibility</li><li>Outbound replies</li></ul></div><div><div class="k">Hands back</div><ul><li>One Slack card</li><li>A 12-week trend page in the sales app</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Recomputes the last 12 full weeks from every source, each one isolated so one failure can't stop the rest.</li><li>Counts booked calls as the first booking per company, with internal, test, vendor and existing-client bookings removed.</li><li>Measures the homepage to strategy-call share for buyer countries only, with datacenter cities excluded.</li><li>Counts US buyer-intent search impressions with a classifier: a provider word plus a design topic, no jobs or how-tos.</li><li>Posts the card with arrows against last week, the 4-week average and targets.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Shows money. No prices, no deal values</li><li>Guesses a number it couldn't pull. It says 'not available' and why</li><li>Overwrites good numbers when a source fails</li></ul></div></div>
+
+</div>
+<p>All 12 weeks are recomputed on every run, so late data corrects itself.</p><p>A rescheduled call shows up in the calendar tool as a cancel plus a new booking. The scorecard only counts a cancel if the company has no active booking left.</p>
+</section><div class="dept"><div class="lab"><span>Department</span><span>16 agents</span></div><h2>SEO</h2></div><p>Leads from Google and AI answers.</p><p>SEO is the biggest department, because it's the job with the most repeatable checks in it. One strategist plans, fourteen agents watch, fix and earn links, and one ships everything every Thursday.</p><figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>SEO app · agents</span></div><img src="seo-agents.png" alt="SEO agents list" loading="lazy" width="800" height="520"></div><figcaption><b>The SEO department.</b> 20 agents, 17 healthy, 0 failing.</figcaption></figure><section class="agent" id="seo-planner">
+<div class="af"><div class="top"><span>Agent <b>07</b> · SEO</span><span class="st">Mondays, 11:00</span></div>
+<div class="hd"><h3>SEO strategist</h3><p class="job">Reads the SEO evidence page by page and proposes up to 8 pinpointed problems with exact fixes, each surviving a critic.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every money page's numbers and failing checks</li><li>Buyer searches at positions 4 to 20</li><li>The SEO backlog and standing decisions</li><li>Active bets</li><li>Ideas from my industry feed</li></ul></div><div><div class="k">Hands back</div><ul><li>Up to 8 bets</li><li>Approving one creates a task and a tracked bet</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Closes any bet past its kill date with a result card.</li><li>Drafts up to 12 bets, each naming a page, a number, a cause and a fix.</li><li>A critic scores each one. Under 7 out of 10 is dropped.</li><li>Checks keywords: if an existing page already owns the term or demand is tiny, it pushes the idea to later with the reason.</li><li>Files the survivors quietly in the SEO app.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Proposes anything about the agents or the app</li><li>Proposes something already running, decided or parked</li><li>Breaks the freeze on structural changes after a core update</li></ul></div></div>
+<div class="ex"><div class="k">From its own record</div><p>Lesson learned from my rejections: "Don't propose podcast guest outreach."</p></div>
+</div>
+<p>There is one strategist per department, all built the same way. This is the SEO one.</p><p>It drafts wide and keeps few: up to 12 ideas, a separate critic scores each one, and anything under 7 out of 10 is dropped. Every approved bet gets a baseline, a goal and a kill date, and the strategist brings the result back when the date passes.</p><p>If a gauge the department depends on is broken, fixing the gauge scores highest.</p>
+</section><section class="agent" id="seo-watch">
+<div class="af"><div class="top"><span>Agent <b>08</b> · SEO</span><span class="st">Daily, 8:00</span></div>
+<div class="hd"><h3>SEO watch</h3><p class="job">Watches the money keywords and money pages every morning, stays quiet unless something breaks, and pushes changed pages to Google, Bing and IndexNow.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>US rankings for every money keyword</li><li>A live fetch of every money page</li><li>Google's own index status for those pages</li><li>The sitemap's change dates</li></ul></div><div><div class="k">Hands back</div><ul><li>A Slack alert, only when something's wrong</li><li>Internal link cards that ship on their own</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Checks rankings: every money keyword on Mondays, only the ones already in the top 20 on other days.</li><li>Alerts on a drop of 3 or more places, a fall off page 1 or the wrong page ranking.</li><li>Fetches every money page and flags errors, noindex, a moved canonical or Google saying it's not indexed.</li><li>Diffs today's sitemap dates against yesterday's and pushes every changed page to IndexNow, Google and Bing.</li><li>For up to 5 new pages, picks the one money page each should link to and drafts the sentence.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Calls a drop it can't see. Below the checked depth, a drop and 'still not ranking' look the same</li><li>Treats a firewall block as the site being down</li><li>Pushes more than 20 pages a run</li></ul></div></div>
+
+</div>
+<p>The sitemap is its change feed. When any other agent's change merges, the page's date moves, and the next morning this agent pushes that page to Google, Bing and IndexNow.</p><p>Below the depth it checks, a drop and "still not ranking" look the same, so it never calls a drop it can't see.</p>
+</section><section class="agent" id="seo-technical">
+<div class="af"><div class="top"><span>Agent <b>09</b> · SEO</span><span class="st">Saturdays, 9:00</span></div>
+<div class="hd"><h3>SEO technical health</h3><p class="job">Crawls every page once a week and checks what Google, Bing and AI crawlers actually see.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every URL in the sitemap</li><li>Google's index status for money pages</li><li>Mobile speed for 4 money pages a week</li><li>Bing crawl issues</li><li>robots.txt and llms.txt</li></ul></div><div><div class="k">Hands back</div><ul><li>A report sorted by severity</li><li>One card for critical issues</li><li>Up to 2 cards with ready-to-paste schema</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Fetches every URL and flags errors, redirects, noindex, wrong canonicals, missing titles and duplicates.</li><li>Follows internal links outside the sitemap to find broken ones.</li><li>Asks Google about every money page and checks the sitemap for errors.</li><li>Checks robots.txt for blocks on GPTBot, ClaudeBot, PerplexityBot and Google-Extended.</li><li>Validates structured data on money pages and drafts the missing JSON-LD.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Ships a technical fix on its own. These wait for a human</li><li>Puts a fact in schema that isn't on the page or in our facts file</li></ul></div></div>
+<div class="ex"><div class="k">From its own record</div><p>267 pages crawled · 267 OK · 0 critical issues</p></div>
+</div>
+<p>AI crawler access is a first-class check. A robots.txt rule that blocks ClaudeBot or GPTBot is severity one, the same level as a money page returning a 404.</p><p>Missing schema isn't just flagged. The card carries the drafted JSON-LD.</p>
+</section><section class="agent" id="seo-keymap">
+<div class="af"><div class="top"><span>Agent <b>10</b> · SEO</span><span class="st">First Tuesday of the month</span></div>
+<div class="hd"><h3>Keyword and prompt map</h3><p class="job">Gives every page one job: one search to win and, where it fits, one AI prompt to answer.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>90 days of non-brand Search Console data, by query and page</li><li>Keyword ideas around our money keywords</li><li>The AI prompts we track in Peec</li></ul></div><div><div class="k">Hands back</div><ul><li>A monthly map</li><li>One card to start tracking the new keywords</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Finds each page's main query.</li><li>Flags pages with no clear job and searches split between two of our own pages.</li><li>Pulls keyword ideas seeded from our money keywords and removes anything already tracked.</li><li>Picks at most 15 searches a buyer would actually type, each tied to one money page.</li><li>Maps every tracked AI prompt to the page that should be cited, or names the page that's missing.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Adds a keyword that doesn't map to a real money page</li><li>Adds jobs, tutorials, consumer or free-tool searches</li></ul></div></div>
+
+</div>
+<p>It maps AI prompts the same way it maps searches. Every tracked prompt gets the page that should be cited for it, and a prompt with no page becomes a content gap.</p>
+</section><section class="agent" id="seo-refresh">
+<div class="af"><div class="top"><span>Agent <b>11</b> · SEO</span><span class="st">Thursdays, 10:00</span></div>
+<div class="hd"><h3>SEO refresh</h3><p class="job">Keeps pages true and current: fact-checks three pages a week and rewrites up to three articles a week from source.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Search Console, 28 days against the 28 before</li><li>The live page</li><li>Our verified facts file</li><li>The article's source in the website repo</li><li>Every outbound link on the page</li></ul></div><div><div class="k">Hands back</div><ul><li>Exact fact-fix edits</li><li>Full article rewrites</li><li>Both ship in the Thursday release</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Picks three pages: one money page in rotation and the two losing the most impressions.</li><li>Checks for stale years, the wrong review count, names we never use and dead links, then asks for exact edits against our facts.</li><li>Keeps only edits whose text really exists on the page.</li><li>Scores articles for a full refresh: the biggest decliners, weighted up for buyer pages, skipped if revised in 90 days.</li><li>Rewrites each one from source with its real search queries, then validates it in code and retries once.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Invents a statistic, a quote, a price or a client</li><li>Moves a partner down or removes anyone from a list article</li><li>Cuts an article by more than 25%</li><li>Moves the 'updated' date without a real rewrite</li></ul></div></div>
+
+</div>
+<p>Every rewrite is validated in code before it exists: partners still listed, call-to-action count unchanged, images untouched, no dashes, not cut below 75% of the original. Two failures and it's dropped.</p><p>The rewrite is fed the page's real Search Console queries, so the FAQ answers what people actually searched. The updated date only moves with a real rewrite.</p>
+</section><section class="agent" id="seo-links">
+<div class="af"><div class="top"><span>Agent <b>12</b> · SEO</span><span class="st">Fridays, 10:00</span></div>
+<div class="hd"><h3>SEO links</h3><p class="job">Weekly link health and five new in-content links from the busiest pages to the service pages.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Our own crawl, in-content links only</li><li>Every outbound link, checked at most once a month</li><li>New and lost referring domains</li><li>Impressions by page</li></ul></div><div><div class="k">Hands back</div><ul><li>A weekly link scorecard</li><li>Up to 5 internal links that ship on their own</li><li>The data behind the site map</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Crawls the site and saves the full page and link graph.</li><li>Counts in-content links into each service page, finds orphans and catches list entries for us that point at the homepage.</li><li>Checks outbound links for 404s.</li><li>Diffs referring domains against last week.</li><li>Picks the 5 busiest pages with no link to a service page and drafts one natural link for each.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Counts nav or footer links. They don't show relevance</li><li>Proposes a link to anything but a service page</li><li>Proposes a link on the same page twice in 60 days</li></ul></div></div>
+
+</div>
+<p>Only in-content links count. Nav, header and footer are stripped before counting.</p><p>It also catches list entries that mention us but link to the homepage instead of the matching service page. The same crawl draws the site map in the SEO app.</p>
+</section><section class="agent" id="seo-conversion">
+<div class="af"><div class="top"><span>Agent <b>13</b> · SEO</span><span class="st">Thursdays, 11:00</span></div>
+<div class="hd"><h3>Organic conversion</h3><p class="job">Finds buyer pages that get Google visitors but no leads, and drafts the smallest changes to fix them.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>GA4 landing pages from organic search, 28 days against the 28 before</li><li>Form fills and bookings</li><li>The page itself</li><li>Our verified facts</li></ul></div><div><div class="k">Hands back</div><ul><li>A conversion report</li><li>Up to 3 page fixes that ship on their own</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls organic landing-page data and counts a lead as a form fill or a booking.</li><li>Computes the site-wide visitor-to-lead rate.</li><li>Flags a buyer page as leaking if it has 25+ sessions and far fewer leads than the average predicts.</li><li>Separates designer traffic from buyer traffic and reports it.</li><li>For the top 3 leaks, drafts a matching next step, one proof point and where the CTA goes.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Touches the strategy-call, contact, legal or thank-you pages</li><li>Puts a sales CTA on a designer blog</li><li>Invents a result</li></ul></div></div>
+
+</div>
+<p>A page is judged against our own site's visitor-to-lead rate, not an industry benchmark.</p><p>Designer traffic and buyer traffic are separated by URL. Design-inspiration blogs are reported, never given a sales CTA.</p>
+</section><section class="agent" id="seo-pruning">
+<div class="af"><div class="top"><span>Agent <b>14</b> · SEO</span><span class="st">Second Tuesday of the month</span></div>
+<div class="hd"><h3>SEO pruning</h3><p class="job">Finds blog and list pages that dilute the site and proposes noindex first.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every blog and list page</li><li>90 days of Search Console by page and query</li><li>Every page AI cited in the last 90 days</li><li>Referring domains per page</li></ul></div><div><div class="k">Hands back</div><ul><li>One monthly pruning card that waits for me</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Lists blog and list pages, never money pages.</li><li>Protects every page AI cited in 90 days and every page with 2+ referring domains.</li><li>Marks off-topic or zero-traffic pages for noindex.</li><li>Finds pages losing 3 or more searches to the same sibling page and marks them to merge.</li><li>Explains the decision in two sentences and raises one card with up to 40 pages.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Touches a page ChatGPT or Perplexity cited in the last 90 days</li><li>Touches a page with backlinks</li><li>Deletes first. It's always noindex first, because noindex is reversible</li></ul></div></div>
+
+</div>
+<p>AI citations are a hard veto. A page with no Google clicks stays if ChatGPT or Perplexity cited it in the last 90 days.</p><p>Which pages get pruned is decided by thresholds in code. The model only writes the explanation.</p>
+</section><section class="agent" id="seo-brand">
+<div class="af"><div class="top"><span>Agent <b>15</b> · SEO</span><span class="st">Wednesdays, 9:00</span></div>
+<div class="hd"><h3>Brand truth</h3><p class="job">Checks what AI answers and Google's first page say about us against our verified facts, and traces wrong claims to their source.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Peec's fact checks of AI answers against our facts</li><li>The pages each wrong claim came from</li><li>The doubts AI raises about us</li><li>Google page 1 for our brand name</li></ul></div><div><div class="k">Hands back</div><ul><li>A weekly 'what AI and Google say about us' report</li><li>Fix cards for wrong claims on our own pages</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls the claims AI gets wrong about us, most repeated first.</li><li>Fetches the pages AI took each wrong claim from.</li><li>Pulls the top objections AI raises about Bricx.</li><li>Checks Google's first page for our name for wrong facts, gaps or a lookalike company.</li><li>Turns any wrong claim that comes from our own site into a fix card.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Acts on claims from other people's sites. Those are listed, not chased</li><li>Flags something that isn't a real problem</li></ul></div></div>
+
+</div>
+<p>It traces each wrong claim back to the page AI took it from, so the fix goes to the source.</p><p>It also watches Google for a different company with a similar name.</p>
+</section><section class="agent" id="seo-claude">
+<div class="af"><div class="top"><span>Agent <b>16</b> · SEO</span><span class="st">Daily, 7:00</span></div>
+<div class="hd"><h3>Claude tracker</h3><p class="job">Asks Claude our buyer prompts with web search on, and logs who it names, where we rank and which pages it reads.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Our tracked buyer prompts from Peec</li><li>Claude with web search</li></ul></div><div><div class="k">Hands back</div><ul><li>A daily log in the SEO app's Claude answers page</li><li>A weekly roll-up</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Fetches the current prompt set and skips any already answered today.</li><li>Asks each prompt with no system prompt and web search on, like a buyer would.</li><li>Collects the answer, the pages it cited and every page its searches pulled.</li><li>Uses a small model to list every agency named, in order.</li><li>Stores our position and, on Mondays, rolls up the week against last week.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Runs more than 3 searches per prompt</li><li>Asks at low effort. At low effort Claude answers from memory and skips search, which isn't what a buyer gets</li></ul></div></div>
+
+</div>
+<p>It asks with no system prompt, a US location and web search on, at default effort. At low effort Claude answers from memory and skips search, which is not what a buyer sees.</p><p>It uses the same prompt set as our Peec tracking, so the numbers line up across ChatGPT, Perplexity, Google's AI and Claude.</p>
+</section><section class="agent" id="seo-competitors">
+<div class="af"><div class="top"><span>Agent <b>17</b> · SEO</span><span class="st">Every other Monday</span></div>
+<div class="hd"><h3>Competitor watch</h3><p class="job">Tracks what the agencies AI recommends most did in SEO, and lists the moves worth copying.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Peec's list of who AI recommends for our prompts</li><li>Their new backlinks</li><li>Their new pages, from their sitemaps</li><li>Their new top-10 keywords and new mentions</li></ul></div><div><div class="k">Hands back</div><ul><li>A note per competitor</li><li>10 link-gap targets in the outreach tracker</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Picks the 5 competitors with the highest AI visibility on our buyer prompts.</li><li>Pulls their new backlinks from decent sites, with junk filtered out.</li><li>Diffs their sitemaps, top-10 keywords and mentions against last run.</li><li>Finds link gaps: sites that link to several competitors but not to us.</li><li>Lists up to 6 specific moves to copy and queues the top 10 link gaps for outreach.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Picks competitors by guesswork</li><li>Reports a competitor's whole site as 'new' on the first run</li></ul></div></div>
+
+</div>
+<p>The competitors are picked by AI visibility: whoever ChatGPT and Perplexity recommend most for our buyer prompts is who gets watched.</p><p>Sitemap diffs show what they published this week without paying for a crawl.</p>
+</section><section class="agent" id="seo-placements">
+<div class="af"><div class="top"><span>Agent <b>18</b> · SEO</span><span class="st">Wednesdays, 10:00</span></div>
+<div class="hd"><h3>Listicle placements</h3><p class="job">Finds the 'best agencies' lists AI cites most for our buyers' questions that don't include us, and drafts the ask to whoever owns each list.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>The 300 pages AI retrieved most in the last 30 days, from Peec</li><li>Each list page itself</li><li>The owner's contact</li><li>Our email history with them</li><li>Our verified facts</li></ul></div><div><div class="k">Hands back</div><ul><li>Up to 5 email drafts a week, sent from my address on one tap</li><li>A weekly trending-sources note</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Checks earlier asks: notes replies, re-reads the page to confirm a placement, drafts one follow-up after 7 quiet days.</li><li>Pulls the most-retrieved pages from Peec and keeps only agency lists on sites that aren't ours.</li><li>Reads each page to check if we're already in a heading or list item. If we are, marks it placed and moves on.</li><li>Finds the person who owns the content.</li><li>Works out if they're an agency or a publisher, and drafts the right offer with a ready-to-paste entry matched to their format.</li><li>Posts a 'Trending AI sources' note: sites AI cites much more this month than last.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Asks for a rank or a number on the list</li><li>Names a price</li><li>Uses a fact that isn't in our facts file</li><li>Pitches the same site twice</li></ul></div></div>
+
+</div>
+<p>Before it pitches anyone it re-reads the page and only counts a heading or list item naming us, because brand tags and similar agency names give false positives.</p><p>The same check later confirms placements on its own: placed means seen on the page.</p><p>The offer depends on who owns the list. An agency gets a reciprocal spot on one of our lists. A publisher gets a quote or data.</p>
+</section><section class="agent" id="seo-distribution">
+<div class="af"><div class="top"><span>Agent <b>19</b> · SEO</span><span class="st">Tuesdays, 10:00</span></div>
+<div class="hd"><h3>Link building</h3><p class="job">Earns links into the service pages from sites that already mention us, and drafts asks for partner agencies.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Pages AI cites that mention us, from Peec</li><li>Each page, to check for a link</li><li>Our keyword map</li><li>Our partner list</li></ul></div><div><div class="k">Hands back</div><ul><li>Link-request emails, one tap to send</li><li>Partner asks I send myself</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls the pages AI cites that mention Bricx.</li><li>Keeps only the ones that name us but don't link to us.</li><li>Picks the service page closest to that page's topic and drafts a short 'would you link the mention' email.</li><li>For each partner agency due an ask, finds their most-cited lists that don't include us.</li><li>Drafts a short message for me to send personally and sets the next ask 30 days out.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Asks a partner more than once a month</li><li>Asks to be on a list that has nothing to do with design</li><li>Contacts a domain any other agent already contacted</li></ul></div></div>
+<div class="ex"><div class="k">From its own record</div><p>Lesson learned from my rejections: "Don't propose partnership outreach to agencies Divij has explicitly ruled out."</p></div>
+</div>
+<p>Cold sites get an email. Partner agencies get a short message drafted for me to send myself.</p><p>The link target is picked by matching the other page's words against our keyword map, so the link goes to the right service page, not the homepage.</p>
+</section><section class="agent" id="emd-content">
+<div class="af"><div class="top"><span>Agent <b>20</b> · SEO</span><span class="st">Mondays, 12:00</span></div>
+<div class="hd"><h3>Directory content</h3><p class="job">Drafts one new article a week for each of my directory sites, shaped to that site's search.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Each site's brief and its existing articles</li><li>Drafts already waiting</li></ul></div><div><div class="k">Hands back</div><ul><li>One article per site per week</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Loads every directory site's brief and article list.</li><li>Skips any site that already has 2 drafts waiting.</li><li>Drafts a 1,200 to 1,800 word article with a quick answer, FAQs and a comparison table.</li><li>Checks the draft in code and redrafts once with the failures listed.</li><li>A weekly job publishes it on Tuesday with a data refresh.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Invents a statistic, a study or a quote</li><li>Writes under 900 words</li><li>Gets through the checks with a rule broken</li></ul></div></div>
+
+</div>
+<p>If a draft breaks a rule, the exact list of violations goes back to the model for one rewrite. If it fails again it's dropped.</p><p>These are the directory sites from my Zero-DR experiment.</p>
+</section><section class="agent" id="seo-weekly">
+<div class="af"><div class="top"><span>Agent <b>21</b> · SEO</span><span class="st">Mondays, 10:00</span></div>
+<div class="hd"><h3>SEO weekly</h3><p class="job">The weekly SEO scorecard and early warnings, then the 10 highest-value fixes as drafted cards.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Search Console: 28 days, 7 days and the same period last year</li><li>Rank checks</li><li>AI visibility by prompt, from Peec</li><li>Bing traffic</li><li>The live money pages</li></ul></div><div><div class="k">Hands back</div><ul><li>A weekly scorecard</li><li>10 fix cards. Title fixes ship on their own</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls Search Console, ranks, Peec and Bing for this period and the ones before.</li><li>Runs 16 detectors: striking distance, click-through gaps, wrong page ranking, cannibalisation, decay, AI prompts lost, AI crawlers blocked and more.</li><li>Scores every opportunity by lead value, not traffic.</li><li>Picks the top 10, with at most 3 of one type and 2 per page.</li><li>Drafts all 10 fixes: a new title, a new description and 2 to 4 concrete changes.</li><li>Checks last week's fixes on the live pages and marks the ones that went live.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Ranks a high-traffic, off-topic page above a buyer page</li><li>Re-proposes a fix within 4 weeks</li><li>Invents a client result</li></ul></div></div>
+
+</div>
+<p>It runs 16 detectors, from striking distance and click-through gaps to cannibalisation, decay, lost AI prompts and blocked AI crawlers.</p><p>Opportunities are scored by lead value, not traffic. Buyer searches count three times, money pages count three times, off-topic pages are cut to 15%.</p>
+</section><section class="agent" id="seo-release">
+<div class="af"><div class="top"><span>Agent <b>22</b> · SEO</span><span class="st">Thursdays, 2 pm</span></div>
+<div class="hd"><h3>Website release</h3><p class="job">Turns the week's safe SEO cards into exact edits in the website's code, checks every one, and ships them as one pull request.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>The website's source code</li><li>Every queued card</li><li>Live pages and their numbers</li><li>Our partner list</li><li>Our verified facts</li></ul></div><div><div class="k">Hands back</div><ul><li>One pull request a week</li><li>A Slack report: shipped, held back, Undo links</li><li>A live-check reply once everything is on the site</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Downloads the site's source and loads the queued cards.</li><li>Finds the right source file for each page and plans up to 4 find-and-replace edits per card.</li><li>Checks every change in code, then sends the before and after to an independent critic.</li><li>Commits what passed to a branch and opens one pull request.</li><li>Waits for CI, merges, logs every change on the Tasks board with an Undo link and posts in Slack.</li><li>45 minutes after merge, checks every change on the live site.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Ships anything that needs judgement: repositioning, new sections, pricing</li><li>Replaces text that isn't in the file exactly once</li><li>Removes a client or partner mention</li><li>Adds a name we never use, or an em dash</li><li>Links to a page that isn't live</li><li>Merges without CI passing</li><li>Ships under 9 out of 10 from the critic</li></ul></div></div>
+
+</div>
+<p>The edit planner is told that nobody will review the change, so it only ships what it is sure of. Every refusal goes back to the app with a one-line reason.</p><p>Each change carries a short phrase the agent looks for on the live page after the merge. Shipped means seen on the site.</p><p>Every change has a one-click Undo that reverses exactly that edit as its own pull request.</p>
+</section><div class="dept"><div class="lab"><span>Department</span><span>4 agents</span></div><h2>Outbound</h2></div><p>Meetings from signals and sequences.</p><p>Outbound runs on signals, not lists. Three agents find a dated reason to talk to a company. One writes and sends. Nothing goes out without me approving the whole sequence, and every reply comes to me.</p><section class="agent" id="funding">
+<div class="af"><div class="top"><span>Agent <b>23</b> · Outbound</span><span class="st">Every morning, 8:00</span></div>
+<div class="hd"><h3>Funding agent</h3><p class="job">Reads new funding announcements, keeps fresh Seed to Series B B2B SaaS rounds, scores them and proposes the best few.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>New funding announcements</li><li>SEC Form D filings, to confirm amounts</li><li>Our CRM, for companies we already know</li><li>Our ideal customer profile</li><li>Lessons from my rejections</li></ul></div><div><div class="k">Hands back</div><ul><li>Up to 5 accounts a day for approval</li><li>Re-open emails for companies we already know</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Reads announcements published since its last run.</li><li>Filters in code: Seed to Series B, roughly $2M to $80M.</li><li>Uses filings only to confirm an amount that was already announced.</li><li>If we already know the company, drafts a personal re-open email instead of treating it as a cold lead.</li><li>Scores the rest against our ideal customer, with one specific 'why now' line each.</li><li>Verifies each homepage and posts up to 5 cards.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Mentions a filing in any email</li><li>Proposes a company without checking its homepage</li><li>Writes a generic 'why now'. If it can't be specific, the account is dropped</li></ul></div></div>
+
+</div>
+<p>If the model can't write something specific about why now, it has to score the account 3 or lower, which drops it.</p><p>Filings are only used to confirm an amount that was already announced, and no email ever mentions them.</p>
+</section><section class="agent" id="designjobs">
+<div class="af"><div class="top"><span>Agent <b>24</b> · Outbound</span><span class="st">Mondays, 8:00</span></div>
+<div class="hd"><h3>Design-jobs agent</h3><p class="job">Finds companies that posted a design role in the last 3 weeks and proposes the best ones.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Public job boards of every company we track</li><li>Y Combinator's design job board</li><li>Our ideal customer profile</li></ul></div><div><div class="k">Hands back</div><ul><li>Up to 8 accounts a week for approval</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Finds each tracked company's job board.</li><li>Pulls design roles posted in the last 21 days.</li><li>Scores each one: a founding or first designer at a US-selling B2B software company is a 5. A big design team is a 2.</li><li>Past deals get a re-open email instead.</li><li>Verifies each homepage and posts up to 8 cards.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Judges the same job post twice</li><li>Marks a company down for not listing its funding round</li></ul></div></div>
+
+</div>
+<p>It reads public job boards directly, finding each company's board from its domain, with a cache and a probe budget.</p><p>A founding or first designer at a US-selling B2B software company scores 5. A large design team scores 2.</p>
+</section><section class="agent" id="visitors">
+<div class="af"><div class="top"><span>Agent <b>25</b> · Outbound</span><span class="st">Hourly</span></div>
+<div class="hd"><h3>Website-visitor agent</h3><p class="job">Judges companies identified on our website against our ideal customer and proposes the good ones.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Identified website visits</li><li>Our ideal customer profile</li></ul></div><div><div class="k">Hands back</div><ul><li>Accounts for approval</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Reads up to 30 new visits.</li><li>Keeps one per company, business domains only.</li><li>Scores the companies on fit and any public trigger it can find.</li><li>Verifies the homepage and proposes the good ones, labelled 'timing only'.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Mentions the visit in any message. Ever</li></ul></div></div>
+
+</div>
+<p>The visit is timing only. If there's no public reason to reach out, the trigger field says "visited (timing only)", so the email has to be built on something else.</p>
+</section><section class="agent" id="outbound">
+<div class="af"><div class="top"><span>Agent <b>26</b> · Outbound</span><span class="st">Hourly</span></div>
+<div class="hd"><h3>Outbound sequencer</h3><p class="job">Turns approved accounts into written sequences for each person, enrols them on schedule, and stops the whole company the moment anyone replies.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Approved accounts</li><li>People finders and verified work emails</li><li>Their homepage, pricing page and trigger</li><li>Our approved example emails and proof library</li></ul></div><div><div class="k">Hands back</div><ul><li>A full sequence card for approval</li><li>Live enrolments</li><li>Reply alerts</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Finds up to 3 decision makers per account, founders first, with verified emails.</li><li>Researches the company and picks which of our services to pitch.</li><li>Code assigns each person a different service by job title and fixed, verified proof. The model only writes the sentences.</li><li>Writes 4 emails per person, checks them against the rules and forces one rewrite.</li><li>On my approval, person 1 starts. Each next person at the company starts 3 working days later.</li><li>Watches every hour. On any reply, it stops everyone else at that company and posts the reply to Slack.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Sends anything before I approve the whole sequence</li><li>Asks for a call or a time in the first email</li><li>Mentions prices, 'free', audits or guarantees</li><li>Uses 'following up', 'circling back' or 'quick chat'</li><li>Replies to anyone. I answer replies myself</li></ul></div></div>
+
+</div>
+<p>The sending tool holds no copy. Its four emails are empty placeholders and the agent writes every word. A missing placeholder deactivates the prospect, so nothing half-written can go out.</p><p>Code decides who gets which service and which proof. The model only writes the sentences.</p><p>Open and click tracking are off. It sends Monday to Thursday mornings in the prospect's timezone, starting at 5 a day per sender.</p>
+</section><div class="dept"><div class="lab"><span>Department</span><span>2 agents</span></div><h2>Social</h2></div><p>Posts built from real work.</p><p>Two agents. Ideas come from real work only, and the best posts become the examples for the next ones.</p><section class="agent" id="social-ideas">
+<div class="af"><div class="top"><span>Agent <b>27</b> · Social</span><span class="st">Mondays, 9:00</span></div>
+<div class="hd"><h3>Social ideas</h3><p class="job">Turns real work (wins, client outcomes, case studies) into 8 post ideas each for the Bricx account and for Sid.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Our verified facts and proof library</li><li>Each account's best posts, from Buffer</li><li>Ideas from the last 120 days</li></ul></div><div><div class="k">Hands back</div><ul><li>16 ideas a week, each with its proof</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Loads recent ideas so it doesn't repeat.</li><li>Pulls each account's best LinkedIn posts as voice examples.</li><li>Writes 8 ideas per brand across pillars: craft, client outcome, how we work, opinion, behind the scenes.</li><li>Saves each with its angle, proof and source.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Writes a generic tip</li><li>Uses an idea without a real source</li><li>Borrows my voice for Sid, or Sid's for the brand</li></ul></div></div>
+
+</div>
+<p>Every idea has to come from something that actually happened at Bricx, with its proof attached.</p><p>The two accounts get different briefs: Sid's leans on leadership and craft, the Bricx account on behind the scenes.</p>
+</section><section class="agent" id="social-performance">
+<div class="af"><div class="top"><span>Agent <b>28</b> · Social</span><span class="st">Mondays, 8:00</span></div>
+<div class="hd"><h3>Social performance</h3><p class="job">Reads every account's posts from Buffer and reports what got seen in the last 28 days.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Buffer: every sent post and its numbers</li></ul></div><div><div class="k">Hands back</div><ul><li>A weekly report</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls up to 100 sent posts per account.</li><li>Totals posts and impressions.</li><li>Keeps the top 3 per account.</li><li>Saves the report.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Posts or schedules anything</li><li>Uses AI</li></ul></div></div>
+
+</div>
+<p>The ideas agent pulls each account's top posts as its voice examples, so the best posts become the reference automatically.</p>
+</section><div class="dept"><div class="lab"><span>Department</span><span>4 agents</span></div><h2>Reviewers</h2></div><p>The agents that check the agents.</p><p>An agent that grades its own homework is useless. These four only exist to check the others.</p><figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>SEO app · refresh agent · lessons</span></div><img src="refresh-lessons.png" alt="Lessons tab" loading="lazy" width="800" height="520"></div><figcaption><b>Lessons the review wrote for the refresh agent.</b> It kept adding cards while old ones sat unreviewed. The review told it to clear the queue first.</figcaption></figure><section class="agent" id="agent-review">
+<div class="af"><div class="top"><span>Agent <b>29</b> · Reviewers</span><span class="st">Mondays, 7:00</span></div>
+<div class="hd"><h3>Agent review</h3><p class="job">Audits every agent's week and teaches each one rules from its own results.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every run, success and failure</li><li>Every card I approved, rejected, edited or ignored</li><li>Every edit and reject reason</li><li>What each agent cost</li><li>Channel outcomes like replies and posts</li></ul></div><div><div class="k">Hands back</div><ul><li>A weekly summary card</li><li>New lessons in every agent's memory</li><li>A list of code fixes</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Pulls runs, outcomes, corrections and cost for every agent.</li><li>Rates each agent healthy, watch or broken, with one finding.</li><li>Writes up to 3 rules per agent, grounded only in the data.</li><li>Merges them into that agent's memory, max 6, so every future prompt carries them.</li><li>Lists code fixes for a Monday pull request and posts a summary card.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Invents a rule the data doesn't show</li><li>Changes code itself. Fixes go to a pull request I approve</li><li>Reviews itself</li></ul></div></div>
+<div class="ex"><div class="k">From its own record</div><p>38 agents reviewed · 16 rules taught · 6 code fixes for the Monday pull request</p><p>Caught: the website release running every hour despite its Thursday remit</p></div>
+</div>
+<p>Its rules are injected into every other agent's prompt automatically. Each agent's lessons are visible on its page and can be removed.</p><p>It reads ignored work as a signal too. A card left to expire isn't a rejection, but lots of them mean an agent is making noise.</p>
+</section><section class="agent" id="qa">
+<div class="af"><div class="top"><span>Agent <b>30</b> · Reviewers</span><span class="st">Daily, 10:00</span></div>
+<div class="hd"><h3>QA agent</h3><p class="job">Checks every new email draft against our hard rules, and writes a weekly health report on the sales agents.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every email draft since the last check</li><li>Runs, edits, reject reasons and lessons</li><li>Calls the proposal agent decided needed no email</li></ul></div><div><div class="k">Hands back</div><ul><li>Alerts on rule breaks</li><li>A weekly report</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Lints every new draft against the hard rules. No AI involved.</li><li>Stays silent unless a rule broke.</li><li>On Mondays, gathers each sales agent's week: runs, failures, approvals, edits and replies.</li><li>Re-checks up to 3 calls the proposal agent skipped, by reading the transcript again.</li><li>Writes a short report: working, broken or risky, fix this week.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Changes anything itself</li><li>Lets a draft through with an em dash, a semicolon, a placeholder, a chasing phrase or a raw link</li><li>Passes a proposal over 350 words or a follow-up over 130</li></ul></div></div>
+
+</div>
+<p>The same rulebook is handed to the drafting agents, so they check themselves before anything reaches me. QA is the second line.</p><p>It also audits the decisions nobody reviews, like a call the proposal agent decided needed no email.</p>
+</section><section class="agent" id="costs">
+<div class="af"><div class="top"><span>Agent <b>31</b> · Reviewers</span><span class="st">Daily, 10:00</span></div>
+<div class="hd"><h3>Cost agent</h3><p class="job">Watches what every agent spends on AI and speaks up only when something looks wrong.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Every metered model call: which agent, which run, which model, tokens and searches</li></ul></div><div><div class="k">Hands back</div><ul><li>A cost alert when something's off</li><li>A weekly per-agent cost report</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Sums spend per agent for the last 7 days, the 7 before and month to date, and projects the month.</li><li>Compares each agent against what it normally costs.</li><li>Flags any agent spending over twice its normal, any single expensive run and a month heading over budget.</li><li>Posts only if something is flagged. On Mondays, posts the full report.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Posts on a normal day</li><li>Lets an unknown model hide. It prices it at the top tier so it shows up</li></ul></div></div>
+
+</div>
+<p>Every model call is tagged with the agent and run that made it, so cost is tracked per agent with no extra work in any agent.</p><p>When the month's spend reaches the budget, every agent is forced onto the cheapest model until the month ends.</p>
+</section><section class="agent" id="worklog">
+<div class="af"><div class="top"><span>Agent <b>32</b> · Reviewers</span><span class="st">Every evening</span></div>
+<div class="hd"><h3>Work log</h3><p class="job">Logs every merged pull request as a Done task on the right department's board.</p></div>
+<div class="g"><div><div class="k">Reads</div><ul><li>Merged pull requests on the website and the ops apps</li></ul></div><div><div class="k">Hands back</div><ul><li>Done tasks on the Tasks boards</li></ul></div></div>
+<div class="steps"><div class="k">One run</div><ol><li>Fetches the latest closed pull requests from both repos.</li><li>Keeps the ones merged in the last 4 days that aren't logged yet.</li><li>Routes each to SEO, Outbound, Social, Sales or Ops.</li><li>Writes a Done 'Shipped' task with the date, link and a short summary.</li></ol></div>
+<div class="g never"><div style="grid-column:1/-1"><div class="k">Never</div><ul><li>Logs the same pull request twice</li><li>Uses AI. It's free</li></ul></div></div>
+
+</div>
+<p>Its Shipped log feeds the shared context every other agent's suggestions are screened against, so no agent proposes something that already went live.</p>
+</section>
+<div class="dept"><div class="lab"><span>After the files</span><span>What I learned</span></div><h2>What broke: I became the bottleneck</h2></div>
+<p>The agents were fine. I was the queue.</p>
+<p>Every recommendation used to wait for my approval. The day I took these screenshots, 39 cards were waiting for me across the office. Most of them weren't wrong. I just hadn't got to them.</p>
+<p>An agent that waits for a busy human is just a slower human.</p>
+<p>So on November 13 I removed approvals from most of the SEO work and split every recommendation into one of three lanes.</p>
+<div class="lanes">
+<div class="lane a"><div class="k">Lane A</div><div class="t">Ships on its own</div><p>Safe changes on our own site: fact fixes, internal links, article refreshes, CTA placement, title fixes. They go out in the Thursday release with an Undo link.</p></div>
+<div class="lane"><div class="k">Lane B</div><div class="t">One tap to send</div><p>Anything that reaches a stranger's inbox. The agent writes it, I tap send.</p></div>
+<div class="lane"><div class="k">Lane C</div><div class="t">I decide</div><p>Anything that's really a strategy call: bets, pruning, technical fixes. The only cards that should ever need me.</p></div>
+</div>
+<p>The first two releases went out on November 13. This is what landed in Slack:</p>
+<div class="sk"><div class="sk-side"><div class="sk-ws">Bricx</div><div class="sk-sec">▾ Agents</div>
+<div class="sk-ch b"># admin-agents</div><div class="sk-ch"># outbound-agents</div><div class="sk-ch"># sales-agents</div><div class="sk-ch on"># seo-agents</div><div class="sk-ch"># social-agents</div>
+<div class="sk-sec" style="margin-top:8px">▾ Apps</div><div class="sk-ch">Bricx Agents</div></div><div class="sk-main"><div class="sk-hd"># seo-agents</div><div class="sk-msg"><div class="sk-av">BA</div><div><div><span class="sk-nm">Bricx Agents</span><span class="sk-app">APP</span><span class="sk-ts">11:05 AM</span></div>
+<p><b>🚀 Shipped 2 SEO changes to the website</b> · <span class="sk-a">release PR</span></p>
+<p><b>Shipped</b></p>
+<ul>
+<li><span class="sk-a">Our Clutch award announcement</span>: Added a product design agency link.<br><span class="sk-why">Why:</span> helps readers interested in the award find our product design service. <span class="sk-a">Undo</span></li>
+<li><span class="sk-a">A California UX agencies page</span>: Added a link to our product design service.<br><span class="sk-why">Why:</span> the page received 2,813 impressions in 28 days, and this link gives readers a direct path. <span class="sk-a">Undo</span></li>
+</ul>
+<p><b>Not shipped, back in the SEO app</b></p>
+<ul><li>Link a healthcare design article to a service page<br><span class="sk-why">it would remove an existing link</span></li>
+<li>Link an RFP article to a service page<br><span class="sk-why">the evidence has no impressions, clicks, position or inbound link count to support the business reason</span></li>
+<li>Refresh a service page<br><span class="sk-why">the files with the location text and award markup are missing, so I can't complete this refresh safely</span></li></ul>
+<p><span class="sk-a">@Divij</span> every change is also on the <span class="sk-a">SEO Tasks board</span>.</p></div></div><div class="sk-in">Message #seo-agents</div></div></div>
+<p class="note">Rebuilt from the real message. Page names are described instead of linked.</p>
+<p>Look at the bottom half. The release agent refused changes and said why for each one: one would have removed an existing link, one had no numbers to justify it, one was missing the files it needed. That's the part that lets me not review it.</p>
+<p>The agents also catch their own bugs. The last agent review noticed the release agent was running every hour instead of only on Thursdays. Nobody told it to look for that.</p>
+
+<div class="dept"><div class="lab"><span>Where I watch it</span><span>3 places</span></div><h2>Slack, the apps and the office</h2></div>
+<p><b>Slack.</b> Each department has a channel, plus one for alerts. Most agents stay quiet unless something needs me, and each department's inbox pings once a day at most.</p>
+<p><b>The apps.</b> Each department has its own app on the same design: numbers against target, an inbox for cards, a task board and one page per agent.</p>
+<figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Bricx HQ · agents</span></div><img src="hq-agents.png" alt="HQ. Every agent by department, with when it last ran. 0 failing." loading="lazy" width="800" height="520"></div><figcaption><b>HQ.</b> Every agent by department, with when it last ran. 0 failing.</figcaption></figure>
+<p>The links agent also draws a map of the whole site every Friday.</p>
+<figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>SEO app · site map</span></div><img src="seo-map.png" alt="The site map. 266 pages, 2,422 in-content links, 80 orphans. Blue dots are money pages." loading="lazy" width="800" height="520"></div><figcaption><b>The site map.</b> 266 pages, 2,422 in-content links, 80 orphans. Blue dots are money pages.</figcaption></figure>
+<p><b>The office.</b> Where I check in when I just want to know things are alive.</p>
+
+<div class="dept"><div class="lab"><span>The bill</span><span>30 days</span></div><h2>$21 a month</h2></div>
+<p>The whole office spent $21 on AI in the last 30 days. More than half of that is one agent: the Claude tracker, asking Claude our buyer questions with web search every day.</p>
+<p>The expensive part was never the AI. It was the hours spent building, training and fixing the agents. That's the same work as onboarding a person, except you do it once.</p>
+
+<div class="dept"><div class="lab"><span>Start here</span><span>7 steps</span></div><h2>If you want to build your own</h2></div>
+<ol class="howto">
+<li><span><b>Write your facts file first.</b> Before any agent writes a word, write down what's true about you. Every agent checks against it.</span></li>
+<li><span><b>One agent, one job, one schedule.</b> If you can't describe its job in one sentence with a day of the week in it, it's two agents.</span></li>
+<li><span><b>Write the Never list before the prompt.</b> What it must not do matters more than what it should.</span></li>
+<li><span><b>Wire it to a source, not a prompt.</b> Every recommendation points at the number behind it.</span></li>
+<li><span><b>Make every card say what happens if you press the button.</b> And why. Otherwise you'll never press it.</span></li>
+<li><span><b>Build the reviewer before the tenth agent.</b> Agents checking agents is what lets you stop checking.</span></li>
+<li><span><b>Sort into lanes on day one.</b> Safe changes ship with an undo. Anything that reaches a stranger gets one tap. Only strategy waits for you.</span></li>
+</ol>
+<p>Agents are faster than me, and on a lot of jobs, smarter than me.</p>
+<p>My job is to tell them what matters, and to own what happens.</p>
+
+<div class="method">
+<p><b>Sources.</b> Agent behaviour is from the agents' own code. Screenshots and the Slack message are from November 2026. Lead counts, client, prospect and team names, page addresses and internal links are blurred or left out.</p>
+</div>
+
+    </div>
+  </div>
+  <footer class="footer">
+    <span>© 2026 Divij Rakhra</span>
+    <span>Written from Gurugram</span>
+  </footer>
+  <script>
+(function(){var RUN=[["Data", "It starts from a number, never an opinion", "<p>The refresh agent wakes up on Thursday and pulls the two pages losing the most impressions in Search Console, plus one money page in rotation.</p><p>That week one of them was a service page.</p>"], ["Trace", "It traces every claim back to its source", "<p>It reads the page and checks every claim against <code>verified facts</code>, one file that holds what is true about Bricx: our rating, our review count, where we're based, which clients we can name.</p><p>It found stale review details and awards it couldn't verify.</p>"], ["Fix", "It proposes one exact change", "<p>Not \"improve the page\". The exact text to find, the exact text to replace it with, and why.</p><p>Here: swap the stale claims for the confirmed rating and review count.</p>"], ["Check", "Code checks it, then another model does", "<p>The text it replaces has to exist exactly once. No partner or client mention can disappear. No name we never use can appear. No em dash.</p><p>Then an independent critic scores the change. Under 9 out of 10, it doesn't ship.</p>"], ["Lane", "It goes to a lane, not a queue", "<p>A fact fix on our own site is lane A: it ships on its own in the Thursday release.</p><p>An email to a stranger is lane B and waits for one tap. A strategy call is lane C and waits for me.</p>"], ["Ship", "It ships, with an undo button", "<p>On Thursday the release agent makes the week's edits in the site's code, waits for the checks to pass and merges one pull request.</p><p>Every change gets a reason and an Undo link. 45 minutes later, the agent checks the live page.</p>"], ["Learn", "The results teach the agent", "<p>On Monday the agent review reads the week. What I approved, rejected, edited or ignored becomes a lesson the agent reads on every future run.</p>"]];var r=document.getElementById('run');if(!r)return;var st=r.querySelector('.run-steps'),p=r.querySelector('.run-p'),cur=0;
+RUN.forEach(function(s,i){var b=document.createElement('button');b.innerHTML='<i>0'+(i+1)+'</i>'+s[0];b.onclick=function(){go(i)};st.appendChild(b)});
+function go(i){cur=Math.max(0,Math.min(RUN.length-1,i));st.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('on',j===cur)});p.innerHTML='<h4>'+RUN[cur][1]+'</h4>'+RUN[cur][2];}
+r.querySelectorAll('.run-nav button').forEach(function(b){b.onclick=function(){go(cur+(+b.dataset.d))}});go(0);})();
+</script>
+</body>
+</html>
