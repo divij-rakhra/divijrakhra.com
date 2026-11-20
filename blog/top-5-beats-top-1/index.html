@@ -7,7 +7,7 @@
   <meta name="description" content="We measured how often AI answers name agencies at each position on a listicle. #1 and #5 came out the same. Then we tested it on three lists for two months.">
   <link rel="icon" type="image/jpeg" href="/avatar.jpg">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2">
-  <link rel="stylesheet" href="/style.css?v=4">
+  <link rel="stylesheet" href="/style.css?v=5">
   <style>
 @font-face{font-family:'Geist Sans';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'Geist Mono';src:url(https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/GeistMono-Variable.woff2) format('woff2');font-weight:100 900;font-display:swap}
@@ -236,6 +236,7 @@ figure>img+img{margin-top:18px}
   </header>
   <div class="container">
     <a href="/" class="back-link">← All posts</a>
+    <img class="lab-mascot" src="/img/lab/present.webp" alt="" width="300" height="400">
     <div class="kicker"><i></i>Experiment log · AI search</div>
     <h1 class="post-title">Top 5 beats top 1: what your position on a list does to your AI mentions</h1>
     <div class="post-meta">November 2026 · AI search · 10 min read</div>
@@ -280,7 +281,7 @@ figure>img+img{margin-top:18px}
 </figure>
 
 <figure>
-<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Pick a position</div><div class="viz-t">What a spot on an AI-read list is worth</div><div class="viz-s">Drag the slider. Same data as Figure 3, one position at a time.</div></div><div class="sl"><input type="range" min="1" max="9" step="1" value="5" id="slp" aria-label="Position on the list">
+<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Pick a position</div><div class="viz-t">What a spot on an AI-read list is worth</div><div class="viz-s">Drag the slider. Same data as Figure 3, one position at a time.</div></div><img class="viz-m" id="slm" src="/img/lab/present.webp" alt=""><div class="sl"><input type="range" min="1" max="9" step="1" value="5" id="slp" aria-label="Position on the list">
 <div class="sl-ticks"><span>#1</span><span>#2</span><span>#3</span><span>#4</span><span>#5</span><span>#6</span><span>#7</span><span>#8</span><span>#9+</span></div>
 <div class="sl-out"><div><b id="slr">34.4%</b><span>named when the list is read</span></div><div id="slvw"><b id="slv">0.90x</b><span>vs the #1 spot</span></div><div><b id="sln">14</b><span>agencies measured at this spot</span></div></div></div></div>
   <figcaption>#2 to #4 actually came out slightly above #1, which is noise, not a reason to aim for #2. The real pattern is flat through the top five and falling after it. Top 3 against everything below tests as significant (t = 2.52), and all of that comes from the tail.</figcaption>
@@ -335,7 +336,7 @@ figure>img+img{margin-top:18px}
 <p>Directories get very little direct traffic, so pricing a spot per click makes every one of them look terrible. Price it per AI read of the page instead, and per answer that names you. Try the three options we had, or plug in your own.</p>
 
 <figure>
-<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Cost per AI answer</div><div class="viz-t">What you're really paying for</div><div class="viz-s">Reads per month estimated from Peec, Jun 1 to Sep 8, 2026. Mention rates from Figure 3.</div></div><div class="cc"><div class="cc-p"><button data-cc='{"p": 1500, "r": 77, "m": 41.3}'>Homepage list, #3</button><button data-cc='{"p": 1500, "r": 165, "m": 41.3}'>3 niche lists, top 3</button><button data-cc='{"p": 500, "r": 165, "m": 38.2}' class=on>3 niche lists, top 5</button></div>
+<div class="viz"><div class="viz-h"><div class="viz-e">Try it · Cost per AI answer</div><div class="viz-t">What you're really paying for</div><div class="viz-s">Reads per month estimated from Peec, Jun 1 to Sep 8, 2026. Mention rates from Figure 3.</div></div><img class="viz-m" id="ccmx" src="/img/lab/present.webp" alt=""><div class="cc"><div class="cc-p"><button data-cc='{"p": 1500, "r": 77, "m": 41.3}'>Homepage list, #3</button><button data-cc='{"p": 1500, "r": 165, "m": 41.3}'>3 niche lists, top 3</button><button data-cc='{"p": 500, "r": 165, "m": 38.2}' class=on>3 niche lists, top 5</button></div>
 <div class="cc-in"><label>Price per month ($)<input id="ccp" type="number" value="500"></label><label>AI reads per month<input id="ccr" type="number" value="165"></label><label>Mention rate at your spot (%)<input id="ccm" type="number" value="38.2"></label></div>
 <div class="sl-out"><div><b id="cc1">$</b><span>per AI read of the page</span></div><div><b id="cc2">$</b><span>per AI answer that names you</span></div><div><b id="cc3"></b><span>answers naming you a month</span></div></div></div></div>
   <figcaption>Same lists, same reads. Dropping from top 3 to #5 costs you almost nothing in mention rate and cuts the price by two thirds.</figcaption>
@@ -372,18 +373,21 @@ document.addEventListener('mousemove',function(e){var el=e.target.closest&&e.tar
 document.querySelectorAll('[data-mx]').forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-mx');
  document.querySelectorAll('[data-mx]').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-mx')===k);});
  document.querySelectorAll('[data-mxd]').forEach(function(x){x.hidden=x.getAttribute('data-mxd')!==k;});});});
+// lab mascot reacts: happy inside the top 5 or under $10 per answer, hand up otherwise
+function lm(el,k){if(!el||el.dataset.k===k)return;el.dataset.k=k;el.classList.add('sw');setTimeout(function(){el.src='/img/lab/'+k+'.webp';el.classList.remove('sw');},180);}
 // position slider
 var P={"1": 38.4, "2": 44.1, "3": 41.3, "4": 42.1, "5": 34.4, "6": 26.5, "7": 29.3, "8": 22.7, "9": 16.9}, N={"1": 14, "2": 14, "3": 14, "4": 14, "5": 14, "6": 14, "7": 14, "8": 11, "9": 9}, s=document.getElementById('slp');
 function sl(){var p=+s.value, r=P[p]; document.getElementById('slr').textContent=r+'%';
  var v=r/P[1]; document.getElementById('slv').textContent=v.toFixed(2)+'x'; document.getElementById('slvw').className=v<0.8?'bad':'';
- document.getElementById('sln').textContent=N[p];}
+ document.getElementById('sln').textContent=N[p]; lm(document.getElementById('slm'),p<=5?'present':'stop');}
 if(s){s.addEventListener('input',sl); sl();}
 // calculator
 var cp=document.getElementById('ccp'), cr=document.getElementById('ccr'), cm=document.getElementById('ccm');
 function cc(){var p=+cp.value||0, r=+cr.value||0, m=(+cm.value||0)/100;
  document.getElementById('cc1').textContent=r?('$'+(p/r).toFixed(2)):'-';
  document.getElementById('cc2').textContent=(r*m)?('$'+(p/(r*m)).toFixed(2)):'-';
- document.getElementById('cc3').textContent=Math.round(r*m);}
+ document.getElementById('cc3').textContent=Math.round(r*m);
+ var per=(r*m)?p/(r*m):0; lm(document.getElementById('ccmx'),per&&per<=10?'present':'stop');}
 [cp,cr,cm].forEach(function(i){i&&i.addEventListener('input',function(){document.querySelectorAll('[data-cc]').forEach(function(b){b.classList.remove('on')});cc();});});
 document.querySelectorAll('[data-cc]').forEach(function(b){b.addEventListener('click',function(){var d=JSON.parse(b.getAttribute('data-cc'));
  cp.value=d.p; cr.value=d.r; cm.value=d.m; document.querySelectorAll('[data-cc]').forEach(function(x){x.classList.toggle('on',x===b)}); cc();});});

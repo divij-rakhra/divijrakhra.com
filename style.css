@@ -223,3 +223,12 @@ body .back-link:hover { color: var(--nb-blue); }
   .post-body > blockquote { font-size: 19.5px; }
   .footer { padding: 24px var(--nb-gutter) 40px; }
 }
+
+/* lab mascot: beside the headline, and reacting inside interactive figures */
+.container .lab-mascot { float: right; height: 190px; width: auto; margin: -6px -8px 8px 18px; filter: drop-shadow(0 6px 6px rgba(19,32,74,.16)); shape-outside: margin-box; }
+.viz { position: relative; }
+.viz-m { position: absolute; right: 10px; top: 8px; height: 96px; width: auto; transition: transform .18s ease, opacity .18s ease; transform-origin: 50% 100%; pointer-events: none; }
+.viz-m.sw { transform: translateY(14px) scale(.9); opacity: 0; }
+.viz:has(.viz-m) .viz-h { padding-right: 90px; }
+@media (max-width: 720px) { .container .lab-mascot { height: 118px; margin: 0 -4px 6px 10px; } .viz-m { height: 72px; } .viz:has(.viz-m) .viz-h { padding-right: 64px; } }
+@media (prefers-reduced-motion: reduce) { .viz-m { transition: none; } }
