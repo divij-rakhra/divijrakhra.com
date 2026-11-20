@@ -195,6 +195,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .src>section .inner{height:auto;padding:28px 20px}
 .src .cover .inner,.src .backcover .inner{color:#fff}
 .src[hidden]{display:none}
+
+/* lab mascot: sits beside the file, changes pose as pages turn */
+.mascot{position:fixed;z-index:30;border:0;background:none;padding:0;cursor:pointer;height:190px;left:-999px;top:0;transition:left .35s ease,top .35s ease;-webkit-tap-highlight-color:transparent}
+.mascot img{height:100%;width:auto;display:block;transform-origin:50% 100%;transition:transform .22s ease,opacity .22s ease;filter:drop-shadow(0 6px 6px rgba(19,32,74,.18))}
+.mascot.swap img{transform:translateY(26px) scale(.9);opacity:0}
+.mascot.pop img{animation:mpop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes mpop{0%{transform:translateY(26px) scale(.9)}100%{transform:none}}
+.mascot:hover img{transform:rotate(-4deg) translateY(-4px)}
+@media (max-width:979px){.mascot{height:104px}}
+@media (prefers-reduced-motion:reduce){.mascot,.mascot img{transition:none;animation:none}}
 </style>
 <!-- share -->
 <meta property="og:type" content="website">
@@ -229,6 +239,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <span class="keys">or use the arrow keys</span>
 </nav>
 <div class="tip" id="tip"></div>
+<button class="mascot" id="mascot" aria-label="Turn the page" title="Next page"><img alt="" src="/img/lab/present.webp" width="396" height="520"></button>
 
 <!-- ======== page content: every face of the file ======== -->
 <div id="pages" class="src">
@@ -534,6 +545,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     } else book.style.transform = 'none';
     status();
     reveal();
+    mascot();
   }
 
   function turn(to){
@@ -555,7 +567,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       const w = book._w;
       book.style.transform = cur === 0 ? `translateX(${-w/2}px)` : cur === n ? `translateX(${w/2}px)` : 'none';
     }
-    status(); setTimeout(reveal, reduce ? 0 : 450);
+    status(); setTimeout(reveal, reduce ? 0 : 450); setTimeout(mascot, reduce ? 0 : 380);
     history.replaceState(null, '', '#' + (visibleIds()[0] || 'cover'));
   }
   const range = (a, b) => Array.from({length: b - a}, (_, i) => a + i);
@@ -592,6 +604,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     });
   }
 
+
+  // ---- lab mascot ----
+  const POSE = {cover:'present',cert:'clipboard',index:'clipboard',e1g:'papers',e1t:'letter',e2g:'magnify',e2t:'letter',e3g:'magnify',e3t:'present',e4g:'laptop',e4t:'letter',e5:'stopwatch',contact:'letter',backcover:'stop'};
+  Object.values(POSE).forEach(k => { const i = new Image(); i.src = `/img/lab/${k}.webp`; });
+  const mas = document.getElementById('mascot'), mimg = mas.querySelector('img');
+  let mpose = 'present';
+  function placeMascot(){
+    // visible part of the book: closed cover = right half, back cover = left half, otherwise all of it
+    const br = book.getBoundingClientRect(), half = br.width / 2;
+    const r = { bottom: br.bottom, right: mode === 'spread' && cur === leaves.length ? br.right - half : br.right };
+    const h = mas.offsetHeight, w = h * .76;
+    const ctrl = document.querySelector('.ctrl').getBoundingClientRect();
+    const room = innerWidth - r.right;
+    const left = room > w * .8 ? r.right - w * .18 : Math.min(innerWidth - w - 6, r.right - w * .62);
+    const top = Math.min(r.bottom, ctrl.top + 6) - h + (room > w * .8 ? 0 : 10);
+    mas.style.left = Math.round(left) + 'px'; mas.style.top = Math.round(top) + 'px';
+  }
+  function mascot(){
+    const ids = visibleIds(), id = ids[0] || 'cover', k = POSE[id] || 'present';
+    placeMascot();
+    if (k === mpose) return;
+    mpose = k;
+    if (reduce) { mimg.src = `/img/lab/${k}.webp`; return; }
+    mas.classList.add('swap');
+    setTimeout(() => { mimg.src = `/img/lab/${k}.webp`; mas.classList.remove('swap'); mas.classList.add('pop'); setTimeout(() => mas.classList.remove('pop'), 520); }, 220);
+  }
+  // the book slides when the cover opens or closes: re-place once it stops
+  book.addEventListener('transitionend', e => { if (e.target === book) placeMascot(); });
+  mas.onclick = () => turn(cur + 1 > (mode === 'spread' ? leaves.length : leaves.length - 1) ? 0 : cur + 1);
+
   function goId(id){ if (id in map) turn(map[id]); }
 
   // ---- input ----
@@ -627,7 +669,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   });
   book.addEventListener('pointerleave', () => tip.style.opacity = 0);
 
-  addEventListener('resize', size);
+  addEventListener('resize', () => { size(); placeMascot(); });
   size();
   const start = location.hash.slice(1);
   if (start && start in map) { cur = map[start]; layout(true); }
