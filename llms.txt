@@ -1,0 +1,12 @@
+# Divij Rakhra
+
+> Runs growth experiments in AI search, demand gen and launches, and publishes every number.
+
+Every post is a real experiment with the numbers published. Profiles: https://linkedin.com/in/divijrakhra, https://x.com/RakhraDivij.
+
+## Experiments
+
+- [How we got 3,000+ signups for our AI SaaS in 24 hours](https://divijrakhra.com/blog/how-we-got-3000-signups-for-our-ai-saas-in-24-hours/): No ads, no audience, no influencers. The positioning, the post structure and the DM automation behind the Fray launch.
+- [The agent office: how 42 agents run my marketing](https://divijrakhra.com/blog/the-agent-office/): The Bricx marketing office, agent by agent: the org chart, what each agent reads, what one run does, what it hands back and what it's never allowed to do. Humans own outcomes, agents execute.
+- [The Zero-DR Citation: how two brand-new domains started steering ChatGPT's recommendations](https://divijrakhra.com/blog/the-zero-dr-citation/): Two exact-match directory domains with zero domain rating became top-cited sources in ChatGPT. The data, the screenshots, and the playbook to copy it.
+- [Top 5 beats top 1: what your position on a list does to your AI mentions](https://divijrakhra.com/blog/top-5-beats-top-1/): We measured how often AI answers name agencies at each position on a listicle. #1 and #5 came out the same. Then we tested it on three lists for two months.
